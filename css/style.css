@@ -1,3 +1,13 @@
+:root {
+    font-size:  calc(0.3em + 1vw);
+    box-sizing: border-box;
+}
+*,
+::before,
+::after {
+    box-sizing: inherit;
+}   
+
 body {
     color: black;
 }
@@ -53,13 +63,13 @@ body {
 .carousel-caption {
     left: 5%;
     right: 0;
-    bottom: 30%;
+    bottom: 15%;
     text-align: left;
     background-color: #6363645e;
-    width: 70%;
+    width: 20em;
     min-height: 10vw;
     border-radius: 3em;
-    padding: 4em;
+    padding: 1em 2em;
 }
 
 @media (min-width: 768px) {
@@ -81,9 +91,9 @@ section.next {
 section.recent-journal {
     color: black;
     background-color: #518dbe;
-    min-height: 200px;
+    min-height: 100px;
     margin: 50px 0 10px 0;
-    padding: 10em 15em;
+    padding: 10rem 15rem;
     text-align: center;
 }
 
