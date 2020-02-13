@@ -70,6 +70,9 @@ body {
     min-height: 10vw;
     border-radius: 3em;
     padding: 1em 2em;
+    font-family: 'Dancing Script', cursive;
+    font-weight: bold;
+    font-size: 1.2em;
 }
 
 @media (min-width: 768px) {
