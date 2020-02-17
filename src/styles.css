@@ -1,0 +1,109 @@
+:root {
+    font-size:  calc(0.3em + 1vw);
+    box-sizing: border-box;
+}
+*,
+::before,
+::after {
+    box-sizing: inherit;
+}   
+
+body {
+    color: black;
+}
+
+.navbar {
+    padding: 20px 10px;
+}
+
+@media (min-width: 768px) {
+    .navbar .navbar-nav {
+        float: none;
+        margin: 0 auto;
+        display: block;
+        text-align: center;
+    }
+
+    .navbar li.nav-item {
+        display: inline-block;
+        text-align: center;
+        color: black !important;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 0.9rem;
+        /* margin-left: em; */
+    }
+}
+
+.nav-item > a:hover {
+    margin-bottom: -2px; /* to prevent danglings */
+    border-bottom: 2px solid #636364;
+}
+
+.fa.icon-large, .fa.icon-large:link {
+    color: #636364;
+}
+
+.fa.icon-large:visited {
+    color: #636364;
+}
+
+.fa.icon-large:hover {
+    color: #636364;
+}
+
+.icon-large {
+    font-size: 1.5em;
+}
+
+.navbar .icon-large {
+    margin-left: 1.1em;
+}
+
+.carousel-caption {
+    left: 5%;
+    right: 0;
+    bottom: 15%;
+    text-align: left;
+    background-color: #6363645e;
+    width: 20em;
+    min-height: 10vw;
+    border-radius: 3em;
+    padding: 1em 2em;
+    font-family: 'Dancing Script', cursive;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+@media (min-width: 768px) {
+    .carousel-caption {
+        width: 30vw;
+    }
+}
+
+.carousel-indicators li {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 100%;
+}
+
+section.next {
+    padding-top: 10em;
+}
+
+section.recent-journal {
+    color: black;
+    background-color: #518dbe;
+    min-height: 100px;
+    margin: 50px 0 10px 0;
+    padding: 10rem 15rem;
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+}
+
+footer .fa {
+    margin: 1em 1.2em;
+}
