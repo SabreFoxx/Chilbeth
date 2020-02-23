@@ -1,12 +1,13 @@
 :root {
-    font-size:  calc(0.3em + 1vw);
+    font-size: calc(0.3em + 1vw);
     box-sizing: border-box;
 }
+
 *,
 ::before,
 ::after {
     box-sizing: inherit;
-}   
+}
 
 body {
     color: black;
@@ -35,12 +36,14 @@ body {
     }
 }
 
-.nav-item > a:hover {
-    margin-bottom: -2px; /* to prevent danglings */
+.nav-item>a:hover {
+    /* to prevent danglings */
+    margin-bottom: -2px;
     border-bottom: 2px solid #636364;
 }
 
-.fa.icon-large, .fa.icon-large:link {
+.fa.icon-large,
+.fa.icon-large:link {
     color: #636364;
 }
 
@@ -87,8 +90,8 @@ body {
     border-radius: 100%;
 }
 
-section.next {
-    padding-top: 10em;
+section+* {
+    margin-top: 5em;
 }
 
 section.recent-journal {
@@ -105,5 +108,26 @@ footer {
 }
 
 footer .fa {
-    margin: 1em 1.2em;
+    padding: 1em 1.2em;
+}
+
+.area-padding {
+    padding: 80px 0;
+}
+
+.btn {
+    padding: 0.5em;
+    background-color: #646363;
+    border-color: #646363;
+}
+
+/* Namespaced styles chi- for chilbeth */
+.chi-container {
+    max-width: 1080px;
+    margin: 0 auto;
+    background-color: sandybrown;
+}
+
+.chi-flex {
+    display: flex;
 }
