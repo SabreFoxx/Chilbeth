@@ -1,5 +1,4 @@
 :root {
-    font-size: calc(0.3em + 1vw);
     box-sizing: border-box;
 }
 
@@ -32,7 +31,6 @@ body {
         text-transform: uppercase;
         font-weight: bold;
         font-size: 0.9rem;
-        /* margin-left: em; */
     }
 }
 
