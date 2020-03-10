@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ViewArtComponent } from './view-art.component';
+import { ViewWorkComponent } from './view-work.component';
 
-describe('ViewArtComponent', () => {
-  let component: ViewArtComponent;
-  let fixture: ComponentFixture<ViewArtComponent>;
+describe('ViewWorkComponent', () => {
+  let component: ViewWorkComponent;
+  let fixture: ComponentFixture<ViewWorkComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ViewArtComponent ]
+      declarations: [ ViewWorkComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ViewArtComponent);
+    fixture = TestBed.createComponent(ViewWorkComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
