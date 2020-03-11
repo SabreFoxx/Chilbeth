@@ -9,6 +9,8 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 })
 export class NewBlogComponent implements OnInit {
 
+  htmlContent;
+
   fileData: File = null;
   previewUrl: any = null;
   uploadedFilePath: string = null;
