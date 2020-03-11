@@ -1,0 +1,28 @@
+<section class="next this-page-1">
+    <h3 class="title">Upload Work</h3>
+    <div class="container b">
+        <div class="row">
+            <div class="col-12">
+                <div class="mb-3" style="min-height: 200px">
+                    <img *ngIf="previewUrl" [src]="previewUrl" class="img-fluid" height="200" />
+                </div>
+                <b>Choose file</b>
+                <div class="form-group">
+                    <input type="file" name="image" (change)="fileProgress($event)" />
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <input class="form-control" name="subject" id="subject" type="text" placeholder="Title...">
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <textarea class="form-control w-100" name="message" id="message" cols="30" rows="9"
+                        placeholder="Some description..."></textarea>
+                    <button style="margin-top: 10px" class="btn btn-primary" (click)="onSubmit()">Upload</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

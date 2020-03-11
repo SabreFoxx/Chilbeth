@@ -1,0 +1,9 @@
+ul.navbar-nav span a {
+    display: block;
+}
+
+@media (min-width: 768px) {
+    ul.navbar-nav span a {
+        display: inline-block;
+    }
+}
