@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-view-work',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewWorkComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userAuth: AuthService) { }
+
+  isLoggedIn(): boolean {
+    return this.userAuth.isLoggedIn;
+  }
 
   ngOnInit(): void {
   }

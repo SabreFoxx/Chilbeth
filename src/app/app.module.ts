@@ -21,6 +21,9 @@ import { ViewWorkComponent } from './works/view-work/view-work.component';
 import { NewBlogComponent } from './blog/new-blog/new-blog.component';
 import { NewWorkComponent } from './works/new-work/new-work.component';
 import { SettingsComponent } from './admin/settings/settings.component';
+import { ViewBlogComponent } from './blog/view-blog/view-blog.component';
+import { SideBarComponent } from './blog/side-bar/side-bar.component';
+import { LogoutComponent } from './logout/logout.component';
 
 /* Configure routes */
 const appRoutes: Routes = [
@@ -28,11 +31,14 @@ const appRoutes: Routes = [
   { path: 'blog', component: BlogLandingComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'logout', component: LogoutComponent },
   { path: 'works', component: WorksComponent },
   { path: 'landing', component: LandingComponent },
   { path: 'settings', component: SettingsComponent },
   { path: 'new-blog', component: NewBlogComponent },
+  { path: 'view-blog', component: ViewBlogComponent },
   { path: 'new-work', component: NewWorkComponent },
+  { path: 'view-work', component: ViewWorkComponent },
   { path: '', component: LandingComponent }, // The LandingComponent is the default component
   { path: '**', component: LandingComponent }
 ];
@@ -51,7 +57,10 @@ const appRoutes: Routes = [
     ViewWorkComponent,
     NewBlogComponent,
     NewWorkComponent,
-    SettingsComponent
+    SettingsComponent,
+    ViewBlogComponent,
+    SideBarComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

@@ -16,6 +16,10 @@ export class HeaderComponent implements OnInit {
     return this.userAuth.isLoggedIn;
   }
 
+  setLogged() { // TODO remove this
+    this.userAuth.isLoggedIn = true;
+  }
+
   ngOnInit() {
   }
 

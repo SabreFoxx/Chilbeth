@@ -12,18 +12,18 @@
                 <li class="nav-item"><a routerLink="/works" class="nav-link">Works</a></li>
                 <li class="nav-item"><a routerLink="/about" class="nav-link">About Me</a></li>
                 <li class="nav-item"><a routerLink="/contact" class="nav-link">Contact</a></li>
-                <li *ngIf="!isLoggedIn()" class="nav-item"><a routerLink="/login" class="nav-link">Login</a></li>
-                <li *ngIf="isLoggedIn()" class="nav-item"><a routerLink="/logout" class="nav-link">Logout</a></li>
+                <li *ngIf="!isLoggedIn()" (click)="setLogged()" class="nav-item"><a routerLink="/login" class="nav-link">Login</a></li>
+                <li *ngIf="isLoggedIn()" class="nav-item"><a href="#" class="nav-link">Logout</a></li>
             </ul>
             <ul class="navbar-nav ml-auto brand">
                 <span *ngIf="!isLoggedIn()">
-                    <a href="#">
+                    <a href="http://facebook.com">
                         <li class="fa icon-large fa-facebook"></li>
                     </a>
-                    <a href="#">
+                    <a href="http://twitter.com">
                         <li class="fa icon-large fa-twitter"></li>
                     </a>
-                    <a href="#">
+                    <a href="http://www.instagram.com/chinyereodinukwe">
                         <li class="fa icon-large fa-instagram"></li>
                     </a>
                 </span>

@@ -1,1 +1,26 @@
-<p>view-art works!</p>
+<section class="next this-page-1">
+    <h3>Artwork Title</h3>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card mb-2">
+                    <img class="card-img-top shadow" src="assets/img/img.jpg" alt="Card image cap">
+                    <div class="card-body" style="position: relative;">
+                        <ul *ngIf="isLoggedIn()" id="actions">
+                            <a routerLink="/new-blog">
+                                <li class="fa icon-large fa-edit"></li>
+                            </a>
+                            <a routerLink="/new-work">
+                                <li class="fa icon-large fa-trash"></li>
+                            </a>
+                        </ul>
+                        <p class="card-text">Some description about artwork Some description about artwork
+                            Some description about artwork Some description about artwork Some description about
+                            artwork Some description about artwork Some description about artwork
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

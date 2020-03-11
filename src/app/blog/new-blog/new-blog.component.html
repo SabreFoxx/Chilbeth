@@ -1,1 +1,27 @@
-<p>new-blog works!</p>
+<section class="next this-page-1">
+    <h3 class="title">Create Blog Post</h3>
+    <div class="container b">
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <input class="form-control" name="subject" id="subject" type="text" placeholder="Title...">
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="mb-3" style="min-height: 200px">
+                    <img *ngIf="previewUrl" [src]="previewUrl" class="img-fluid" height="200" />
+                </div>
+                <b>Upload blog photo</b>
+                <div class="form-group">
+                    <input type="file" name="image" (change)="fileProgress($event)" />
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="htmlContent" [config]="editorConfig"></angular-editor>
+                    <button style="margin-top: 10px" class="btn btn-primary" (click)="onSubmit()">Upload</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

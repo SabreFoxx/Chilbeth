@@ -7,9 +7,11 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./new-work.component.css']
 })
 export class NewWorkComponent implements OnInit {
+
   fileData: File = null;
   previewUrl: any = null;
   uploadedFilePath: string = null;
+
   constructor(private http: HttpClient) { }
 
   fileProgress(fileInput: any) {
@@ -31,7 +33,7 @@ export class NewWorkComponent implements OnInit {
     }
   }
 
-  nSubmit() {
+  onSubmit() {
     const formData = new FormData();
     formData.append('file', this.fileData);
     this.http.post('url/to/your/api', formData)
