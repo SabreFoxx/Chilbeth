@@ -1,18 +1,41 @@
+import { BackendService } from './../../../services/backend.service';
+import { FillableForm } from 'src/services/fillable-form';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-work',
   templateUrl: './new-work.component.html',
   styleUrls: ['./new-work.component.css']
 })
-export class NewWorkComponent implements OnInit {
+export class NewWorkComponent implements OnInit, FillableForm {
+
+  // TODO secure routes that require authentication
+
+  form = new FormGroup({
+    title: new FormControl("", Validators.required),
+    description: new FormControl("", Validators.required)
+  });
 
   fileData: File = null;
   previewUrl: any = null;
-  uploadedFilePath: string = null;
+  // uploadedFilePath: string = null;
 
-  constructor(private http: HttpClient) { }
+  constructor(private backend: BackendService, private router: Router) { }
+
+  actionPending() {
+    console.log("action pending");
+  }
+
+  actionFailed() {
+    throw new Error("Method not implemented.");
+  }
+
+  actionSuccess() {
+    // this.uploadedFilePath = res.data.filePath;
+    console.log("image uploaded");
+  }
 
   fileProgress(fileInput: any) {
     this.fileData = <File>fileInput.target.files[0];
@@ -36,12 +59,7 @@ export class NewWorkComponent implements OnInit {
   onSubmit() {
     const formData = new FormData();
     formData.append('file', this.fileData);
-    this.http.post('url/to/your/api', formData)
-      .subscribe(res => {
-        console.log(res);
-        // this.uploadedFilePath = res.data.filePath;
-        alert('SUCCESS !!');
-      });
+    this.backend.uploadImage(this, formData);
   }
 
   ngOnInit(): void {

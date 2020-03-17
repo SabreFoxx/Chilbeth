@@ -1,11 +1,11 @@
-export interface AuthFillableForm {
+export interface FillableForm {
 
     // Play waiting animation or something
-    authPending();
+    actionPending();
 
     // Notify that authentication failed
-    authFailed();
+    actionFailed();
 
     // Redirect to authorized page
-    authSuccess();
+    actionSuccess();
 }

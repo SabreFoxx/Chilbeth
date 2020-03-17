@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { BROWSER_STORAGE } from 'src/app/storage';
-import { AuthFillableForm } from 'src/services/auth-fillable-form';
+import { FillableForm } from 'src/services/fillable-form';
 
 enum ApiEndpoints {
   LOGIN = "http://localhost:3000/api/login"
@@ -13,7 +13,7 @@ enum ApiEndpoints {
 export class AuthService {
 
   private _isLoggedIn: boolean;
-  private _loginComponent: AuthFillableForm;
+  private _loginComponent: FillableForm;
 
   constructor(@Inject(BROWSER_STORAGE) private storage: Storage, private http: HttpClient) {
 
@@ -30,20 +30,20 @@ export class AuthService {
   }
 
   public login(data: { email: String, password: String }) {
-    this._loginComponent.authPending();
+    this._loginComponent.actionPending();
     this.http.post(ApiEndpoints.LOGIN, data)
       .subscribe((response: any) => {
         if (response.token) {
           this.saveToken(response.token);
           this._isLoggedIn = true;
-          this._loginComponent.authSuccess();
+          this._loginComponent.actionSuccess();
         }
       }, (error) => {
         console.log(error); // TODO
       });
   }
 
-  set loginComponent(component: AuthFillableForm) {
+  set loginComponent(component: FillableForm) {
     this._loginComponent = component;
   }
 
