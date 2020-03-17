@@ -1,7 +1,6 @@
 /* Import the Angular modules we need */
-import { Routes, RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -24,24 +23,7 @@ import { SettingsComponent } from './admin/settings/settings.component';
 import { ViewBlogComponent } from './blog/view-blog/view-blog.component';
 import { SideBarComponent } from './blog/side-bar/side-bar.component';
 import { LogoutComponent } from './logout/logout.component';
-
-/* Configure routes */
-const appRoutes: Routes = [
-  { path: 'about', component: AboutComponent },
-  { path: 'blog', component: BlogLandingComponent },
-  { path: 'contact', component: ContactComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'logout', component: LogoutComponent },
-  { path: 'works', component: WorksComponent },
-  { path: 'landing', component: LandingComponent },
-  { path: 'settings', component: SettingsComponent },
-  { path: 'new-blog', component: NewBlogComponent },
-  { path: 'view-blog', component: ViewBlogComponent },
-  { path: 'new-work', component: NewWorkComponent },
-  { path: 'view-work', component: ViewWorkComponent },
-  { path: '', component: LandingComponent }, // The LandingComponent is the default component
-  { path: '**', component: LandingComponent }
-];
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -60,14 +42,15 @@ const appRoutes: Routes = [
     SettingsComponent,
     ViewBlogComponent,
     SideBarComponent,
-    LogoutComponent
+    LogoutComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    RouterModule.forRoot(appRoutes),
     HttpClientModule,
+    ReactiveFormsModule,
     AngularEditorModule
   ],
   providers: [],

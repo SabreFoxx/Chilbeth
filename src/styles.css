@@ -39,7 +39,7 @@ body {
     }
 }
 
-.nav-item>a:hover {
+.nav-item>a:hover, .nav-item>a.current {
     /* to prevent danglings */
     margin-bottom: -2px;
     border-bottom: 2px solid #636364;
@@ -188,5 +188,3 @@ footer .fa {
     font-family: 'Satisfy', cursive;
     font-weight: bold;
 }
-
-@import "/assets/styles/customize.css";

@@ -4,20 +4,13 @@
         <div class="row">
             <div class="col-12">
                 <h2 class="contact-title">Login</h2>
-                <p>Note, you've been logged in automatically since this is a test. You can now perform other actions</p>
             </div>
             <div class="col-lg-8">
-                <form class="form-contact contact_form" action="contact_process.php" method="post" id="contactForm">
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-contact contact_form" id="loginForm">
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <input class="form-control" name="name" id="name" type="text"
-                                    placeholder="Enter your name">
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <input class="form-control" name="email" id="email" type="email"
+                                <input class="form-control" formControlName="email" name="email" id="email" type="email"
                                     placeholder="Enter email address">
                             </div>
                         </div>
@@ -25,7 +18,13 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
-                                <input class="form-control" name="subject" id="subject" type="text"
+                                <input class="form-control" formControlName="password" name="password" id="password" type="password"
+                                    placeholder="Enter password">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <input class="form-control" name="captcha" id="captcha" type="captcha"
                                     placeholder="Enter verification captcha">
                             </div>
                         </div>
