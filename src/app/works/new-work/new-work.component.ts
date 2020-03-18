@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class NewWorkComponent implements OnInit, FillableForm {
 
-  // TODO secure routes that require authentication
+  // TODO hide frontend routes that require authentication
 
   form = new FormGroup({
     title: new FormControl("", Validators.required),
@@ -20,7 +20,6 @@ export class NewWorkComponent implements OnInit, FillableForm {
 
   fileData: File = null;
   previewUrl: any = null;
-  // uploadedFilePath: string = null;
 
   constructor(private backend: BackendService, private router: Router) { }
 
@@ -29,12 +28,12 @@ export class NewWorkComponent implements OnInit, FillableForm {
   }
 
   actionFailed() {
-    throw new Error("Method not implemented.");
+    console.log("operation failed");
   }
 
   actionSuccess() {
     // this.uploadedFilePath = res.data.filePath;
-    console.log("image uploaded");
+    console.log("operation successful");
   }
 
   fileProgress(fileInput: any) {
