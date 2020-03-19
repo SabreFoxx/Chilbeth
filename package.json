@@ -58,5 +58,11 @@
   "engines": {
     "node": "10.15.2",
     "npm": "6.13.1"
-  }
+  },
+  "//": [
+    "This is the comment section",
+    "Yeah!",
+    "You can add ",
+    "many comments here"
+  ]
 }
