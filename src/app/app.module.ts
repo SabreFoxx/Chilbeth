@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 /* Import all the components that make up our app */
 import { AppComponent } from './app.component';
@@ -53,7 +54,10 @@ import { NotFoundComponent } from './not-found/not-found.component';
     ReactiveFormsModule,
     AngularEditorModule
   ],
-  providers: [],
+  providers: [
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    JwtHelperService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

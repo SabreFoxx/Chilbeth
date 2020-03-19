@@ -13,10 +13,14 @@ export class HeaderComponent implements OnInit {
   }
 
   get isLoggedIn(): boolean {
-    return this.userAuth.isLoggedIn;
+    return this.userAuth.isAuthenticated;
   }
 
   ngOnInit() {
+  }
+
+  logout() {
+    this.userAuth.saveToken('');
   }
 
 }

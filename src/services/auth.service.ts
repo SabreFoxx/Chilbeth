@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { BROWSER_STORAGE } from 'src/app/storage';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { FillableForm } from 'src/services/fillable-form';
+import { BROWSER_STORAGE } from 'src/app/storage';
 
 enum ApiEndpoints {
   LOGIN = "http://localhost:3000/api/login"
@@ -15,7 +16,9 @@ export class AuthService {
   private _isLoggedIn: boolean;
   private _loginComponent: FillableForm;
 
-  constructor(@Inject(BROWSER_STORAGE) private storage: Storage, private http: HttpClient) {
+  constructor(@Inject(BROWSER_STORAGE) private storage: Storage,
+    private http: HttpClient,
+    private jwtHelper: JwtHelperService) {
 
   }
 
@@ -47,11 +50,12 @@ export class AuthService {
     this._loginComponent = component;
   }
 
-  get isLoggedIn() {
-    return this._isLoggedIn && (this.getToken() != "");
+  get isAuthenticated(): boolean {
+    // Check whether the token is expired and return true or false
+    return !this.jwtHelper.isTokenExpired(this.getToken());
   }
 
-  set isLoggedIn(value: boolean) {
+  set isAuthenticated(value: boolean) {
     this._isLoggedIn = value;
   }
 

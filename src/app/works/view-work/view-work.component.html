@@ -6,7 +6,7 @@
                 <div class="card mb-2">
                     <img class="card-img-top shadow" src="assets/img/img.jpg" alt="Card image cap">
                     <div class="card-body" style="position: relative;">
-                        <ul *ngIf="isLoggedIn()" id="actions">
+                        <ul *ngIf="canEdit()" id="actions">
                             <a routerLink="/new-blog">
                                 <li class="fa icon-large fa-edit"></li>
                             </a>

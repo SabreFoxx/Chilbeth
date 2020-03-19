@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/services/auth.service';
+import { RoleGuardService } from 'src/services/role-guard.service';
 
 @Component({
   selector: 'app-view-work',
@@ -8,10 +9,10 @@ import { AuthService } from 'src/services/auth.service';
 })
 export class ViewWorkComponent implements OnInit {
 
-  constructor(private userAuth: AuthService) { }
+  constructor(private userAuth: AuthService, private roleGuard: RoleGuardService) { }
 
-  isLoggedIn(): boolean {
-    return this.userAuth.isLoggedIn;
+  canEdit(): boolean {
+    return this.roleGuard.canUse('admin');
   }
 
   ngOnInit(): void {

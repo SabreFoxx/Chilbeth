@@ -1,5 +1,6 @@
-import { NotFoundComponent } from './not-found/not-found.component';
-/* Import the Angular modules we need */
+/* Import the Angular modules we require */
+import { RoleGuardService } from './../services/role-guard.service';
+import { RouteAuthGuardService } from './../services/route-auth-guard.service';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -15,6 +16,7 @@ import { NewBlogComponent } from './blog/new-blog/new-blog.component';
 import { ViewBlogComponent } from './blog/view-blog/view-blog.component';
 import { NewWorkComponent } from './works/new-work/new-work.component';
 import { ViewWorkComponent } from './works/view-work/view-work.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 /* Configure routes */
 const appRoutes: Routes = [
@@ -24,11 +26,18 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'works', component: WorksComponent },
-  { path: 'landing', component: LandingComponent },
+  {
+    path: 'landing', component: LandingComponent,
+    canActivate: [RoleGuardService],
+    data: { expectedRole: 'admin' }
+  },
   { path: 'settings', component: SettingsComponent },
   { path: 'new-blog', component: NewBlogComponent },
   { path: 'view-blog', component: ViewBlogComponent },
-  { path: 'new-work', component: NewWorkComponent },
+  {
+    path: 'new-work', component: NewWorkComponent,
+    canActivate: [RouteAuthGuardService]
+  },
   { path: 'view-work', component: ViewWorkComponent },
   { path: 'home', component: LandingComponent },
   { path: '', component: LandingComponent }, // The LandingComponent is the default component
