@@ -7,20 +7,26 @@
                     <div class="mb-3" style="min-height: 200px">
                         <img *ngIf="previewUrl" [src]="previewUrl" class="img-fluid" height="200" />
                     </div>
-                    <b>Choose file</b><small>The preferred image ratio is classic 3:2. For example, a 1080x720 or 708x472 photo</small>
+                    <b>Choose file</b>
+                    <p>
+                        <small>The preferred image ratio is classic 3:2. For example, a 1080x720 or 708x472
+                            photo</small>
+                    </p>
+                    <p><small>Please keep the originals of your photos, as photos uploaded here are subject to further compression</small></p>
                     <div class="form-group">
                         <input type="file" name="image" (change)="fileProgress($event)" />
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="form-group">
-                        <input class="form-control" formControlName="title" name="title" id="title" type="text" placeholder="Title...">
+                        <input class="form-control" formControlName="title" name="title" id="title" type="text"
+                            placeholder="Title...">
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="form-group">
-                        <textarea class="form-control w-100" formControlName="description" name="description" id="description" cols="30" rows="9"
-                            placeholder="Some description..."></textarea>
+                        <textarea class="form-control w-100" formControlName="desc" name="desc" id="desc" cols="30"
+                            rows="9" placeholder="Some description..."></textarea>
                         <button style="margin-top: 10px" class="btn btn-primary">Upload</button>
                     </div>
                 </div>

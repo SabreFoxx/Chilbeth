@@ -23,7 +23,6 @@ import { NewWorkComponent } from './works/new-work/new-work.component';
 import { SettingsComponent } from './admin/settings/settings.component';
 import { ViewBlogComponent } from './blog/view-blog/view-blog.component';
 import { SideBarComponent } from './blog/side-bar/side-bar.component';
-import { LogoutComponent } from './logout/logout.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
@@ -43,7 +42,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
     SettingsComponent,
     ViewBlogComponent,
     SideBarComponent,
-    LogoutComponent,
     NotFoundComponent
   ],
   imports: [

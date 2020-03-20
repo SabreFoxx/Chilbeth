@@ -8,7 +8,6 @@ import { AboutComponent } from './about/about.component';
 import { BlogLandingComponent } from './blog/blog-landing/blog-landing.component';
 import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './admin/login/login.component';
-import { LogoutComponent } from './logout/logout.component';
 import { WorksComponent } from './works/works/works.component';
 import { LandingComponent } from './landing/landing.component';
 import { SettingsComponent } from './admin/settings/settings.component';
@@ -24,7 +23,6 @@ const appRoutes: Routes = [
   { path: 'blog', component: BlogLandingComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'logout', component: LogoutComponent },
   { path: 'works', component: WorksComponent },
   {
     path: 'landing', component: LandingComponent,

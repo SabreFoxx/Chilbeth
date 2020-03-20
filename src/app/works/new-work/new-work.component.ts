@@ -11,11 +11,9 @@ import { Router } from '@angular/router';
 })
 export class NewWorkComponent implements OnInit, FillableForm {
 
-  // TODO hide frontend routes that require authentication
-
   form = new FormGroup({
     title: new FormControl("", Validators.required),
-    description: new FormControl("", Validators.required)
+    desc: new FormControl("", Validators.required)
   });
 
   fileData: File = null;
@@ -58,25 +56,16 @@ export class NewWorkComponent implements OnInit, FillableForm {
   onSubmit() {
     const formData = new FormData();
     // sortingHash will be used to identify the image in the database. It's also used here as the name of the binary we're sending
-    let sortingHash = this.generateUniqueString();
-    console.log(sortingHash);
+    let sortingHash = this.backend.generateUniqueString();
     formData.append(sortingHash, this.fileData);
     this.backend.uploadImage(this, formData);
+
+    let formText = this.form.value;
+    formText.sortingHash = sortingHash;
+    this.backend.addWork(this, formText);
   }
 
   ngOnInit(): void {
-  }
-
-  private generateUniqueString(repeat = true) {
-    var ts = String(new Date().getTime()),
-      i = 0,
-      out = '';
-
-    for (i = 0; i < ts.length; i += 2) {
-      out += Number(ts.substr(i, 2)).toString(36);
-    }
-
-    return out;
   }
 
 }

@@ -2,11 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { FillableForm } from 'src/services/fillable-form';
+import { ApiEndpoints } from './api-endpoints';
 import { BROWSER_STORAGE } from 'src/app/storage';
-
-enum ApiEndpoints {
-  LOGIN = "http://localhost:3000/api/login"
-}
 
 @Injectable({
   providedIn: 'root'
