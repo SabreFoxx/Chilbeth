@@ -1,3 +1,5 @@
+/* Used primarily when deploying from github to Heroku */
+
 //Install express server
 const express = require('express');
 const path = require('path');

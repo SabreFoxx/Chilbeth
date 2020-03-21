@@ -107,7 +107,7 @@ body {
 
 section+*,
 section.next {
-    margin-top: 5em;
+    margin-top: 3em;
 }
 
 section.recent-journal {
@@ -187,4 +187,5 @@ footer .fa {
 .recent-journal h3 {
     font-family: 'Satisfy', cursive;
     font-weight: bold;
+    margin-bottom: 2em;
 }

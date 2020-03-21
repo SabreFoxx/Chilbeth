@@ -56,7 +56,7 @@ export class NewWorkComponent implements OnInit, FillableForm {
   onSubmit() {
     const formData = new FormData();
     // sortingHash will be used to identify the image in the database. It's also used here as the name of the binary we're sending
-    let sortingHash = this.backend.generateUniqueString();
+    let sortingHash = this.backend.generateUniqueChronoString();
     formData.append(sortingHash, this.fileData);
     this.backend.uploadImage(this, formData);
 
