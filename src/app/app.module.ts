@@ -24,6 +24,7 @@ import { SettingsComponent } from './admin/settings/settings.component';
 import { ViewBlogComponent } from './blog/view-blog/view-blog.component';
 import { SideBarComponent } from './blog/side-bar/side-bar.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ScrollToTopComponent } from './others/scroll-to-top/scroll-to-top.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     SettingsComponent,
     ViewBlogComponent,
     SideBarComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ScrollToTopComponent
   ],
   imports: [
     BrowserModule,

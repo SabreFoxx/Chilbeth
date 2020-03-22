@@ -1,3 +1,13 @@
+<!-- Bootstrap alerts -->
+<div class="alert alert-success" role="alert" (click)="resetAlert()" *ngIf="successCreatingBlog">
+    <a class="close" aria-label="close">&times;</a>
+    <b>Blog created successfully! </b><a class="alert-link" routerLink="/blog">View</a>
+</div>
+<div class="alert alert-danger" role="alert" (click)="resetAlert()" *ngIf="failedCreatingBlog">
+    <a class="close" aria-label="close">&times;</a>
+    There was a <b>problem</b> while creating your blog, so it wasn't created successfully!
+</div>
+
 <section class="next this-page-1">
     <h3 class="title">Create Blog Post</h3>
     <div class="container b">
@@ -28,7 +38,13 @@
                     <div class="form-group">
                         <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="bigFormContent" [ngModelOptions]="{standalone: true}" [config]="editorConfig">
                         </angular-editor>
-                        <button style="margin-top: 10px" class="btn btn-primary">Create Blog</button>
+                        <button style="margin-top: 10px" class="btn btn-primary" [disabled]="disableSubmitButton">
+                            <span *ngIf="!disableSubmitButton">Create Blog</span>
+                            <span *ngIf="disableSubmitButton">
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Creating...
+                            </span>
+                        </button>
+                        <app-scroll-to-top></app-scroll-to-top>
                     </div>
                 </div>
             </div>

@@ -7,13 +7,14 @@
         </button>
         <div class="collapse navbar-collapse" id="theMenu">
             <ul class="navbar-nav">
-                <li class="nav-item"><a routerLinkActive="current" routerLink="/home" class="nav-link">Home</a></li>
-                <li class="nav-item"><a routerLinkActive="current" routerLink="/blog" class="nav-link">Blog</a></li>
-                <li class="nav-item"><a routerLinkActive="current" routerLink="/works" class="nav-link">Works</a></li>
-                <li class="nav-item"><a routerLinkActive="current" routerLink="/about" class="nav-link">About Me</a></li>
-                <li class="nav-item"><a routerLinkActive="current" routerLink="/contact" class="nav-link">Contact</a></li>
-                <li *ngIf="!isLoggedIn" class="nav-item"><a routerLinkActive="current" routerLink="/login" class="nav-link">Login</a></li>
-                <li *ngIf="isLoggedIn" class="nav-item"><a routerLink="/" (click)="logout()" class="nav-link">Logout</a></li>
+                <!-- data-toggle="collapse" data-target="#theMenu" will be added to each li, to work properly with Angular -->
+                <li class="nav-item" data-toggle="collapse" data-target="#theMenu"><a routerLinkActive="current" routerLink="/home" class="nav-link">Home</a></li>
+                <li class="nav-item" data-toggle="collapse" data-target="#theMenu"><a routerLinkActive="current" routerLink="/blog" class="nav-link">Blog</a></li>
+                <li class="nav-item" data-toggle="collapse" data-target="#theMenu"><a routerLinkActive="current" routerLink="/works" class="nav-link">Works</a></li>
+                <li class="nav-item" data-toggle="collapse" data-target="#theMenu"><a routerLinkActive="current" routerLink="/about" class="nav-link">About Me</a></li>
+                <li class="nav-item" data-toggle="collapse" data-target="#theMenu"><a routerLinkActive="current" routerLink="/contact" class="nav-link">Contact</a></li>
+                <li *ngIf="!isLoggedIn" data-toggle="collapse" data-target="#theMenu" class="nav-item"><a routerLinkActive="current" routerLink="/login" class="nav-link">Login</a></li>
+                <li *ngIf="isLoggedIn" data-toggle="collapse" data-target="#theMenu" class="nav-item"><a routerLink="/" (click)="logout()" class="nav-link">Logout</a></li>
             </ul>
             <ul class="navbar-nav ml-auto brand">
                 <span *ngIf="!isLoggedIn">
@@ -29,13 +30,13 @@
                 </span>
                 <span *ngIf="isLoggedIn">
                     <a routerLink="/new-blog">
-                        <li class="fa icon-large fa-plus"></li>
+                        <li class="fa icon-large fa-plus" data-toggle="collapse" data-target="#theMenu"></li>
                     </a>
                     <a routerLink="/new-work">
-                        <li class="fa icon-large fa-image"></li>
+                        <li class="fa icon-large fa-image" data-toggle="collapse" data-target="#theMenu"></li>
                     </a>
                     <a routerLink="/settings">
-                        <li class="fa icon-large fa-cog"></li>
+                        <li class="fa icon-large fa-cog" data-toggle="collapse" data-target="#theMenu"></li>
                     </a>
                 </span>
             </ul>

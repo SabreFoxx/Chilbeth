@@ -1,3 +1,4 @@
+import { ScrollToTopComponent } from './../../others/scroll-to-top/scroll-to-top.component';
 import { FillableForm } from './../../../services/fillable-form';
 import { Component, OnInit } from '@angular/core';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
@@ -12,6 +13,10 @@ import { Router } from '@angular/router';
 })
 export class NewBlogComponent implements OnInit, FillableForm {
 
+  successCreatingBlog = false;
+  failedCreatingBlog = false;
+  disableSubmitButton = false;
+
   /* For regular form */
   form = new FormGroup({
     title: new FormControl("", Validators.required)
@@ -20,7 +25,7 @@ export class NewBlogComponent implements OnInit, FillableForm {
   fileData: File = null;
   previewUrl: any = null;
 
-/* For AngularEditor */
+  /* For AngularEditor */
   bigFormContent: any;
   editorConfig: AngularEditorConfig = {
     editable: true,
@@ -72,16 +77,27 @@ export class NewBlogComponent implements OnInit, FillableForm {
 
 
   actionPending() {
-    console.log("action pending");
+    this.disableSubmitButton = true;  // Shows spinning animation on submit button
   }
 
   actionFailed() {
-    console.log("operation failed");
+    this.failedCreatingBlog = true; // Shows failure alert
   }
 
   actionSuccess() {
-    // this.uploadedFilePath = res.data.filePath;
-    console.log("operation successful");
+    this.successCreatingBlog = true; // Shows success alert
+    this.disableSubmitButton = false; // Disables spinning animation on submit button
+    // Empties the form
+    this.bigFormContent = '';
+    this.previewUrl = '';
+    this.form.get('title').setValue('');
+    ScrollToTopComponent.scrollToTop(); // Scrolls page to top
+  }
+
+  resetAlert() {
+    // Resets alert dialogs
+    this.successCreatingBlog = false;
+    this.failedCreatingBlog = false;
   }
 
   fileProgress(fileInput: any) {
@@ -90,7 +106,7 @@ export class NewBlogComponent implements OnInit, FillableForm {
   }
 
   preview() {
-    // Show preview 
+    // Show image preview 
     var mimeType = this.fileData.type;
     if (mimeType.match(/image\/*/) == null) {
       return;

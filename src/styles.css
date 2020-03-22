@@ -189,3 +189,7 @@ footer .fa {
     font-weight: bold;
     margin-bottom: 2em;
 }
+
+.alert {
+    margin: 1em 5rem;
+}
