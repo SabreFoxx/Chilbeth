@@ -20,6 +20,12 @@
                     </div>
                 </div>
                 <div class="col-12">
+                    <div class="form-group">
+                        <input class="form-control" formControlName="desc" name="desc" id="desc" type="text"
+                            placeholder="Brief description...">
+                    </div>
+                </div>
+                <div class="col-12">
                     <div class="mb-3" style="min-height: 200px">
                         <img *ngIf="previewUrl" [src]="previewUrl" class="img-fluid" height="200" />
                     </div>
@@ -28,7 +34,7 @@
                         <small>The preferred image ratio is classic 3:2. For example, a 1080x720 or 708x472
                             photo</small>
                     </p>
-                    <p><small>Please keep the originals of your photos, as photos uploaded here are subject to further
+                    <p><small>Please keep the originals of your photos, as photos uploaded here are subject to data
                             compression</small></p>
                     <div class="form-group">
                         <input type="file" name="image" (change)="fileProgress($event)" />
@@ -36,7 +42,7 @@
                 </div>
                 <div class="col-12">
                     <div class="form-group">
-                        <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="bigFormContent" [ngModelOptions]="{standalone: true}" [config]="editorConfig">
+                        <angular-editor [placeholder]="'Enter content here...'" [(ngModel)]="bigFormContent" [ngModelOptions]="{standalone: true}" [config]="editorConfig">
                         </angular-editor>
                         <button style="margin-top: 10px" class="btn btn-primary" [disabled]="disableSubmitButton">
                             <span *ngIf="!disableSubmitButton">Create Blog</span>

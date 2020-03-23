@@ -19,7 +19,8 @@ export class NewBlogComponent implements OnInit, FillableForm {
 
   /* For regular form */
   form = new FormGroup({
-    title: new FormControl("", Validators.required)
+    title: new FormControl("", Validators.required),
+    desc: new FormControl("", Validators.required)
   });
 
   fileData: File = null;
@@ -91,6 +92,7 @@ export class NewBlogComponent implements OnInit, FillableForm {
     this.bigFormContent = '';
     this.previewUrl = '';
     this.form.get('title').setValue('');
+    this.form.get('desc').setValue('');
     ScrollToTopComponent.scrollToTop(); // Scrolls page to top
   }
 

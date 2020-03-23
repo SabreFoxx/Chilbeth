@@ -31,7 +31,7 @@ const appRoutes: Routes = [
   },
   { path: 'settings', component: SettingsComponent },
   { path: 'new-blog', component: NewBlogComponent },
-  { path: 'view-blog', component: ViewBlogComponent },
+  { path: 'view-blog/:blogid', component: ViewBlogComponent },
   {
     path: 'new-work', component: NewWorkComponent,
     canActivate: [RouteAuthGuardService]
@@ -43,7 +43,7 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes)],
+  imports: [RouterModule.forRoot(appRoutes, { scrollPositionRestoration: 'enabled' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

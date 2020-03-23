@@ -8,12 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BlogLandingComponent implements OnInit {
 
+  blogs;
+
   constructor(private backend: BackendService) { }
 
   ngOnInit() {
     this.backend.fetchBlogs()
       .subscribe(res => {
-        console.log(res);
+        this.blogs = res;
       })
   }
 

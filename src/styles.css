@@ -39,7 +39,8 @@ body {
     }
 }
 
-.nav-item>a:hover, .nav-item>a.current {
+.nav-item>a:hover,
+.nav-item>a.current {
     /* to prevent danglings */
     margin-bottom: -2px;
     border-bottom: 2px solid #636364;
@@ -179,10 +180,13 @@ footer .fa {
     padding-bottom: 100px;
 }
 
+.this-page-1 h1,
 .this-page-1 h3 {
     text-align: center;
 }
 
+.this-page-1 h1,
+.recent-journal h1,
 .this-page-1 h3,
 .recent-journal h3 {
     font-family: 'Satisfy', cursive;

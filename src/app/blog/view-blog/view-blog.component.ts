@@ -1,4 +1,6 @@
+import { BackendService } from 'src/services/backend.service';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-view-blog',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewBlogComponent implements OnInit {
 
-  constructor() { }
+  blogId: string;
+  blog;
+
+  constructor(private route: ActivatedRoute, private backend: BackendService) { }
 
   ngOnInit(): void {
+    this.route.paramMap
+      .subscribe(params => {
+        this.blogId = params.get("blogid");
+        this.backend.fetchBlog(this.blogId)
+          .subscribe(res => this.blog = res);
+      });
   }
 
 }

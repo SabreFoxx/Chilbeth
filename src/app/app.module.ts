@@ -26,6 +26,9 @@ import { SideBarComponent } from './blog/side-bar/side-bar.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ScrollToTopComponent } from './others/scroll-to-top/scroll-to-top.component';
 
+/* Import all the pipes that make up our app */
+import { EscapeHtmlPipe } from "./others/keep-html.pipe";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +47,8 @@ import { ScrollToTopComponent } from './others/scroll-to-top/scroll-to-top.compo
     ViewBlogComponent,
     SideBarComponent,
     NotFoundComponent,
-    ScrollToTopComponent
+    ScrollToTopComponent,
+    EscapeHtmlPipe
   ],
   imports: [
     BrowserModule,
