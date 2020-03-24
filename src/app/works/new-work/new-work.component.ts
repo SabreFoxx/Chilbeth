@@ -3,6 +3,7 @@ import { FillableForm } from 'src/services/fillable-form';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ScrollToTopComponent } from 'src/app/others/scroll-to-top/scroll-to-top.component';
 
 @Component({
   selector: 'app-new-work',
@@ -10,6 +11,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./new-work.component.css']
 })
 export class NewWorkComponent implements OnInit, FillableForm {
+
+  successCreatingWork = false;
+  failedCreatingWork = false;
+  disableSubmitButton = false;
 
   form = new FormGroup({
     title: new FormControl("", Validators.required),
@@ -22,16 +27,27 @@ export class NewWorkComponent implements OnInit, FillableForm {
   constructor(private backend: BackendService, private router: Router) { }
 
   actionPending() {
-    console.log("action pending");
+    this.disableSubmitButton = true;  // Shows spinning animation on submit button
   }
 
   actionFailed() {
-    console.log("operation failed");
+    this.failedCreatingWork = true; // Shows failure alert
   }
 
   actionSuccess() {
-    // this.uploadedFilePath = res.data.filePath;
-    console.log("operation successful");
+    this.successCreatingWork = true; // Shows success alert
+    this.disableSubmitButton = false; // Disables spinning animation on submit button
+    // Empties the form
+    this.previewUrl = '';
+    this.form.get('title').setValue('');
+    this.form.get('desc').setValue('');
+    ScrollToTopComponent.scrollToTop(); // Scrolls page to top
+  }
+
+  resetAlert() {
+    // Resets alert dialogs
+    this.successCreatingWork = false;
+    this.failedCreatingWork = false;
   }
 
   fileProgress(fileInput: any) {

@@ -1,3 +1,13 @@
+<!-- Bootstrap alerts -->
+<div class="alert alert-success" role="alert" (click)="resetAlert()" *ngIf="successCreatingWork">
+    <a class="close" aria-label="close">&times;</a>
+    <b>Work uploaded successfully! </b><a class="alert-link" routerLink="/works">View</a>
+</div>
+<div class="alert alert-danger" role="alert" (click)="resetAlert()" *ngIf="failedCreatingWork">
+    <a class="close" aria-label="close">&times;</a>
+    There was a <b>problem</b> while uploading your work, so it wasn't uploaded successfully!
+</div>
+
 <section class="next this-page-1">
     <h3 class="title">Upload Work</h3>
     <div class="container b">
@@ -28,6 +38,7 @@
                         <textarea class="form-control w-100" formControlName="desc" name="desc" id="desc" cols="30"
                             rows="9" placeholder="Some description..."></textarea>
                         <button style="margin-top: 10px" class="btn btn-primary">Upload</button>
+                        <app-scroll-to-top></app-scroll-to-top>
                     </div>
                 </div>
             </div>

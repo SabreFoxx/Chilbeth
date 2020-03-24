@@ -28,6 +28,7 @@ import { ScrollToTopComponent } from './others/scroll-to-top/scroll-to-top.compo
 
 /* Import all the pipes that make up our app */
 import { EscapeHtmlPipe } from "./others/keep-html.pipe";
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { EscapeHtmlPipe } from "./others/keep-html.pipe";
     SideBarComponent,
     NotFoundComponent,
     ScrollToTopComponent,
-    EscapeHtmlPipe
+    EscapeHtmlPipe,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,

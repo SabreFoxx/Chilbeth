@@ -26,7 +26,7 @@ export class BackendService {
       });
   }
 
-  private performSimpleGet(url: string): Observable<any> {
+  public performSimpleGet(url: string): Observable<any> {
     return this.http.get(url);
   }
 
@@ -48,10 +48,6 @@ export class BackendService {
 
   public fetchBlog(blogId: string): Observable<any> {
     return this.performSimpleGet(ApiEndpoints.BLOG + `/${blogId}`);
-  }
-
-  public fetchBlogs(): Observable<any> {
-    return this.performSimpleGet(ApiEndpoints.BLOG);
   }
 
   public generateUniqueChronoString() {

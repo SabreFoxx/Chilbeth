@@ -76,7 +76,6 @@ export class NewBlogComponent implements OnInit, FillableForm {
 
   constructor(private backend: BackendService, private router: Router) { }
 
-
   actionPending() {
     this.disableSubmitButton = true;  // Shows spinning animation on submit button
   }

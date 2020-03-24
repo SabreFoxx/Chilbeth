@@ -21,6 +21,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 const appRoutes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'blog', component: BlogLandingComponent },
+  { path: 'blog/p/:page', component: BlogLandingComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'login', component: LoginComponent },
   { path: 'works', component: WorksComponent },
