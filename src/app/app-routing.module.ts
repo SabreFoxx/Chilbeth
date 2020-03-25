@@ -28,6 +28,7 @@ const appRoutes: Routes = [
   { path: 'works', redirectTo: 'works/p/1/1', pathMatch: 'full' },
   { path: 'works/p/1', redirectTo: 'works/p/1/1', pathMatch: 'full' },
   { path: 'works/p/:page/:whichCarouselIsActive', component: WorksComponent },
+  { path: 'view-work/:workid', component: ViewWorkComponent },
   
   {
     path: 'landing', component: LandingComponent,
@@ -41,7 +42,6 @@ const appRoutes: Routes = [
     path: 'new-work', component: NewWorkComponent,
     canActivate: [RouteAuthGuardService]
   },
-  { path: 'view-work', component: ViewWorkComponent },
   { path: 'home', component: LandingComponent },
   { path: '', component: LandingComponent }, // The LandingComponent is the default component
   { path: '**', component: NotFoundComponent }

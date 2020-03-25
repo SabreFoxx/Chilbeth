@@ -42,6 +42,10 @@ export class BackendService {
     this.performSimplePost(ApiEndpoints.WORK, initiatingContainer, formData);
   }
 
+  public fetchWork(workId: string): Observable<any> {
+    return this.performSimpleGet(ApiEndpoints.WORK + `/${workId}`);
+  }
+
   public createBlog(initiatingContainer: FillableForm, formData) {
     this.performSimplePost(ApiEndpoints.BLOG, initiatingContainer, formData);
   }
