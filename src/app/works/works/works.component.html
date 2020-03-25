@@ -9,18 +9,18 @@
         <div class="container">
           <div class="row">
 
-            <div class="col-md-4">
+            <div *ngFor="let work of groupOne" class="col-md-4">
               <div class="card mb-2">
-                <a routerLink="/view-work">
-                  <img class="card-img-top shadow" src="assets/img/img.jpg" alt="Card image cap"></a>
+                <a routerLink="/view-work/{{work._id}}">
+                  <img class="card-img-top shadow" src="{{backend.uploadsUrlPrefix}}/small/{{work.imageSortHash}}.jpg" alt="Card image cap"></a>
                 <div class="card-body">
-                  <h4 class="card-title">Artwork title</h4>
-                  <p class="card-text">Some description about artwork</p>
+                  <h4 class="card-title">{{work.title}}</h4>
+                  <p class="card-text">{{work.desc}}</p>
                 </div>
               </div>
             </div>
 
-            <div class="col-md-4">
+            <!-- <div class="col-md-4">
               <div class="card mb-2"><a routerLink="/view-work">
                   <img class="card-img-top shadow" src="assets/img/img2.jpg" alt="Card image cap"></a>
                 <div class="card-body">
@@ -39,7 +39,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
 
           <div class="row">
 
@@ -53,7 +53,7 @@
               </div>
             </div>
 
-            <div class="col-md-4">
+            <!-- <div class="col-md-4">
               <div class="card mb-2"><a routerLink="/view-work">
                   <img class="card-img-top shadow" src="assets/img/img1.jpg" alt="Card image cap"></a>
                 <div class="card-body">
@@ -71,7 +71,8 @@
                   <p class="card-text">Some description about artwork</p>
                 </div>
               </div>
-            </div>
+            </div> -->
+
           </div>
         </div>
 
@@ -93,7 +94,7 @@
               </div>
             </div>
 
-            <div class="col-md-4">
+            <!-- <div class="col-md-4">
               <div class="card mb-2">
                 <a routerLink="/view-work">
                   <img class="card-img-top shadow" src="assets/img/img2.jpg" alt="Card image cap">
@@ -115,7 +116,8 @@
                   <p class="card-text">Some description about artwork</p>
                 </div>
               </div>
-            </div>
+            </div> -->
+
           </div>
           <div class="row">
 
@@ -131,7 +133,7 @@
               </div>
             </div>
 
-            <div class="col-md-4">
+            <!-- <div class="col-md-4">
               <div class="card mb-2">
                 <a routerLink="/view-work">
                   <img class="card-img-top shadow" src="assets/img/img5.jpg" alt="Card image cap">
@@ -153,7 +155,8 @@
                   <p class="card-text">Some description about artwork</p>
                 </div>
               </div>
-            </div>
+            </div> -->
+
           </div>
         </div>
 
@@ -161,10 +164,7 @@
 
     </div>
 
-    <ol class="carousel-indicators">
-      <li data-target="#artworkCarousel" data-slide-to="0" class="active"><a>1</a></li>
-      <li data-target="#artworkCarousel" data-slide-to="1"><a>2</a></li>
-    </ol>
+    <app-work-special-pagination [pageUrl]="url" (pagedData)="receivePageContent($event)"></app-work-special-pagination>
 
   </div>
 </section>

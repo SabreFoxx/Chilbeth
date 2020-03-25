@@ -12,7 +12,7 @@ export class BlogLandingComponent implements OnInit {
   url = ApiEndpoints.BLOG;
   private blogs: any;
 
-  constructor(private backend: BackendService) { }
+  constructor(private backend: BackendService) { } // Leave private backend: BackendService here
 
   receivePageContent(data: any) {
     this.blogs = data;

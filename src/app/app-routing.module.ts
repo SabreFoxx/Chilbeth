@@ -24,7 +24,11 @@ const appRoutes: Routes = [
   { path: 'blog/p/:page', component: BlogLandingComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'works', component: WorksComponent },
+  
+  { path: 'works', redirectTo: 'works/p/1/1', pathMatch: 'full' },
+  { path: 'works/p/1', redirectTo: 'works/p/1/1', pathMatch: 'full' },
+  { path: 'works/p/:page/:whichCarouselIsActive', component: WorksComponent },
+  
   {
     path: 'landing', component: LandingComponent,
     canActivate: [RoleGuardService],

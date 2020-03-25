@@ -17,15 +17,13 @@
 
         <!-- Build numeric page links using loop -->
         <span *ngFor="let x of numericLinks">
-            <!-- Ensure we have a valid page number -->
-            <span *ngIf="(x > 0) && (x <= pageInformation.totalNumberOfPages)">
-                <li *ngIf="x === pageInformation.currentPageNumber" class="page-item active">
-                    <a class="page-link">{{pageInformation.currentPageNumber}}</a>
-                </li>
-                <li *ngIf="x !== pageInformation.currentPageNumber" class="page-item">
-                    <a routerLink="/blog/p/{{x}}" class="page-link">{{x}}</a>
-                </li>
-            </span>
+            <!-- Ensure we start from a valid page number, since numericLinks can contain negative numbers -->
+            <li *ngIf="x === pageInformation.currentPageNumber" class="page-item active">
+                <a class="page-link">{{pageInformation.currentPageNumber}}</a>
+            </li>
+            <li *ngIf="x !== pageInformation.currentPageNumber" class="page-item">
+                <a routerLink="/blog/p/{{x}}" class="page-link">{{x}}</a>
+            </li>
         </span>
 
         <!-- If not on the last page show > link to go to next page -->

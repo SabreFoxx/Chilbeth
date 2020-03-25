@@ -1,0 +1,14 @@
+.carousel-indicators li {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 100%;
+    background-color: #646363;
+    text-indent: 0;
+    color: black;
+    text-align: center;
+}
+
+.carousel-indicators a {
+    position: relative;
+    top: 25%;
+}

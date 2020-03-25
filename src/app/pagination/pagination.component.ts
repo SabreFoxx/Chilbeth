@@ -21,6 +21,9 @@ export class PaginationComponent implements OnInit {
   // Stores numbered numeric links of pages
   numericLinks: [number];
 
+  @Output() pagedData = new EventEmitter();
+  pageNumber: number;
+
   @Input()
   set pageUrl(url: string) {
     this.route.paramMap
@@ -35,9 +38,6 @@ export class PaginationComponent implements OnInit {
       });
   }
 
-  @Output() pagedData = new EventEmitter();
-  pageNumber: number;
-
   constructor(private route: ActivatedRoute, private backend: BackendService) {
     this.pageInformation = {
       itemsFetched: 0,
@@ -46,15 +46,20 @@ export class PaginationComponent implements OnInit {
       currentPageNumber: 0,
       totalNumberOfPages: 0
     };
-    this.numericLinks = [0];
+    this.numericLinks = [null];
   }
 
   buildNumericPageLinks() {
-    this.numericLinks = [0];
+    this.numericLinks.splice(0, this.numericLinks.length);
+    let foo: number[] = [];
     for (let x = (this.pageInformation.currentPageNumber - this.pageInformation.totalNumberOfPages);
       x < ((this.pageInformation.currentPageNumber + this.pageInformation.totalNumberOfPages) + 1); x++) {
-        this.numericLinks.push(x);
+      foo.push(x);
     }
+    // Filter away all negative numbers stored in our temp variable foo, and store the rest (foo typically has negative values)
+    for (let x in foo)
+      if ((+x > 0) && (x <= this.pageInformation.totalNumberOfPages))
+        this.numericLinks.push(+x); // +x casts x to number
   }
 
   get halfWayThroughThePages() {
