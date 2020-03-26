@@ -30,6 +30,7 @@ import { ScrollToTopComponent } from './others/scroll-to-top/scroll-to-top.compo
 import { EscapeHtmlPipe } from "./others/keep-html.pipe";
 import { PaginationComponent } from './pagination/pagination.component';
 import { WorkSpecialPaginationComponent } from './pagination/work-special-pagination/work-special-pagination.component';
+import { RecentComponent } from './blog/recent/recent.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { WorkSpecialPaginationComponent } from './pagination/work-special-pagina
     ScrollToTopComponent,
     EscapeHtmlPipe,
     PaginationComponent,
-    WorkSpecialPaginationComponent
+    WorkSpecialPaginationComponent,
+    RecentComponent
   ],
   imports: [
     BrowserModule,

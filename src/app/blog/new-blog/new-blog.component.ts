@@ -88,6 +88,8 @@ export class NewBlogComponent implements OnInit, FillableForm {
     this.successCreatingBlog = true; // Shows success alert
     this.disableSubmitButton = false; // Disables spinning animation on submit button
     // Empties the form
+    this.fileData = null;
+    this.previewUrl = null;
     this.bigFormContent = '';
     this.previewUrl = '';
     this.form.get('title').setValue('');
