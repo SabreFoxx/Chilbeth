@@ -10,6 +10,34 @@
           <div class="row">
 
             <div *ngFor="let work of groupOne" class="col-md-4">
+              <ng-container *ngIf="num == null; else showWork">
+                <div class="card mb-2">
+                  <a routerLink="/works">
+                    <img class="card-img-top shadow" src="{{backend.uploadsUrlPrefix}}/../blank.jpg" alt="Blank"></a>
+                  <div class="card-body">
+                    <h4 class="card-title">Nothing to display</h4>
+                    <p class="card-text">...</p>
+                  </div>
+                </div>
+              </ng-container>
+              <ng-template #showWork>
+                <div class="card mb-2">
+                  <a routerLink="/view-work/{{work._id}}">
+                    <img class="card-img-top shadow" src="{{backend.uploadsUrlPrefix}}/small/{{work.imageSortHash}}.jpg"
+                      alt="{{work.title}}"></a>
+                  <div class="card-body">
+                    <h4 class="card-title">{{work.title}}</h4>
+                    <p class="card-text">{{work.desc}}</p>
+                  </div>
+                </div>
+              </ng-template>
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <div *ngFor="let work of groupTwo" class="col-md-4">
               <div class="card mb-2">
                 <a routerLink="/view-work/{{work._id}}">
                   <img class="card-img-top shadow" src="{{backend.uploadsUrlPrefix}}/small/{{work.imageSortHash}}.jpg"
@@ -22,66 +50,50 @@
             </div>
 
           </div>
-
-            <div class="row">
-
-              <div *ngFor="let work of groupTwo" class="col-md-4">
-                <div class="card mb-2">
-                  <a routerLink="/view-work/{{work._id}}">
-                    <img class="card-img-top shadow" src="{{backend.uploadsUrlPrefix}}/small/{{work.imageSortHash}}.jpg"
-                      alt="{{work.title}}"></a>
-                  <div class="card-body">
-                    <h4 class="card-title">{{work.title}}</h4>
-                    <p class="card-text">{{work.desc}}</p>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
-
-        <div class="carousel-item">
-          <div class="container">
-            <div class="row">
-
-              <div *ngFor="let work of groupThree" class="col-md-4">
-                <div class="card mb-2">
-                  <a routerLink="/view-work/{{work._id}}">
-                    <img class="card-img-top shadow" src="{{backend.uploadsUrlPrefix}}/small/{{work.imageSortHash}}.jpg"
-                      alt="{{work.title}}"></a>
-                  <div class="card-body">
-                    <h4 class="card-title">{{work.title}}</h4>
-                    <p class="card-text">{{work.desc}}</p>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-            <div class="row">
-
-              <div *ngFor="let work of groupFour" class="col-md-4">
-                <div class="card mb-2">
-                  <a routerLink="/view-work/{{work._id}}">
-                    <img class="card-img-top shadow" src="{{backend.uploadsUrlPrefix}}/small/{{work.imageSortHash}}.jpg"
-                      alt="{{work.title}}"></a>
-                  <div class="card-body">
-                    <h4 class="card-title">{{work.title}}</h4>
-                    <p class="card-text">{{work.desc}}</p>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
         </div>
 
       </div>
 
-      <app-work-special-pagination [pageUrl]="url" (pagedData)="receivePageContent($event)">
-      </app-work-special-pagination>
+      <div class="carousel-item">
+        <div class="container">
+          <div class="row">
+
+            <div *ngFor="let work of groupThree" class="col-md-4">
+              <div class="card mb-2">
+                <a routerLink="/view-work/{{work._id}}">
+                  <img class="card-img-top shadow" src="{{backend.uploadsUrlPrefix}}/small/{{work.imageSortHash}}.jpg"
+                    alt="{{work.title}}"></a>
+                <div class="card-body">
+                  <h4 class="card-title">{{work.title}}</h4>
+                  <p class="card-text">{{work.desc}}</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+
+            <div *ngFor="let work of groupFour" class="col-md-4">
+              <div class="card mb-2">
+                <a routerLink="/view-work/{{work._id}}">
+                  <img class="card-img-top shadow" src="{{backend.uploadsUrlPrefix}}/small/{{work.imageSortHash}}.jpg"
+                    alt="{{work.title}}"></a>
+                <div class="card-body">
+                  <h4 class="card-title">{{work.title}}</h4>
+                  <p class="card-text">{{work.desc}}</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
 
     </div>
+
+    <app-work-special-pagination [pageUrl]="url" (pagedData)="receivePageContent($event)">
+    </app-work-special-pagination>
+
+  </div>
 </section>
