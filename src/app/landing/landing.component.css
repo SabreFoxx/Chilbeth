@@ -2,12 +2,3 @@
 .recent-journal p {
   font-family: 'Dancing Script', cursive;
 }
-
-.blog_right_sidebar .popular_post_widget .post_item+.post_item {
-  margin-top: 0;
-}
-
-.blog_right_sidebar h3 {
-  font-weight: bold;
-  font-size: 2rem;
-}
