@@ -1,11 +1,12 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BackendService } from 'src/services/backend.service';
 
 @Component({
   selector: 'app-work-special-pagination',
   templateUrl: './work-special-pagination.component.html',
-  styleUrls: ['./work-special-pagination.component.css']
+  styleUrls: ['./work-special-pagination.component.css'],
+  // changeDetection: ChangeDetectionStrategy.OnPush // Set so that this.activeCarousel will not be updated needlessly
 })
 export class WorkSpecialPaginationComponent implements OnInit {
 
@@ -39,7 +40,8 @@ export class WorkSpecialPaginationComponent implements OnInit {
   // When our page numbers which are stored in numericLinks as 1, 2, 3 are transformed
   // to 1, 2, 3, 4, 5, 6, store those new numbers in splittedNumericLinks
   splittedNumericLinks: [any];
-  @Output() pagedData = new EventEmitter(); // Send event to the display component
+  @Output() pagedData = new EventEmitter(); // Sends event to the display component
+  @Output() sendActiveCarousel = new EventEmitter(); // Sends content of this.activeCarousel to the display component
   pageNumber: number; // Stores current page number
   activeCarousel: number; // Are we in the first slide or the second slide of a page number? Store that info here
 
@@ -59,12 +61,13 @@ export class WorkSpecialPaginationComponent implements OnInit {
             this.pageInformation = res.pageInformation; // Metadata describing pages
             this.buildNumericPageLinks();
             this.splitNumericPageLinks();
+            this.sendActiveCarousel.emit(this.activeCarousel); // Send this.activeCarousel to the display component
             this.pagedData.emit(res.items); // Send page content to the display component
           });
       });
   }
 
-  constructor(private route: ActivatedRoute, private backend: BackendService) {
+  constructor(private router: Router, private route: ActivatedRoute, private backend: BackendService) {
     // Empty initializations
     this.pageInformation = {
       itemsFetched: 0,
@@ -117,7 +120,7 @@ export class WorkSpecialPaginationComponent implements OnInit {
     return this.activeCarousel === 2;
   }
 
-  getFirstSplittedPageNumberOfPage(pageNumber: number): number {
+  getFirstSplittedPageNumberOfPageNum(pageNumber: number): number {
     // The try-catch block is just for dismissing any 'undefined' errors
     try {
       return this.splittedNumericLinks[pageNumber][0];
@@ -126,12 +129,29 @@ export class WorkSpecialPaginationComponent implements OnInit {
     }
   }
 
-  getSecondSplittedPageNumberOfPage(pageNumber: number): number {
+  getSecondSplittedPageNumberOfPageNum(pageNumber: number): number {
     try {
       return this.splittedNumericLinks[pageNumber][1];
     } catch (e) {
       return 0;
     }
+  }
+
+  navigate(num, active) {
+    // Reset some settings
+    this.activeCarousel = 0;
+    this.sendActiveCarousel.emit(1); // Change this.activeCarousel to 1 for the display component, ahead of time
+    
+    // Navigate
+    this.router.navigateByUrl(`/works/p/${num}/${active}`);
+  }
+
+  navigate_(num, active) {
+    // Reset some settings
+    this.activeCarousel = 0;
+
+    // Navigate
+    this.router.navigateByUrl(`/works/p/${num}/${active}`);
   }
 
   ngOnInit(): void {
