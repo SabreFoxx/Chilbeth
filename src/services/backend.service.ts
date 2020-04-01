@@ -10,7 +10,8 @@ import { Observable } from 'rxjs';
 })
 export class BackendService {
 
-  private _uploadsUrlPrefix = 'http://localhost:3000/images/uploads';
+  // private _uploadsUrlPrefix = 'http://localhost:3000/images/uploads';
+  private _uploadsUrlPrefix = 'https://chilbeth-back.herokuapp.com/images/uploads';
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
