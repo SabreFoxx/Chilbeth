@@ -10,10 +10,10 @@ import { BackendService } from 'src/services/backend.service';
 export class WorksComponent implements OnInit {
 
   url = ApiEndpoints.WORK;
-  private groupOne;
-  private groupTwo;
-  private groupThree;
-  private groupFour;
+  groupOne;
+  groupTwo;
+  groupThree;
+  groupFour;
 
   private activeCarousel = 1;
 
