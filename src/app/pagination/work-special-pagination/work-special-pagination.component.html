@@ -1,0 +1,28 @@
+<ol class="carousel-indicators">
+    <ng-container *ngFor="let num of numericLinks">
+        <ng-container *ngIf="isCurrentPage(num); else showRouterLinks">
+            <!-- Show carousel sliders -->
+            <li data-target="#artworkCarousel" data-slide-to="0" [class.active]="carouselOneActive">
+                <a>{{getFirstSplittedPageNumberOfPageNum(num)}}</a>
+            </li>
+            <!-- If the items we fetched from the backend is more than six, that is the only time we should show this button -->
+            <li *ngIf="pageInformation.itemsFetched > 6" data-target="#artworkCarousel" data-slide-to="1" [class.active]="carouselTwoActive">
+                <a>{{getSecondSplittedPageNumberOfPageNum(num)}}</a>
+            </li>
+        </ng-container>
+        <ng-template #showRouterLinks>
+            <!-- Show regular links -->
+            <!-- /1 and /2 at the end of the link helps us set the right <li> with Bootstrap ".active" class
+                when the page is loaded, since the two items have the same page number {{num}}
+            -->
+            <li (click)="navigate(num, 1)"><a routerLink="/works/p/{{num}}/1">{{getFirstSplittedPageNumberOfPageNum(num)}}</a></li>
+            <li (click)="navigate_(num, 2)"><a routerLink="/works/p/{{num}}/2">{{getSecondSplittedPageNumberOfPageNum(num)}}</a></li>
+        </ng-template>
+    </ng-container>
+</ol>
+
+<!-- Reference:
+    <ol class="carousel-indicators">
+    <li data-target="#artworkCarousel" data-slide-to="0" class="active"><a>1</a></li>
+    <li data-target="#artworkCarousel" data-slide-to="1"><a>2</a></li>
+</ol> -->

@@ -1,4 +1,6 @@
+import { BackendService } from 'src/services/backend.service';
 import { Component, OnInit } from '@angular/core';
+import { ApiEndpoints } from 'src/services/api-endpoints';
 
 @Component({
   selector: 'app-blog-landing',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BlogLandingComponent implements OnInit {
 
-  constructor() { }
+  url = ApiEndpoints.BLOG;
+  private blogs: any;
+
+  constructor(private backend: BackendService) { } // Leave private backend: BackendService here
+
+  receivePageContent(data: any) {
+    this.blogs = data;
+  }
 
   ngOnInit() {
+    
   }
 
 }

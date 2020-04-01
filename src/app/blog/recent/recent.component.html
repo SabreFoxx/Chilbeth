@@ -1,0 +1,14 @@
+<aside class="single_sidebar_widget popular_post_widget">
+    <h3 class="widget_title">Recent Posts</h3>
+
+    <div *ngFor="let blog of recentBlogs" class="media post_item">
+        <img src="{{backend.uploadsUrlPrefix}}/small/{{blog.imageSortHash}}.jpg" alt="post">
+        <div class="media-body">
+            <a routerLink="/view-blog/{{blog._id}}">
+                <h3>{{blog.title}}</h3>
+            </a>
+            <p>{{blog.createdOn}}</p>
+        </div>
+    </div>
+
+</aside>

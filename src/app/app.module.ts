@@ -1,11 +1,11 @@
 /* Import the Angular modules we need */
-import { Routes, RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 /* Import all the components that make up our app */
 import { AppComponent } from './app.component';
@@ -23,25 +23,14 @@ import { NewWorkComponent } from './works/new-work/new-work.component';
 import { SettingsComponent } from './admin/settings/settings.component';
 import { ViewBlogComponent } from './blog/view-blog/view-blog.component';
 import { SideBarComponent } from './blog/side-bar/side-bar.component';
-import { LogoutComponent } from './logout/logout.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { ScrollToTopComponent } from './others/scroll-to-top/scroll-to-top.component';
 
-/* Configure routes */
-const appRoutes: Routes = [
-  { path: 'about', component: AboutComponent },
-  { path: 'blog', component: BlogLandingComponent },
-  { path: 'contact', component: ContactComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'logout', component: LogoutComponent },
-  { path: 'works', component: WorksComponent },
-  { path: 'landing', component: LandingComponent },
-  { path: 'settings', component: SettingsComponent },
-  { path: 'new-blog', component: NewBlogComponent },
-  { path: 'view-blog', component: ViewBlogComponent },
-  { path: 'new-work', component: NewWorkComponent },
-  { path: 'view-work', component: ViewWorkComponent },
-  { path: '', component: LandingComponent }, // The LandingComponent is the default component
-  { path: '**', component: LandingComponent }
-];
+/* Import all the pipes that make up our app */
+import { EscapeHtmlPipe } from "./others/keep-html.pipe";
+import { PaginationComponent } from './pagination/pagination.component';
+import { WorkSpecialPaginationComponent } from './pagination/work-special-pagination/work-special-pagination.component';
+import { RecentComponent } from './blog/recent/recent.component';
 
 @NgModule({
   declarations: [
@@ -60,17 +49,25 @@ const appRoutes: Routes = [
     SettingsComponent,
     ViewBlogComponent,
     SideBarComponent,
-    LogoutComponent
+    NotFoundComponent,
+    ScrollToTopComponent,
+    EscapeHtmlPipe,
+    PaginationComponent,
+    WorkSpecialPaginationComponent,
+    RecentComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    RouterModule.forRoot(appRoutes),
     HttpClientModule,
+    ReactiveFormsModule,
     AngularEditorModule
   ],
-  providers: [],
+  providers: [
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    JwtHelperService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

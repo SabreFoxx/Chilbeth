@@ -5,19 +5,19 @@
         <button class="navbar-toggler" data-toggle="collapse" data-target="#theMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="theMenu">
             <ul class="navbar-nav">
+                <!-- data-toggle="collapse" data-target="#theMenu" will be added to each li, to work properly with Angular -->
                 <li class="nav-item" data-toggle="collapse" data-target="#theMenu"><a routerLinkActive="current" routerLink="/home" class="nav-link">Home</a></li>
                 <li class="nav-item" data-toggle="collapse" data-target="#theMenu"><a routerLinkActive="current" routerLink="/blog" class="nav-link">Blog</a></li>
                 <li class="nav-item" data-toggle="collapse" data-target="#theMenu"><a routerLinkActive="current" routerLink="/works" class="nav-link">Works</a></li>
                 <li class="nav-item" data-toggle="collapse" data-target="#theMenu"><a routerLinkActive="current" routerLink="/about" class="nav-link">About Me</a></li>
                 <li class="nav-item" data-toggle="collapse" data-target="#theMenu"><a routerLinkActive="current" routerLink="/contact" class="nav-link">Contact</a></li>
-                <li class="nav-item" *ngIf="!isLoggedIn()" data-toggle="collapse" data-target="#theMenu" (click)="setLogged()"><a routerLink="/login" class="nav-link">Login</a></li>
-                <li class="nav-item" *ngIf="isLoggedIn()"><a href="#" class="nav-link">Logout</a></li>
+                <li *ngIf="!isLoggedIn" data-toggle="collapse" data-target="#theMenu" class="nav-item"><a routerLinkActive="current" routerLink="/login" class="nav-link">Login</a></li>
+                <li *ngIf="isLoggedIn" data-toggle="collapse" data-target="#theMenu" class="nav-item"><a routerLink="/" (click)="logout()" class="nav-link">Logout</a></li>
             </ul>
             <ul class="navbar-nav ml-auto brand">
-                <span *ngIf="!isLoggedIn()">
+                <span *ngIf="!isLoggedIn">
                     <a href="http://facebook.com">
                         <li class="fa icon-large fa-facebook"></li>
                     </a>
@@ -28,7 +28,7 @@
                         <li class="fa icon-large fa-instagram"></li>
                     </a>
                 </span>
-                <span *ngIf="isLoggedIn()">
+                <span *ngIf="isLoggedIn">
                     <a routerLink="/new-blog">
                         <li class="fa icon-large fa-plus" data-toggle="collapse" data-target="#theMenu"></li>
                     </a>
@@ -41,7 +41,6 @@
                 </span>
             </ul>
         </div>
-
     </div>
 </nav>
 <!-- </header> -->

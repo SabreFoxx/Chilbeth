@@ -1,5 +1,5 @@
-import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/services/auth.service';
 
 @Component({
   selector: 'header',
@@ -12,15 +12,15 @@ export class HeaderComponent implements OnInit {
 
   }
 
-  isLoggedIn(): boolean {
-    return this.userAuth.isLoggedIn;
-  }
-
-  setLogged() { // TODO remove this
-    this.userAuth.isLoggedIn = true;
+  get isLoggedIn(): boolean {
+    return this.userAuth.isAuthenticated;
   }
 
   ngOnInit() {
+  }
+
+  logout() {
+    this.userAuth.saveToken('');
   }
 
 }
