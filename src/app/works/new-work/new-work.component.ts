@@ -24,7 +24,7 @@ export class NewWorkComponent implements OnInit, FillableForm {
   fileData: File = null;
   previewUrl: any = null;
 
-  constructor(private backend: BackendService, private router: Router) { }
+  constructor(public backend: BackendService, private router: Router) { }
 
   actionPending() {
     this.disableSubmitButton = true;  // Shows spinning animation on submit button

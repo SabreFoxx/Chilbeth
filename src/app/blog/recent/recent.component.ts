@@ -11,7 +11,7 @@ export class RecentComponent implements OnInit {
 
   recentBlogs;
 
-  constructor(private backend: BackendService) { }
+  constructor(public backend: BackendService) { }
 
   ngOnInit(): void {
     this.backend.performSimpleGet(ApiEndpoints.BLOG + "/recent")
