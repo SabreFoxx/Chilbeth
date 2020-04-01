@@ -12,7 +12,7 @@ export class ViewBlogComponent implements OnInit {
   blogId: string;
   blog;
 
-  constructor(private route: ActivatedRoute, private backend: BackendService) { }
+  constructor(private route: ActivatedRoute, public backend: BackendService) { }
 
   ngOnInit(): void {
     this.route.paramMap

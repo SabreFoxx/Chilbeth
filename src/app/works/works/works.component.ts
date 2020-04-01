@@ -17,7 +17,7 @@ export class WorksComponent implements OnInit {
 
   private activeCarousel = 1;
 
-  constructor(private forceChange: ChangeDetectorRef, private backend: BackendService) { }
+  constructor(private forceChange: ChangeDetectorRef, public backend: BackendService) { }
 
   receivePageContent(data: any[]) {
     this.groupOne = data.slice(0, 3);

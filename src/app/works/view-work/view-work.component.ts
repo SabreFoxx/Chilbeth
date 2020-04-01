@@ -17,7 +17,7 @@ export class ViewWorkComponent implements OnInit {
   // TODO view-work throws error when user isn't logged in
 
   constructor(private userAuth: AuthService, private route: ActivatedRoute,
-    private roleGuard: RoleGuardService, private backend: BackendService) { }
+    private roleGuard: RoleGuardService, public backend: BackendService) { }
 
   canEdit(): boolean {
     return this.roleGuard.canUse('admin');

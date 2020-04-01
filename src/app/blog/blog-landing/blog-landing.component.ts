@@ -10,9 +10,9 @@ import { ApiEndpoints } from 'src/services/api-endpoints';
 export class BlogLandingComponent implements OnInit {
 
   url = ApiEndpoints.BLOG;
-  private blogs: any;
+  blogs: any;
 
-  constructor(private backend: BackendService) { } // Leave private backend: BackendService here
+  constructor(public backend: BackendService) { } // Leave private backend: BackendService here
 
   receivePageContent(data: any) {
     this.blogs = data;
