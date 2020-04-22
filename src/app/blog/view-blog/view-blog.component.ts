@@ -1,26 +1,88 @@
+import { ApiEndpoints } from 'src/services/api-endpoints';
+import { FillableForm } from './../../../services/fillable-form';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BackendService } from 'src/services/backend.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ScrollToTopComponent } from 'src/app/others/scroll-to-top/scroll-to-top.component';
+import { RoleGuardService } from 'src/services/role-guard.service';
 
 @Component({
   selector: 'app-view-blog',
   templateUrl: './view-blog.component.html',
   styleUrls: ['./view-blog.component.css']
 })
-export class ViewBlogComponent implements OnInit {
+export class ViewBlogComponent implements OnInit, FillableForm {
 
   blogId: string;
-  blog;
+  blog: any = '';
+  blogComments;
+  commentForm = new FormGroup({
+    name: new FormControl('', Validators.required),
+    email: new FormControl(''),
+    comment: new FormControl('')
+  });
 
-  constructor(private route: ActivatedRoute, public backend: BackendService) { }
+  /* Comment add alert flags */
+  successCreatingBlog = false;
+  failedCreatingBlog = false;
+  disableSubmitButton = false;
+
+  constructor(private route: ActivatedRoute, private roleGuard: RoleGuardService,
+    private router: Router, public backend: BackendService) { }
+
+  /* Comment add alert methods */
+  actionPending() {
+    this.disableSubmitButton = true;  // Shows spinning animation on submit button
+  }
+
+  actionFailed() {
+    this.failedCreatingBlog = true; // Shows failure alert
+  }
+
+  actionSuccess() {
+    this.successCreatingBlog = true; // Shows success alert
+    this.disableSubmitButton = false; // Disables spinning animation on submit button
+    // Empties the form
+    this.commentForm.get('name').setValue('');
+    this.commentForm.get('email').setValue('');
+    this.commentForm.get('comment').setValue('');
+    ScrollToTopComponent.scrollToTop(); // Scrolls page to top
+  }
+
+  resetAlert() {
+    // Resets alert dialogs
+    this.successCreatingBlog = false;
+    this.failedCreatingBlog = false;
+  }
+  /* End alert methods */
 
   ngOnInit(): void {
     this.route.paramMap
       .subscribe(params => {
-        this.blogId = params.get("blogid");
+        this.blogId = params.get("blogid"); // Save blogId to variable
         this.backend.fetchBlog(this.blogId)
           .subscribe(res => this.blog = res);
+        // Load comments
+        this.backend.fetchBlogComments(this.blogId)
+          .subscribe((res) => {
+            this.blogComments = res
+          });
       });
+  }
+
+  addComment(): void {
+    this.backend.addBlogComment(this, this.commentForm.value, this.blogId);
+  }
+
+  canEdit(): boolean {
+    return this.roleGuard.canUse('admin');
+  }
+
+  deleteBlog(): void {
+    this.backend.performSimpleDelete(ApiEndpoints.BLOG + `/${this.blogId}`)
+      .subscribe(res => this.router.navigateByUrl('/blog'));
+    // TODO if delete was successful, a 204 status will be received. Process this
   }
 
 }

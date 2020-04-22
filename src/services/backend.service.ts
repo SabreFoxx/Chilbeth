@@ -1,7 +1,7 @@
+import { FillableForm } from './fillable-form';
 import { ApiEndpoints } from './api-endpoints';
 import { AuthService } from './auth.service';
 import { HttpClient } from '@angular/common/http';
-import { FillableForm } from 'src/services/fillable-form';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -10,9 +10,8 @@ import { Observable } from 'rxjs';
 })
 export class BackendService {
 
-  // private _uploadsUrlPrefix = 'http://localhost:3000/images/uploads';
-  // private _uploadsUrlPrefix = 'https://chilbeth-back.herokuapp.com/images/uploads';
-  private _uploadsUrlPrefix = 'https://geraldnnebe-chilbeth-backend.glitch.me/images/uploads';
+  private _uploadsUrlPrefix = 'http://localhost:3000/images/uploads';
+  // private _uploadsUrlPrefix = 'https://geraldnnebe-chilbeth-backend.glitch.me/images/uploads';
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
@@ -22,14 +21,18 @@ export class BackendService {
 
   private performSimplePost(url: string, initiatingContainer: FillableForm, formData) {
     initiatingContainer.actionPending();
-    this.http.post(url, formData, this.getAuthorizationToken())
+    this.http.post(url, formData, this.getAuthorizationToken()) // TODO handle errors appropriately
       .subscribe(res => {
         initiatingContainer.actionSuccess();
       });
   }
 
+  public performSimpleDelete(url: string) {
+    return this.http.delete(url, this.getAuthorizationToken()); // TODO handle errors appropriately
+  }
+
   public performSimpleGet(url: string): Observable<any> {
-    return this.http.get(url);
+    return this.http.get(url); // TODO handle errors appropriately
   }
 
   public get uploadsUrlPrefix(): String {
@@ -54,6 +57,14 @@ export class BackendService {
 
   public fetchBlog(blogId: string): Observable<any> {
     return this.performSimpleGet(ApiEndpoints.BLOG + `/${blogId}`);
+  }
+
+  public addBlogComment(initiatingContainer: FillableForm, formData, blogId: string) {
+    this.performSimplePost(ApiEndpoints.BLOG + `/${blogId}/comment`, initiatingContainer, formData);
+  }
+
+  public fetchBlogComments(blogId: string): Observable<any> { // TODO implement fetch comments pagination
+    return this.performSimpleGet(ApiEndpoints.BLOG + `/${blogId}/comment/1`);
   }
 
   public generateUniqueChronoString() {

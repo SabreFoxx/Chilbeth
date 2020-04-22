@@ -21,13 +21,12 @@ export class LoginComponent implements OnInit, FillableForm {
   }
 
   onSubmit() {
-    console.log(this.loginForm.value); // TODO
     this.userAuth.login(this.loginForm.value);
   }
 
   actionPending() {
     // play waiting animation
-    console.log("auth is pending");
+    console.log("auth is pending"); // TODO
   }
 
   actionFailed() {

@@ -1,3 +1,13 @@
+<!-- Bootstrap alerts for adding comments -->
+<div class="alert alert-success" role="alert" (click)="resetAlert()" *ngIf="successCreatingBlog">
+    <a class="close" aria-label="close">&times;</a>
+    <b>Comment added successfully! </b><a class="alert-link" routerLink="/blog">View</a>
+</div>
+<div class="alert alert-danger" role="alert" (click)="resetAlert()" *ngIf="failedCreatingBlog">
+    <a class="close" aria-label="close">&times;</a>
+    A <b>problem</b> occured while adding your comment!
+</div>
+
 <section class=" next this-page-1 blog_area single-post-area area-padding">
     <h1>{{blog.title}}</h1>
     <div class="container">
@@ -11,30 +21,14 @@
                         <h2>{{blog.desc}}</h2>
                         <ul class="blog-info-link mt-3 mb-4">
                             <li><a><i class="fa fa-user"></i>{{blog.authorEmail}}</a></li>
-                            <li><a routerLink="/blog"><i class="fa fa-comments"></i>No Comments</a></li>
+                            <li><a routerLink="/blog"><i class="fa fa-comments"></i>Comments</a></li>
+                            <!-- TDOD show confirmation alert after Delete is pressed -->
+                            <li *ngIf="canEdit()"><a (click)="deleteBlog()"><i class="fa fa-trash"></i>Delete Blog</a></li>
                         </ul>
-
                         <p id="post" [innerHTML]="blog.post | keepHtml">
                         </p>
-
                     </div>
                 </div>
-                <div class="navigation-top">
-                    <div class="d-sm-flex justify-content-between text-center">
-                        <div class="col-sm-4 text-center my-2 my-sm-0">
-                            <p class="comment-count">
-                                <span class="align-middle"><i class="fa fa-comment"></i></span>
-                                No Comments</p>
-                        </div>
-                        <ul class="social-icons">
-                            <li><a href="#"><i class="fa fa-facebook-f"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                            <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-
 
                 <div class="blog-author">
                     <div class="media align-items-center">
@@ -50,90 +44,27 @@
                 </div>
 
                 <div class="comments-area">
-                    <h4>No Comments, just samples. This comment section will be replaced by Facebook comments in the future</h4>
-                    <div class="comment-list">
+                    <h4>Comments</h4>
+                    <div *ngFor="let comment of blogComments" class="comment-list">
                         <div class="single-comment justify-content-between d-flex">
                             <div class="user justify-content-between d-flex">
                                 <div class="thumb">
-                                    <img src="/assets/img/prev.jpg" alt="">
+                                    <img src="/assets/img/avatar.svg" alt="">
                                 </div>
                                 <div class="desc">
-                                    <p class="comment">
-                                        Multiply sea night grass fourth day sea lesser rule open subdue female fill
-                                        which them Blessed, give fill lesser bearing multiply sea night grass fourth day
-                                        sea lesser
+                                    <p class="comment">{{comment.comment}}
                                     </p>
 
                                     <div class="d-flex justify-content-between">
                                         <div class="d-flex align-items-center">
                                             <h5>
-                                                <a href="#">Commentor's name</a>
+                                                <a href="#">{{comment.name}}</a>
                                             </h5>
-                                            <p class="date">December 4, 2020 at 3:12 pm </p>
+                                            <p class="date">{{comment.createdOn}}</p>
+                                            <!-- Date format December 4, 2020 at 3:12 pm -->
                                         </div>
-
                                         <div class="reply-btn">
-                                            <a href="#" class="btn-reply text-uppercase">reply</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comment-list">
-                        <div class="single-comment justify-content-between d-flex">
-                            <div class="user justify-content-between d-flex">
-                                <div class="thumb">
-                                    <img src="/assets/img/prev.jpg" alt="">
-                                </div>
-                                <div class="desc">
-                                    <p class="comment">
-                                        Multiply sea night grass fourth day sea lesser rule open subdue female fill
-                                        which them Blessed, give fill lesser bearing multiply sea night grass fourth day
-                                        sea lesser
-                                    </p>
-
-                                    <div class="d-flex justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <h5>
-                                                <a href="#">Emilly Blunt</a>
-                                            </h5>
-                                            <p class="date">December 4, 2020 at 3:12 pm </p>
-                                        </div>
-
-                                        <div class="reply-btn">
-                                            <a href="#" class="btn-reply text-uppercase">reply</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comment-list">
-                        <div class="single-comment justify-content-between d-flex">
-                            <div class="user justify-content-between d-flex">
-                                <div class="thumb">
-                                    <img src="/assets/img/prev.jpg" alt="">
-                                </div>
-                                <div class="desc">
-                                    <p class="comment">
-                                        Multiply sea night grass fourth day sea lesser rule open subdue female fill
-                                        which them Blessed, give fill lesser bearing multiply sea night grass fourth day
-                                        sea lesser
-                                    </p>
-
-                                    <div class="d-flex justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <h5>
-                                                <a href="#">Emilly Blunt</a>
-                                            </h5>
-                                            <p class="date">December 4, 2020 at 3:12 pm </p>
-                                        </div>
-
-                                        <div class="reply-btn">
-                                            <a href="#" class="btn-reply text-uppercase">reply</a>
+                                            <!-- <a href="#" class="btn-reply text-uppercase">reply</a> -->
                                         </div>
                                     </div>
 
@@ -142,37 +73,34 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="comment-form">
                     <h4>Leave a Reply</h4>
-                    <form class="form-contact comment_form" action="#" id="commentForm">
+                    <form [formGroup]="commentForm" (ngSubmit)="addComment()" class="form-contact comment_form"
+                        action="#" id="commentForm">
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
-                                    <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9"
+                                    <textarea class="form-control w-100" formControlName="comment" name="comment" id="comment" cols="30" rows="9"
                                         placeholder="Write Comment"></textarea>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input class="form-control" name="name" id="name" type="text" placeholder="Name">
+                                    <input class="form-control" formControlName="name" name="name" id="name" type="text" placeholder="Name">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input class="form-control" name="email" id="email" type="email"
-                                        placeholder="Email">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <input class="form-control" name="website" id="website" type="text"
-                                        placeholder="Website">
+                                    <input class="form-control" formControlName="email" name="email" id="email" type="email"
+                                        placeholder="Email (will be hidden)">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Post Reply</button>
                         </div>
+                        <app-scroll-to-top></app-scroll-to-top>
                     </form>
                 </div>
             </div>
