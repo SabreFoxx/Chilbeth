@@ -10,8 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class BackendService {
 
-  private _uploadsUrlPrefix = 'http://localhost:3000/images/uploads';
-  // private _uploadsUrlPrefix = 'https://geraldnnebe-chilbeth-backend.glitch.me/images/uploads';
+  private _uploadsUrlPrefix = ApiEndpoints.UPLOADED_FILES;
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
