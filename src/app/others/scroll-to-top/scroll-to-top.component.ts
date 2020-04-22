@@ -2,6 +2,8 @@
 import { Component, OnInit, Inject, HostListener } from '@angular/core';
 import { DOCUMENT } from "@angular/common";
 
+/* Used after say posing some content, and you want the page to scroll to the top where some message is written */
+
 @Component({
   selector: 'app-scroll-to-top',
   templateUrl: './scroll-to-top.component.html'

@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class NewBlogComponent implements OnInit, FillableForm {
 
+  /* Alert flags */
   successCreatingBlog = false;
   failedCreatingBlog = false;
   disableSubmitButton = false;
