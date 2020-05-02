@@ -82,7 +82,7 @@ export class ViewBlogComponent implements OnInit, FillableForm {
   deleteBlog(): void {
     this.backend.performSimpleDelete(ApiEndpoints.BLOG + `/${this.blogId}`)
       .subscribe(res => this.router.navigateByUrl('/blog'));
-    // TODO if delete was successful, a 204 status will be received. Process this
+    // TODO if delete was successful, a 204 status will be received. Use this
   }
 
 }
