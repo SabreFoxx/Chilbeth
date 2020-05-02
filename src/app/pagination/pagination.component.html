@@ -4,13 +4,13 @@
         <!-- If current page number is greater than 1 -->
         <!-- Show << link to go back to page 1 -->
         <li *ngIf="pageInformation.currentPageNumber > 1" class="page-item">
-            <a routerLink="/blog/p/1" class="page-link" aria-label="First">
+            <a routerLink="/{{urlPrefix}}/p/1" class="page-link" aria-label="First">
                 <i class="fa fa-angle-double-left"></i>
             </a>
         </li>
         <!-- Show < link to go to previous page -->
         <li *ngIf="pageInformation.currentPageNumber > 1" class="page-item">
-            <a routerLink="/blog/p/{{pageInformation.currentPageNumber - 1}}" class="page-link" aria-label="Previous">
+            <a routerLink="/{{urlPrefix}}/p/{{pageInformation.currentPageNumber - 1}}" class="page-link" aria-label="Previous">
                 <i class="fa fa-angle-left"></i>
             </a>
         </li>
@@ -22,27 +22,27 @@
                 <a class="page-link">{{pageInformation.currentPageNumber}}</a>
             </li>
             <li *ngIf="x !== pageInformation.currentPageNumber" class="page-item">
-                <a routerLink="/blog/p/{{x}}" class="page-link">{{x}}</a>
+                <a routerLink="/{{urlPrefix}}/p/{{x}}" class="page-link">{{x}}</a>
             </li>
         </span>
 
         <!-- If not on the last page show > link to go to next page -->
         <li *ngIf="pageInformation.currentPageNumber !== pageInformation.totalNumberOfPages" class="page-item">
-            <a routerLink="/blog/p/{{pageInformation.currentPageNumber + 1}}" class="page-link" aria-label="Next">
+            <a routerLink="/{{urlPrefix}}/p/{{pageInformation.currentPageNumber + 1}}" class="page-link" aria-label="Next">
                 <i class="fa fa-angle-right"></i>
             </a>
         </li>
 
         <!-- If the total number of pages is greater than 10, show a link to move halfway through the pages -->
         <li *ngIf="pageInformation.totalNumberOfPages >= 10" class="page-item">
-            <a routerLink="/blog/p/{{halfWayThroughThePages}}" class="page-link" aria-label="Halfway">
+            <a routerLink="/{{urlPrefix}}/p/{{halfWayThroughThePages}}" class="page-link" aria-label="Halfway">
                 <i class="fa fa-divide"></i>
             </a>
         </li>
 
         <!-- If not on last page, show link to last page -->
         <li *ngIf="pageInformation.currentPageNumber !== pageInformation.totalNumberOfPages" class="page-item">
-            <a routerLink="/blog/p/{{pageInformation.totalNumberOfPages}}" class="page-link" aria-label="Last">
+            <a routerLink="/{{urlPrefix}}/p/{{pageInformation.totalNumberOfPages}}" class="page-link" aria-label="Last">
                 <i class="fa fa-angle-double-right"></i>
             </a>
         </li>

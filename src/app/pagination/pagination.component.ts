@@ -23,11 +23,14 @@ export class PaginationComponent implements OnInit {
 
   @Output() pagedData = new EventEmitter(); // Send event to the display component
   pageNumber: number; // Stores current page number
+  actionUrl: string;
 
   @Input()
   set pageUrl(url: string) {
     this.route.paramMap
       .subscribe(params => {
+        // Save url
+        this.actionUrl = url;
         // Get current page number
         this.pageNumber = params.get("page") ? +params.get("page") : 1;
         // Fetch data in current page
@@ -40,6 +43,8 @@ export class PaginationComponent implements OnInit {
       });
   }
 
+  @Input() urlPrefix: string;
+
   constructor(private route: ActivatedRoute, private backend: BackendService) {
     // Empty initializations
     this.pageInformation = {
@@ -50,6 +55,7 @@ export class PaginationComponent implements OnInit {
       totalNumberOfPages: 0
     };
     this.numericLinks = [null];
+    this.actionUrl = '';
   }
 
   // Generates the page numbers, and stores them in an array

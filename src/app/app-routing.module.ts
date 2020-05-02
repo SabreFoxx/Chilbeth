@@ -25,9 +25,9 @@ const appRoutes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'login', component: LoginComponent },
   
-  { path: 'works', redirectTo: 'works/p/1/1', pathMatch: 'full' },
-  { path: 'works/p/1', redirectTo: 'works/p/1/1', pathMatch: 'full' },
-  { path: 'works/p/:page/:whichCarouselIsActive', component: WorksComponent },
+  { path: 'works', component: WorksComponent},
+  // { path: 'works', redirectTo: 'works/p/1', pathMatch: 'full' },
+  { path: 'works/p/:page', component: WorksComponent },
   { path: 'view-work/:workid', component: ViewWorkComponent },
   
   {

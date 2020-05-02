@@ -12,8 +12,6 @@ export class WorksComponent implements OnInit {
   url = ApiEndpoints.WORK;
   groupOne;
   groupTwo;
-  groupThree;
-  groupFour;
 
   private activeCarousel = 1;
 
@@ -22,24 +20,7 @@ export class WorksComponent implements OnInit {
   receivePageContent(data: any[]) {
     this.groupOne = data.slice(0, 3);
     this.groupTwo = data.slice(3, 6);
-    this.groupThree = data.slice(6, 9);
-    this.groupFour = data.slice(9);
     data = [];
-  }
-
-  receiveActiveCarousel(activeCarousel: number) {
-    this.activeCarousel = activeCarousel;
-    this.forceChange.markForCheck();
-  }
-
-  // Returns true if the first carousel should have the ".active" Bootstrap class
-  get carouselOneActive(): boolean {
-    return this.activeCarousel === 1;
-  }
-
-  // Returns true if the second carousel should have the ".active" Bootstrap class
-  get carouselTwoActive(): boolean {
-    return this.activeCarousel === 2;
   }
 
   ngOnInit(): void {
