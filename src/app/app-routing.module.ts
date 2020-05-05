@@ -11,6 +11,7 @@ import { LoginComponent } from './admin/login/login.component';
 import { WorksComponent } from './works/works/works.component';
 import { LandingComponent } from './landing/landing.component';
 import { SettingsComponent } from './admin/settings/settings.component';
+import { UploadDetailsComponent } from './admin/upload-details/upload-details.component';
 import { NewBlogComponent } from './blog/new-blog/new-blog.component';
 import { ViewBlogComponent } from './blog/view-blog/view-blog.component';
 import { NewWorkComponent } from './works/new-work/new-work.component';
@@ -32,11 +33,15 @@ const appRoutes: Routes = [
   
   {
     path: 'landing', component: LandingComponent,
-    canActivate: [RoleGuardService],
+    canActivate: [RoleGuardService], // Not using this, it's just for demonstration
     data: { expectedRole: 'admin' }
   },
   { path: 'settings', component: SettingsComponent },
-  { path: 'new-blog', component: NewBlogComponent },
+  { path: 'upload-details', component: UploadDetailsComponent},
+  {
+    path: 'new-blog', component: NewBlogComponent,
+    canActivate: [RouteAuthGuardService]
+  },
   { path: 'view-blog/:blogid', component: ViewBlogComponent },
   {
     path: 'new-work', component: NewWorkComponent,

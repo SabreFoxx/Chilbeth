@@ -10,7 +10,6 @@ import { BROWSER_STORAGE } from 'src/app/storage';
 })
 export class AuthService {
 
-  private _isLoggedIn: boolean;
   private _loginComponent: FillableForm;
 
   constructor(@Inject(BROWSER_STORAGE) private storage: Storage,
@@ -35,7 +34,6 @@ export class AuthService {
       .subscribe((response: any) => {
         if (response.token) {
           this.saveToken(response.token);
-          this._isLoggedIn = true;
           this._loginComponent.actionSuccess();
         }
       }, (error) => {
@@ -50,10 +48,6 @@ export class AuthService {
   get isAuthenticated(): boolean {
     // Check whether the token is expired and return true or false
     return !this.jwtHelper.isTokenExpired(this.getToken());
-  }
-
-  set isAuthenticated(value: boolean) {
-    this._isLoggedIn = value;
   }
 
 }

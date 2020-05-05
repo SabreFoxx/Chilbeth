@@ -7,6 +7,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 
+/* Import all the pipes that make up our app */
+import { EscapeHtmlPipe } from "./others/keep-html.pipe";
+
 /* Import all the components that make up our app */
 import { AppComponent } from './app.component';
 import { WorksComponent } from './works/works/works.component';
@@ -25,12 +28,10 @@ import { ViewBlogComponent } from './blog/view-blog/view-blog.component';
 import { SideBarComponent } from './blog/side-bar/side-bar.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ScrollToTopComponent } from './others/scroll-to-top/scroll-to-top.component';
-
-/* Import all the pipes that make up our app */
-import { EscapeHtmlPipe } from "./others/keep-html.pipe";
 import { PaginationComponent } from './pagination/pagination.component';
 import { WorkSpecialPaginationComponent } from './pagination/work-special-pagination/work-special-pagination.component';
 import { RecentComponent } from './blog/recent/recent.component';
+import { UploadDetailsComponent } from './admin/upload-details/upload-details.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { RecentComponent } from './blog/recent/recent.component';
     EscapeHtmlPipe,
     PaginationComponent,
     WorkSpecialPaginationComponent,
-    RecentComponent
+    RecentComponent,
+    UploadDetailsComponent
   ],
   imports: [
     BrowserModule,

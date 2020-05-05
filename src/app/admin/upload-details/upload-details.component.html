@@ -1,0 +1,201 @@
+<!-- Bootstrap alerts -->
+<div class="alert alert-success" role="alert" (click)="resetAlert()" *ngIf="successCreatingBlog">
+    <a class="close" aria-label="close">&times;</a>
+    <b>Setting saved successfully! </b>
+</div>
+<div class="alert alert-danger" role="alert" (click)="resetAlert()" *ngIf="failedCreatingBlog">
+    <a class="close" aria-label="close">&times;</a>
+    There was a <b>problem</b> saving your settings!
+</div>
+
+<section class="next this-page-1">
+    <div class="container b">
+        <h3>Landing Page Images</h3>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-12">
+                    <h5 class="title">First Landing Image</h5>
+                    <div class="mb-3" style="min-height: 200px">
+                        <img *ngIf="previewUrl[0]" [src]="previewUrl[0]"
+                            class="img-fluid" height="200" />
+                    </div>
+                    <b>Choose file</b>
+                    <p>
+                        <small>The preferred image ratio is classic 3:2. For example, a 1080x720 or 708x472
+                            photo</small>
+                    </p>
+                    <p><small>Please keep the originals of your photos, as photos uploaded here are subject to data
+                            compression</small></p>
+                    <div class="form-group">
+                        <input type="file" name="image" (change)="fileProgress($event, 0)" />
+                        <button (click)="uploadImage(0)" class="btn btn-primary"
+                            [disabled]="disableSubmitButton">
+                            <span *ngIf="!disableSubmitButton">Upload</span>
+                            <span *ngIf="disableSubmitButton && _pointer == 0">
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                Uploading...
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+            <div class="row">
+                <div class="col-12">
+                    <h5 class="title">Second Landing Image</h5>
+                    <div class="mb-3" style="min-height: 200px">
+                        <img *ngIf="previewUrl[1]" [src]="previewUrl[1]"
+                            class="img-fluid" height="200" />
+                    </div>
+                    <b>Choose file</b>
+                    <p>
+                        <small>The preferred image ratio is classic 3:2. For example, a 1080x720 or 708x472
+                            photo</small>
+                    </p>
+                    <p><small>Please keep the originals of your photos, as photos uploaded here are subject to data
+                            compression</small></p>
+                    <div class="form-group">
+                        <input type="file" name="image" (change)="fileProgress($event, 1)" />
+                        <button (click)="uploadImage(1)" class="btn btn-primary"
+                            [disabled]="disableSubmitButton">
+                            <span *ngIf="!disableSubmitButton">Upload</span>
+                            <span *ngIf="disableSubmitButton && _pointer == 1">
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                Uploading...
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+            <div class="row">
+                <div class="col-12">
+                    <h5 class="title">Third Landing Image</h5>
+                    <div class="mb-3" style="min-height: 200px">
+                        <img *ngIf="previewUrl[2]" [src]="previewUrl[2]"
+                            class="img-fluid" height="200" />
+                    </div>
+                    <b>Choose file</b>
+                    <p>
+                        <small>The preferred image ratio is classic 3:2. For example, a 1080x720 or 708x472
+                            photo</small>
+                    </p>
+                    <p><small>Please keep the originals of your photos, as photos uploaded here are subject to data
+                            compression</small></p>
+                    <div class="form-group">
+                        <input type="file" name="image" (change)="fileProgress($event, 2)" />
+                        <button (click)="uploadImage(2)" class="btn btn-primary"
+                            [disabled]="disableSubmitButton">
+                            <span *ngIf="!disableSubmitButton">Upload</span>
+                            <span *ngIf="disableSubmitButton && _pointer == 2">
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                Uploading...
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <button style="margin-top: 10px" class="btn btn-primary" [disabled]="disableSubmitButton">
+                        <span *ngIf="!disableSubmitButton">Save</span>
+                        <span *ngIf="disableSubmitButton">
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            Uploading...
+                        </span>
+                    </button>
+                    <app-scroll-to-top></app-scroll-to-top>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+<section class="next this-page-1">
+    <div class="container b">
+        <h3>Bio</h3>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-12">
+                    <h5 class="title">Profile Photo</h5>
+                    <div class="mb-3" style="min-height: 200px">
+                        <img *ngIf="previewUrl[3]" [src]="previewUrl[3]"
+                            class="img-fluid" height="200" />
+                    </div>
+                    <b>Choose file</b>
+                    <p><small>Your main profile photo which will be shown in About Me</small></p>
+                    <div class="form-group">
+                        <input type="file" name="image" (change)="fileProgress($event, 3)" />
+                        <button (click)="uploadImage(3)" class="btn btn-primary"
+                            [disabled]="disableSubmitButton">
+                            <span *ngIf="!disableSubmitButton">Upload</span>
+                            <span *ngIf="disableSubmitButton && _pointer == 3">
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                Uploading...
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+            <div class="row">
+                <div class="col-12">
+                    <h5 class="title">Thumbnail Photo</h5>
+                    <div class="mb-3" style="min-height: 200px">
+                        <img *ngIf="previewUrl[4]" [src]="previewUrl[4]"
+                            class="img-fluid" height="200" />
+                    </div>
+                    <b>Choose file</b>
+                    <p><small>A tiny photo showing only your face</small></p>
+                    <div class="form-group">
+                        <input type="file" name="image" (change)="fileProgress($event, 4)" />
+                        <button (click)="uploadImage(4)" class="btn btn-primary"
+                            [disabled]="disableSubmitButton">
+                            <span *ngIf="!disableSubmitButton">Upload</span>
+                            <span *ngIf="disableSubmitButton && _pointer == 4">
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                Uploading...
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+            <div class="row">
+                <div class="col-12">
+                    <h5 class="title">CV Document</h5>
+                    <b>Choose file</b>
+                    <div class="form-group">
+                        <input type="file" name="image" (change)="fileProgress($event, 2)" />
+                        <button (click)="uploadImages(2)" class="btn btn-primary"
+                            [disabled]="disableSubmitButton">
+                            <span *ngIf="!disableSubmitButton">Upload</span>
+                            <span *ngIf="disableSubmitButton && _pointer == 2">
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                Uploading...
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <button style="margin-top: 10px" class="btn btn-primary" [disabled]="disableSubmitButton">
+                        <span *ngIf="!disableSubmitButton">Save</span>
+                        <span *ngIf="disableSubmitButton">
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            Uploading...
+                        </span>
+                    </button>
+                    <app-scroll-to-top></app-scroll-to-top>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
