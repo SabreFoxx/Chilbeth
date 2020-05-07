@@ -11,7 +11,7 @@
             <img class="card-img-top shadow" src="{{backend.uploadsUrlPrefix}}/small/{{work.imageSortHash}}.jpg"
               alt="{{work.title}}"></a>
           <div class="card-body">
-            <h4 class="card-title">{{work.title}}</h4>
+            <h4 class="card-title"><a routerLink="/view-work/{{work._id}}">{{work.title}}</a></h4>
             <p class="card-text">{{work.desc}}</p>
           </div>
         </div>
@@ -27,7 +27,7 @@
             <img class="card-img-top shadow" src="{{backend.uploadsUrlPrefix}}/small/{{work.imageSortHash}}.jpg"
               alt="{{work.title}}"></a>
           <div class="card-body">
-            <h4 class="card-title">{{work.title}}</h4>
+            <h4 class="card-title"><a routerLink="/view-work/{{work._id}}">{{work.title}}</a></h4>
             <p class="card-text">{{work.desc}}</p>
           </div>
         </div>
