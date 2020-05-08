@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BackendService } from 'src/services/backend.service';
 import { Router } from '@angular/router';
 import { ScrollToTopComponent } from 'src/app/others/scroll-to-top/scroll-to-top.component';
+import { SiteSettingsService } from 'src/services/site-settings.service';
 
 @Component({
   selector: 'app-upload-details',
@@ -12,8 +13,8 @@ import { ScrollToTopComponent } from 'src/app/others/scroll-to-top/scroll-to-top
 export class UploadDetailsComponent implements OnInit {
 
   /* Alert flags */
-  successCreatingBlog = false;
-  failedCreatingBlog = false;
+  operationSuccessful = false;
+  operationFailed = false;
   disableSubmitButton = false;
 
   // Points to an area of interest
@@ -29,18 +30,18 @@ export class UploadDetailsComponent implements OnInit {
   fileData: File[] = [null, null, null];
   previewUrl: any[] = [null, null, null];
 
-  constructor(private backend: BackendService, private router: Router) { }
+  constructor(private backend: BackendService, private siteSettings: SiteSettingsService, private router: Router) { }
 
   actionPending() {
     this.disableSubmitButton = true;  // Shows spinning animation on submit button
   }
 
   actionFailed() {
-    this.failedCreatingBlog = true; // Shows failure alert
+    this.operationFailed = true; // Shows failure alert
   }
 
   actionSuccess() {
-    this.successCreatingBlog = true; // Shows success alert
+    this.operationSuccessful = true; // Shows success alert
     this.disableSubmitButton = false; // Disables spinning animation on submit button
     // Empties the form
     this.form.get('title').setValue('');
@@ -50,12 +51,11 @@ export class UploadDetailsComponent implements OnInit {
 
   resetAlert() {
     // Resets alert dialogs
-    this.successCreatingBlog = false;
-    this.failedCreatingBlog = false;
+    this.operationSuccessful = false;
+    this.operationFailed = false;
   }
 
   fileProgress(fileInput: any, landingImageIndex: number) {
-    console.log('foo', landingImageIndex)
     this.fileData[landingImageIndex] = <File>fileInput.target.files[0];
     this.preview(landingImageIndex);
   }
@@ -75,14 +75,28 @@ export class UploadDetailsComponent implements OnInit {
   }
 
   uploadLandingImage(landingImageIndex: number) {
+    if (!this.previewUrl[landingImageIndex]) { // TODO make this test falsy even when previewUrl[landingImageIndex] has the value of an already uploaded image, to prevent recompression
+      alert('Select an image before uploading!');
+      return;
+    }
     this._pointer = landingImageIndex;
     const formData = new FormData();
     // sortingHash will be used to identify the image in the database. It's also used here as the name of the binary we're sending
     let sortingHash = this.backend.generateUniqueChronoString();
     formData.append(sortingHash, this.fileData[landingImageIndex]);
     this.backend.uploadImage(this, formData);
+    this.siteSettings.saveLandingImage(sortingHash, landingImageIndex);
+  }
 
-    // TODO add record to backend
+  // Does nothing
+  saveSettings() {
+    console.log('Saving...');
+    this.operationSuccessful = true;
+    ScrollToTopComponent.scrollToTop(); // Scrolls page to top
+  }
+
+  onSubmit() {
+
   }
 
   ngOnInit(): void {

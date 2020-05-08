@@ -99,7 +99,7 @@ export class NewBlogComponent implements OnInit, FillableForm {
   }
 
   resetAlert() {
-    // Resets alert dialogs
+    // Reset alert dialogs
     this.successCreatingBlog = false;
     this.failedCreatingBlog = false;
   }

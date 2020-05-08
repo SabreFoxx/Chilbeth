@@ -47,7 +47,7 @@ export class NewWorkComponent implements OnInit, FillableForm {
   }
 
   resetAlert() {
-    // Resets alert dialogs
+    // Reset alert dialogs
     this.successCreatingWork = false;
     this.failedCreatingWork = false;
   }

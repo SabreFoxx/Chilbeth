@@ -1,3 +1,4 @@
+import { ApiEndpoints } from 'src/services/api-endpoints';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./landing.component.css']
 })
 export class LandingComponent implements OnInit {
+
+  imagesUrlPrefix = ApiEndpoints.UPLOADED_FILES
 
   constructor() { }
 

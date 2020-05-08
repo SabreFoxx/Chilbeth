@@ -18,10 +18,7 @@
                         <img *ngIf="previewUrl" [src]="previewUrl" class="img-fluid" height="200" />
                     </div>
                     <b>Choose file</b>
-                    <p>
-                        <small>The preferred image ratio is classic 3:2. For example, a 1080x720 or 708x472
-                            photo</small>
-                    </p>
+                    <p><small>The preferred image ratio is classic 3:2. For example, a 1080x720 or 708x472 photo</small></p>
                     <p><small>Please keep the originals of your photos, as photos uploaded here are subject to data compression</small></p>
                     <div class="form-group">
                         <input type="file" name="image" (change)="fileProgress($event)" />
