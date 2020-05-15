@@ -4,6 +4,7 @@ import { BackendService } from 'src/services/backend.service';
 import { Router } from '@angular/router';
 import { ScrollToTopComponent } from 'src/app/others/scroll-to-top/scroll-to-top.component';
 import { SiteSettingsService } from 'src/services/site-settings.service';
+import { ApiEndpoints } from 'src/services/api-endpoints';
 
 @Component({
   selector: 'app-upload-details',
@@ -28,9 +29,24 @@ export class UploadDetailsComponent implements OnInit {
 
   // For the landing images; they are three
   fileData: File[] = [null, null, null];
-  previewUrl: any[] = [null, null, null];
+  // previewUrl stores base64 data we use to preview the image in browser prior to upload
+  // But initially, we'll store a http url to the file of the current landing page images
+  previewUrl: any[];
+  oldSortingHash: string[];
 
-  constructor(private backend: BackendService, private siteSettings: SiteSettingsService, private router: Router) { }
+  constructor(private backend: BackendService, private settings: SiteSettingsService, private router: Router) {
+    // But initially, we'll store a http url to the file of the current landing page images
+    this.previewUrl = [
+      ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.landingImageOne + '.jpg',
+      ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.landingImageTwo + '.jpg',
+      ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.landingImageThree + '.jpg'
+    ];
+    this.oldSortingHash = [ // Current landing images
+      this.settings.siteSettings.landingImageOne,
+      this.settings.siteSettings.landingImageTwo,
+      this.settings.siteSettings.landingImageThree
+    ];
+  }
 
   actionPending() {
     this.disableSubmitButton = true;  // Shows spinning animation on submit button
@@ -84,15 +100,13 @@ export class UploadDetailsComponent implements OnInit {
     // sortingHash will be used to identify the image in the database. It's also used here as the name of the binary we're sending
     let sortingHash = this.backend.generateUniqueChronoString();
     formData.append(sortingHash, this.fileData[landingImageIndex]);
-    this.backend.uploadImage(this, formData);
-    this.siteSettings.saveLandingImage(sortingHash, landingImageIndex);
+    this.backend.uploadLandingImage(this, formData);
+    this.settings.saveLandingImage(sortingHash, landingImageIndex, this.oldSortingHash[landingImageIndex]);
   }
 
   // Does nothing
   saveSettings() {
     console.log('Saving...');
-    this.operationSuccessful = true;
-    ScrollToTopComponent.scrollToTop(); // Scrolls page to top
   }
 
   onSubmit() {
@@ -100,6 +114,13 @@ export class UploadDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    setTimeout(() => { // Refresh the images so they don't show the blank ones
+      this.previewUrl = [
+        ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.landingImageOne + '.jpg',
+        ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.landingImageTwo + '.jpg',
+        ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.landingImageThree + '.jpg'
+      ];
+    }, 500);
   }
 
 }

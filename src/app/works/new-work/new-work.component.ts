@@ -22,7 +22,7 @@ export class NewWorkComponent implements OnInit, FillableForm {
   });
 
   fileData: File = null;
-  previewUrl: any = null;
+  previewUrl: any = null; // Stores base64 data we use to preview the image in browser prior to upload
 
   constructor(public backend: BackendService, private router: Router) { }
 

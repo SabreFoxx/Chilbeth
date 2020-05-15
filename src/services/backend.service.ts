@@ -42,6 +42,10 @@ export class BackendService {
     this.performSimplePost(ApiEndpoints.UPLOAD, initiatingContainer, formData);
   }
 
+  public uploadLandingImage(initiatingContainer: FillableForm, formData) {
+    this.performSimplePost(ApiEndpoints.UPLOAD_LANDING, initiatingContainer, formData);
+  }
+
   public addWork(initiatingContainer: FillableForm, formData) {
     this.performSimplePost(ApiEndpoints.WORK, initiatingContainer, formData);
   }
