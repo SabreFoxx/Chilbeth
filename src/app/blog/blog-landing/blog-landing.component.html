@@ -23,7 +23,7 @@
                         </div>
                     </article>
 
-                    <app-pagination [pageUrl]="url" (pagedData)="receivePageContent($event)"></app-pagination>
+                    <app-pagination [pageUrl]="url" [urlPrefix]="'blog'" (pagedData)="receivePageContent($event)"></app-pagination>
                     
                 </div>
             </div>

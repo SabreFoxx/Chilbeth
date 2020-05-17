@@ -10,6 +10,8 @@ import { BackendService } from 'src/services/backend.service';
 })
 export class WorkSpecialPaginationComponent implements OnInit {
 
+  /* See the commit "About to stop using work-special-pagination.component.ts" "27350e14d427f1b2c5a059763cacace750637529" */
+
   /*
   * WorkSpecialPaginationComponent is similar to our regular pagination, the only difference is
   * that after generating the page numbers, we generate two page numbers for each of our page numbers.
@@ -157,5 +159,5 @@ export class WorkSpecialPaginationComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // Pro tip: In {[i]: "foo"}, [i] sets the content of the variable i, as the key name of the object
+  // Pro tip: In {[i]: "foo"}, [i] sets the content of the variable i, as the key name of the object. The key has the value 'foo'
 }

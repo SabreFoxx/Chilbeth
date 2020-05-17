@@ -6,6 +6,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BackendService } from 'src/services/backend.service';
 import { Router } from '@angular/router';
 
+// TODO adding images in blog post
+
 @Component({
   selector: 'app-new-blog',
   templateUrl: './new-blog.component.html',
@@ -25,7 +27,7 @@ export class NewBlogComponent implements OnInit, FillableForm {
   });
 
   fileData: File = null;
-  previewUrl: any = null;
+  previewUrl: any = null; // Stores base64 data we use to preview the image in browser prior to upload
 
   /* For AngularEditor */
   bigFormContent: any;
@@ -99,7 +101,7 @@ export class NewBlogComponent implements OnInit, FillableForm {
   }
 
   resetAlert() {
-    // Resets alert dialogs
+    // Reset alert dialogs
     this.successCreatingBlog = false;
     this.failedCreatingBlog = false;
   }

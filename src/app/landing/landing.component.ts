@@ -1,3 +1,5 @@
+import { SiteSettingsService } from 'src/services/site-settings.service';
+import { ApiEndpoints } from 'src/services/api-endpoints';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingComponent implements OnInit {
 
-  constructor() { }
+  imagesUrlPrefix = ApiEndpoints.UPLOADED_FILES
+
+  constructor(public settings: SiteSettingsService) { }
 
   ngOnInit() {
   }

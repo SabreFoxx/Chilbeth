@@ -11,6 +11,7 @@ import { LoginComponent } from './admin/login/login.component';
 import { WorksComponent } from './works/works/works.component';
 import { LandingComponent } from './landing/landing.component';
 import { SettingsComponent } from './admin/settings/settings.component';
+import { UploadDetailsComponent } from './admin/upload-details/upload-details.component';
 import { NewBlogComponent } from './blog/new-blog/new-blog.component';
 import { ViewBlogComponent } from './blog/view-blog/view-blog.component';
 import { NewWorkComponent } from './works/new-work/new-work.component';
@@ -25,18 +26,22 @@ const appRoutes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'login', component: LoginComponent },
   
-  { path: 'works', redirectTo: 'works/p/1/1', pathMatch: 'full' },
-  { path: 'works/p/1', redirectTo: 'works/p/1/1', pathMatch: 'full' },
-  { path: 'works/p/:page/:whichCarouselIsActive', component: WorksComponent },
+  { path: 'works', component: WorksComponent},
+  // { path: 'works', redirectTo: 'works/p/1', pathMatch: 'full' },
+  { path: 'works/p/:page', component: WorksComponent },
   { path: 'view-work/:workid', component: ViewWorkComponent },
   
   {
     path: 'landing', component: LandingComponent,
-    canActivate: [RoleGuardService],
+    canActivate: [RoleGuardService], // Not using this, it's just for demonstration
     data: { expectedRole: 'admin' }
   },
   { path: 'settings', component: SettingsComponent },
-  { path: 'new-blog', component: NewBlogComponent },
+  { path: 'upload-details', component: UploadDetailsComponent},
+  {
+    path: 'new-blog', component: NewBlogComponent,
+    canActivate: [RouteAuthGuardService]
+  },
   { path: 'view-blog/:blogid', component: ViewBlogComponent },
   {
     path: 'new-work', component: NewWorkComponent,

@@ -1,96 +1,41 @@
 <section class="next this-page-1">
   <h3>Works</h3>
-
-  <div id="artworkCarousel" class="carousel slide carousel-multi-item" data-ride="carousel">
-
-    <div class="carousel-inner" role="listbox">
-
-      <div class="carousel-item" [class.active]="carouselOneActive">
-        <div class="container">
+  <div class="container">
 
 
-          <div class="row">
+    <div class="row">
 
-            <div *ngFor="let work of groupOne" class="col-md-4">
-              <div class="card mb-2">
-                <a routerLink="/view-work/{{work._id}}">
-                  <img class="card-img-top shadow" src="{{backend.uploadsUrlPrefix}}/small/{{work.imageSortHash}}.jpg"
-                    alt="{{work.title}}"></a>
-                <div class="card-body">
-                  <h4 class="card-title">{{work.title}}</h4>
-                  <p class="card-text">{{work.desc}}</p>
-                </div>
-              </div>
-            </div>
-
+      <div *ngFor="let work of groupOne" class="col-md-4">
+        <div class="card mb-2">
+          <a routerLink="/view-work/{{work._id}}">
+            <img class="card-img-top shadow" src="{{backend.uploadsUrlPrefix}}/small/{{work.imageSortHash}}.jpg"
+              alt="{{work.title}}"></a>
+          <div class="card-body">
+            <h4 class="card-title"><a routerLink="/view-work/{{work._id}}">{{work.title}}</a></h4>
+            <p class="card-text">{{work.desc}}</p>
           </div>
-
-          <div class="row">
-
-            <div *ngFor="let work of groupTwo" class="col-md-4">
-              <div class="card mb-2">
-                <a routerLink="/view-work/{{work._id}}">
-                  <img class="card-img-top shadow" src="{{backend.uploadsUrlPrefix}}/small/{{work.imageSortHash}}.jpg"
-                    alt="{{work.title}}"></a>
-                <div class="card-body">
-                  <h4 class="card-title">{{work.title}}</h4>
-                  <p class="card-text">{{work.desc}}</p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-
-        </div>
-      </div>
-
-
-      <div class="carousel-item" [class.active]="carouselTwoActive">
-        <div class="container">
-
-
-          <div class="row">
-
-            <div *ngFor="let work of groupThree" class="col-md-4">
-              <div class="card mb-2">
-                <a routerLink="/view-work/{{work._id}}">
-                  <img class="card-img-top shadow" src="{{backend.uploadsUrlPrefix}}/small/{{work.imageSortHash}}.jpg"
-                    alt="{{work.title}}"></a>
-                <div class="card-body">
-                  <h4 class="card-title">{{work.title}}</h4>
-                  <p class="card-text">{{work.desc}}</p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="row">
-
-            <div *ngFor="let work of groupFour" class="col-md-4">
-              <div class="card mb-2">
-                <a routerLink="/view-work/{{work._id}}">
-                  <img class="card-img-top shadow" src="{{backend.uploadsUrlPrefix}}/small/{{work.imageSortHash}}.jpg"
-                    alt="{{work.title}}"></a>
-                <div class="card-body">
-                  <h4 class="card-title">{{work.title}}</h4>
-                  <p class="card-text">{{work.desc}}</p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-
         </div>
       </div>
 
     </div>
 
-    <app-work-special-pagination [pageUrl]="url" (sendActiveCarousel)="receiveActiveCarousel($event)"
-      (pagedData)="receivePageContent($event)">
-    </app-work-special-pagination>
+    <div class="row">
+
+      <div *ngFor="let work of groupTwo" class="col-md-4">
+        <div class="card mb-2">
+          <a routerLink="/view-work/{{work._id}}">
+            <img class="card-img-top shadow" src="{{backend.uploadsUrlPrefix}}/small/{{work.imageSortHash}}.jpg"
+              alt="{{work.title}}"></a>
+          <div class="card-body">
+            <h4 class="card-title"><a routerLink="/view-work/{{work._id}}">{{work.title}}</a></h4>
+            <p class="card-text">{{work.desc}}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <app-pagination [pageUrl]="url" [urlPrefix]="'works'" (pagedData)="receivePageContent($event)"></app-pagination>
 
   </div>
 </section>

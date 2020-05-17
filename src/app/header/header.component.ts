@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/services/auth.service';
+import { SiteSettingsService } from 'src/services/site-settings.service';
 
 @Component({
   selector: 'header',
@@ -8,9 +9,7 @@ import { AuthService } from 'src/services/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private userAuth: AuthService) {
-
-  }
+  constructor(public settings: SiteSettingsService, private userAuth: AuthService) { }
 
   get isLoggedIn(): boolean {
     return this.userAuth.isAuthenticated;
