@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-settings',
@@ -8,13 +9,20 @@ import { Router } from '@angular/router';
 })
 export class SettingsComponent implements OnInit {
 
+  form = new FormGroup({
+    title: new FormControl("", Validators.required),
+    desc: new FormControl("", Validators.required)
+  });
+  
   constructor(private router: Router) { }
-
-  ngOnInit(): void {
-  }
 
   gotoUploadDetails() {
     this.router.navigateByUrl('/upload-details');
+  }
+
+  onSubmit() { }
+
+  ngOnInit(): void {
   }
 
 }
