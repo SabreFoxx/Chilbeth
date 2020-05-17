@@ -26,7 +26,7 @@
                         <input type="file" name="image" (change)="fileProgress($event, 0)" />
                         <button (click)="uploadLandingImage(0)" class="btn btn-primary"
                             [disabled]="disableSubmitButton">
-                            <span *ngIf="disableSubmitButton && _pointer == 0; else showUploadText">
+                            <span *ngIf="disableSubmitButton && _pointer === 0; else showUploadText">
                                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                 Uploading...
                             </span>
@@ -50,7 +50,7 @@
                         <input type="file" name="image" (change)="fileProgress($event, 1)" />
                         <button (click)="uploadLandingImage(1)" class="btn btn-primary"
                             [disabled]="disableSubmitButton">
-                            <span *ngIf="disableSubmitButton && _pointer == 1; else showUploadText">
+                            <span *ngIf="disableSubmitButton && _pointer === 1; else showUploadText">
                                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                 Uploading...
                             </span>
@@ -74,7 +74,7 @@
                         <input type="file" name="image" (change)="fileProgress($event, 2)" />
                         <button (click)="uploadLandingImage(2)" class="btn btn-primary"
                             [disabled]="disableSubmitButton">
-                            <span *ngIf="disableSubmitButton && _pointer == 2; else showUploadText">
+                            <span *ngIf="disableSubmitButton && _pointer === 2; else showUploadText">
                                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                 Uploading...
                             </span>
@@ -95,17 +95,16 @@
                 <div class="col-12">
                     <h5 class="title">Profile Photo</h5>
                     <div class="mb-3" style="min-height: 200px">
-                        <img *ngIf="previewUrl[3]" [src]="previewUrl[3]"
+                        <img *ngIf="bioPreviewUrl.profilePicture" [src]="bioPreviewUrl.profilePicture"
                             class="img-fluid" height="200" />
                     </div>
                     <b>Choose file</b>
-                    <p><small>Your main profile photo which will be shown in About Me</small></p>
+                    <p><small>Your main profile photo which will be shown in About Me (recommend image ratio is 2:3)</small></p>
                     <div class="form-group">
-                        <input type="file" name="image" (change)="fileProgress($event, 3)" />
-                        <button (click)="uploadLandingImage(3)" class="btn btn-primary"
+                        <input type="file" name="image" (change)="bioFileProgress($event, 'profilePicture')" />
+                        <button (click)="uploadProfilePicture('profilePicture')" class="btn btn-primary"
                             [disabled]="disableSubmitButton">
-                            <span *ngIf="!disableSubmitButton">Upload</span>
-                            <span *ngIf="disableSubmitButton && _pointer == 3">
+                            <span *ngIf="disableSubmitButton && _bioPointer == 'profilePicture'; else showUploadText">
                                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                 Uploading...
                             </span>
@@ -119,17 +118,16 @@
                 <div class="col-12">
                     <h5 class="title">Thumbnail Photo</h5>
                     <div class="mb-3" style="min-height: 200px">
-                        <img *ngIf="previewUrl[4]" [src]="previewUrl[4]"
+                        <img *ngIf="bioPreviewUrl.thumbnail" [src]="bioPreviewUrl.thumbnail"
                             class="img-fluid" height="200" />
                     </div>
                     <b>Choose file</b>
-                    <p><small>A tiny photo showing only your face</small></p>
+                    <p><small>A small square photo showing only your face</small></p>
                     <div class="form-group">
-                        <input type="file" name="image" (change)="fileProgress($event, 4)" />
-                        <button (click)="uploadLandingImage(4)" class="btn btn-primary"
+                        <input type="file" name="image" (change)="bioFileProgress($event, 'thumbnail')" />
+                        <button (click)="uploadProfilePicture('thumbnail')" class="btn btn-primary"
                             [disabled]="disableSubmitButton">
-                            <span *ngIf="!disableSubmitButton">Upload</span>
-                            <span *ngIf="disableSubmitButton && _pointer == 4">
+                            <span *ngIf="disableSubmitButton && _bioPointer == 'thumbnail'; else showUploadText">
                                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                 Uploading...
                             </span>
@@ -144,11 +142,12 @@
                     <h5 class="title">CV Document</h5>
                     <b>Choose file</b>
                     <div class="form-group">
-                        <input type="file" name="image" (change)="fileProgress($event, 2)" />
-                        <button (click)="uploadLandingImages(2)" class="btn btn-primary"
+                        <!-- <input type="file" name="image" (change)="fileProgress($event, 2)" /> -->
+                        <input type="file" name="image" />
+                        <button (click)="saveSettings()" class="btn btn-primary"
                             [disabled]="disableSubmitButton">
                             <span *ngIf="!disableSubmitButton">Upload</span>
-                            <span *ngIf="disableSubmitButton && _pointer == 2">
+                            <span *ngIf="disableSubmitButton && _bioPointer == 'CV'; else showUploadText">
                                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                 Uploading...
                             </span>

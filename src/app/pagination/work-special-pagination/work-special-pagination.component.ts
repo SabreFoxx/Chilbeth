@@ -159,5 +159,5 @@ export class WorkSpecialPaginationComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // Pro tip: In {[i]: "foo"}, [i] sets the content of the variable i, as the key name of the object
+  // Pro tip: In {[i]: "foo"}, [i] sets the content of the variable i, as the key name of the object. The key has the value 'foo'
 }
