@@ -23,7 +23,7 @@ export enum ApiEndpoints {
     UPLOAD_LANDING = "https://geraldnnebe-chilbeth-backend.glitch.me/api/upload_landing_image",
     UPLOAD_PROFILE_PICTURE = "https://geraldnnebe-chilbeth-backend.glitch.me/api/upload_profile_picture",
     UPLOADED_FILES = "https://geraldnnebe-chilbeth-backend.glitch.me/images",
-
+    
     WORK = "https://geraldnnebe-chilbeth-backend.glitch.me/api/work",
     BLOG = "https://geraldnnebe-chilbeth-backend.glitch.me/api/blog"
 }
