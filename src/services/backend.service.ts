@@ -69,7 +69,7 @@ export class BackendService {
     return this.performSimpleGet(ApiEndpoints.BLOG + `/${blogId}`);
   }
 
-  public addBlogComment(initiatingContainer: FillableForm, formData, blogId: string) {
+  public addBlogComment(initiatingContainer: FillableForm, formData, blogId: string) { // TODO urgent: visitors cannot add comments due to auth restrictions
     this.performSimplePost(ApiEndpoints.BLOG + `/${blogId}/comment`, initiatingContainer, formData);
   }
 

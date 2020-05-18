@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg8"
+   version="1.1"
+   viewBox="0 0 49.374 49.374"
+   height="300"
+   width="300">
+  <defs
+     id="defs2" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(0,-242.62582)"
+     id="layer1">
+    <g
+       style="fill:#999999"
+       transform="translate(-3.6239624e-8,1.2637406)"
+       id="g45">
+      <ellipse
+         style="opacity:1;fill:#c83737;fill-opacity:1;stroke:none;stroke-width:1.09789109;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
+         id="path29"
+         cx="24.687"
+         cy="256.96777"
+         rx="10.521364"
+         ry="11.579378" />
+      <rect
+         style="opacity:1;fill:#c83737;fill-opacity:1;stroke:none;stroke-width:1.09789109;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
+         id="rect33"
+         width="43.49614"
+         height="15.164872"
+         x="2.9389303"
+         y="265.54947"
+         ry="7.5824361" />
+      <rect
+         ry="1.7045708"
+         y="271.54489"
+         x="2.9389303"
+         height="15.164872"
+         width="43.49614"
+         id="rect40"
+         style="opacity:1;fill:#c83737;fill-opacity:1;stroke:none;stroke-width:1.09789109;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke" />
+    </g>
+    <ellipse
+       ry="2.4099214"
+       rx="2.05725"
+       cy="256.69397"
+       cx="20.307999"
+       id="path47"
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1.09789109;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke" />
+    <ellipse
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1.09789109;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
+       id="ellipse49"
+       cx="28.507608"
+       cy="256.694"
+       rx="2.05725"
+       ry="2.4099214" />
+  </g>
+</svg>

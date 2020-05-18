@@ -2,6 +2,7 @@ import { ApiEndpoints } from 'src/services/api-endpoints';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
+import { FillableForm } from './fillable-form';
 
 interface SiteSettingsInterface {
   landingImageOne,
@@ -9,7 +10,22 @@ interface SiteSettingsInterface {
   landingImageThree,
   previousImageForDeletion,
   profilePicture,
-  profileThumbnail
+  profileThumbnail,
+
+  name,
+  occupation,
+  desc,
+  about_heading,
+  about,
+  phone,
+  email,
+  facebook,
+  twitter,
+  youtube,
+  city,
+  district,
+  country,
+  opening_times
 }
 
 /* SiteSettings is the general site settings for both authenticated and unauthenticated users. For example, what is the landing page's image? */
@@ -25,19 +41,36 @@ export class SiteSettingsService {
     landingImageThree: '',
     previousImageForDeletion: '',
     profilePicture: '',
-    profileThumbnail: ''
+    profileThumbnail: '',
+
+    name: '',
+    occupation: '',
+    desc: '',
+    about_heading: '',
+    about: '',
+    phone: '',
+    email: '',
+    facebook: '',
+    twitter: '',
+    youtube: '',
+    city: '',
+    district: '',
+    country: '',
+    opening_times: ''
   };
 
   constructor(private http: HttpClient, private authService: AuthService) {
     // The constructor is run only once for a singleton object
     if (this._siteSettings === null) { // Fill in
-      this._siteSettings = {
-        landingImageOne: 'blank/blank', // Serve the blank image as placeholder initially, while we wait to fetch the real ones from the database
+      let blank = { // Serve the blank image as placeholder initially, while we wait to fetch the real ones from the database
+        landingImageOne: 'blank/blank',
         landingImageTwo: 'blank/blank',
         landingImageThree: 'blank/blank',
         profilePicture: 'blank/blank',
         profileThumbnail: 'blank/blank'
       };
+      // Set the defaults for _siteSettings prior to fetching them from the database
+      this._siteSettings = { ...this.settingsTemplate, ...blank } // Combine them, using the spread operator
       this.fetchSiteSettingsFromDatabase();
     }
   }
@@ -81,6 +114,16 @@ export class SiteSettingsService {
 
   public get siteSettings() {
     return this._siteSettings;
+  }
+
+  public saveSiteSettings(initiatingContainer: FillableForm, formData) {
+    let formText = { ...this.settingsTemplate, ...formData } // Combine them using the spread operator
+    initiatingContainer.actionPending();
+    this.http.put(ApiEndpoints.SITE_SETTINGS, formText, this.getAuthorizationToken()) // TODO handle errors appropriately
+      .subscribe(res => {
+        this._siteSettings = res;
+        initiatingContainer.actionSuccess();
+      });
   }
 
   private fetchSiteSettingsFromDatabase() {

@@ -81,7 +81,7 @@ export class UploadDetailsComponent implements OnInit {
   actionSuccess() {
     this.operationSuccessful = true; // Shows success alert
     this.disableSubmitButton = false; // Disables spinning animation on submit button
-    // Empties the form
+    // Empty the form
     this.form.get('title').setValue('');
     this.form.get('desc').setValue('');
     ScrollToTopComponent.scrollToTop(); // Scrolls page to top
