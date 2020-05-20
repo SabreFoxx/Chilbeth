@@ -9,13 +9,20 @@ import { ApiEndpoints } from 'src/services/api-endpoints';
 })
 export class AboutComponent implements OnInit {
 
-  private prefix = ApiEndpoints.UPLOADED_FILES + '/big/';
-  private postfix = '.jpg';
-
   constructor(public settings: SiteSettingsService) { }
 
   public get profilePicture() {
-    return this.prefix + this.settings.siteSettings.profilePicture + this.postfix;
+    let prefix = ApiEndpoints.UPLOADED_FILES + '/big/';
+    let postfix = '.jpg';
+    return prefix + this.settings.siteSettings.profilePicture + postfix;
+  }
+
+  get about_heading() {
+    return this.settings.siteSettings.about_heading;
+  }
+
+  get about() {
+    return this.settings.siteSettings.about;
   }
 
   ngOnInit() {

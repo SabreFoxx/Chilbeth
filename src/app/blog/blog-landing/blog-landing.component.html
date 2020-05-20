@@ -19,12 +19,18 @@
                             <ul class="blog-info-link">
                                 <li><a><i class="fa fa-user"></i>{{blog.authorEmail}}</a></li>
                                 <li><a routerLink="/blog"><i class="fa fa-comments"></i>No Comments</a></li>
+                                <li><a>
+                                        <i class="fa fa-comments"></i>
+                                        {{ stringAsDate(blog.createdOn) | date: 'MMM d y, h:MM a' }}
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </article>
 
-                    <app-pagination [pageUrl]="url" [urlPrefix]="'blog'" (pagedData)="receivePageContent($event)"></app-pagination>
-                    
+                    <app-pagination [pageUrl]="url" [urlPrefix]="'blog'" (pagedData)="receivePageContent($event)">
+                    </app-pagination>
+
                 </div>
             </div>
 

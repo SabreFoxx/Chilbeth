@@ -29,6 +29,7 @@ export class SettingsComponent implements OnInit, FillableForm {
     facebook: new FormControl(this.settings.siteSettings.facebook),
     twitter: new FormControl(this.settings.siteSettings.twitter),
     youtube: new FormControl(this.settings.siteSettings.youtube),
+    instagram: new FormControl(this.settings.siteSettings.instagram),
     city: new FormControl(this.settings.siteSettings.city),
     district: new FormControl(this.settings.siteSettings.district),
     country: new FormControl(this.settings.siteSettings.country),
@@ -78,6 +79,7 @@ export class SettingsComponent implements OnInit, FillableForm {
       this.form.get('facebook').setValue(this.settings.siteSettings.facebook);
       this.form.get('twitter').setValue(this.settings.siteSettings.twitter);
       this.form.get('youtube').setValue(this.settings.siteSettings.youtube);
+      this.form.get('instagram').setValue(this.settings.siteSettings.instagram);
       this.form.get('city').setValue(this.settings.siteSettings.city);
       this.form.get('district').setValue(this.settings.siteSettings.district);
       this.form.get('country').setValue(this.settings.siteSettings.country);

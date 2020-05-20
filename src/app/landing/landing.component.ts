@@ -13,6 +13,18 @@ export class LandingComponent implements OnInit {
 
   constructor(public settings: SiteSettingsService) { }
 
+  get name() {
+    return this.settings.siteSettings.name;
+  }
+
+  get occupation() {
+    return this.settings.siteSettings.occupation;
+  }
+  
+  get desc() {
+    return this.settings.siteSettings.desc;
+  }
+
   ngOnInit() {
   }
 

@@ -13,6 +13,10 @@ export class RecentComponent implements OnInit {
 
   constructor(public backend: BackendService) { }
 
+  stringAsDate(dateStr: string) {
+    return new Date(dateStr);
+  }
+
   ngOnInit(): void {
     this.backend.performSimpleGet(ApiEndpoints.BLOG + "/recent")
       .subscribe(res => this.recentBlogs = res.items);

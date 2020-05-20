@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ScrollToTopComponent } from 'src/app/others/scroll-to-top/scroll-to-top.component';
 import { RoleGuardService } from 'src/services/role-guard.service';
+import { SiteSettingsService } from 'src/services/site-settings.service';
 
 @Component({
   selector: 'app-view-blog',
@@ -28,7 +29,7 @@ export class ViewBlogComponent implements OnInit, FillableForm {
   failedCreatingBlog = false;
   disableSubmitButton = false;
 
-  constructor(private route: ActivatedRoute, private roleGuard: RoleGuardService,
+  constructor(public settings: SiteSettingsService, private route: ActivatedRoute, private roleGuard: RoleGuardService,
     private router: Router, public backend: BackendService) { }
 
   /* Comment add alert methods */
@@ -83,6 +84,24 @@ export class ViewBlogComponent implements OnInit, FillableForm {
     this.backend.performSimpleDelete(ApiEndpoints.BLOG + `/${this.blogId}`)
       .subscribe(res => this.router.navigateByUrl('/blog'));
     // TODO if delete was successful, a 204 status will be received. Use this
+  }
+
+  public get thumbnailPicture() {
+    let prefix = ApiEndpoints.UPLOADED_FILES + '/big/';
+    let postfix = '.jpg';
+    return prefix + this.settings.siteSettings.profileThumbnail + postfix;
+  }
+
+  get name() {
+    return this.settings.siteSettings.name;
+  }
+
+  get desc() {
+    return this.settings.siteSettings.desc;
+  }
+
+  stringAsDate(dateStr: string) {
+    return new Date(dateStr);
   }
 
 }
