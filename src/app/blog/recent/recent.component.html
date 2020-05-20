@@ -7,7 +7,7 @@
             <a routerLink="/view-blog/{{blog._id}}">
                 <h3>{{blog.title}}</h3>
             </a>
-            <p>{{blog.createdOn}}</p>
+            <p>{{ stringAsDate(blog.createdOn) | date: 'MMM d y, h:MM a' }}</p>
         </div>
     </div>
 

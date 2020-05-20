@@ -146,7 +146,6 @@
                         <input type="file" name="image" />
                         <button (click)="saveSettings()" class="btn btn-primary"
                             [disabled]="disableSubmitButton">
-                            <span *ngIf="!disableSubmitButton">Upload</span>
                             <span *ngIf="disableSubmitButton && _bioPointer == 'CV'; else showUploadText">
                                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                 Uploading...

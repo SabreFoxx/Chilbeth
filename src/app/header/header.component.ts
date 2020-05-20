@@ -15,6 +15,22 @@ export class HeaderComponent implements OnInit {
     return this.userAuth.isAuthenticated;
   }
 
+  get facebook() {
+    return this.settings.siteSettings.facebook;
+  }
+
+  get twitter() {
+    return this.settings.siteSettings.twitter;
+  }
+
+  get youtube() {
+    return this.settings.siteSettings.youtube;
+  }
+  
+  get instagram() {
+    return this.settings.siteSettings.instagram;
+  }
+
   ngOnInit() {
   }
 

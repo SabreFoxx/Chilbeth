@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SiteSettingsService } from 'src/services/site-settings.service';
 
 @Component({
   selector: 'app-contact',
@@ -7,7 +8,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactComponent implements OnInit {
 
-  constructor() { }
+  constructor(public settings: SiteSettingsService) { }
+
+  get phone() {
+    return this.settings.siteSettings.phone;
+  }
+
+  get email() {
+    return this.settings.siteSettings.email;
+  }
+
+  get city() {
+    return this.settings.siteSettings.city;
+  }
+
+  get district() {
+    return this.settings.siteSettings.district;
+  }
+
+  get country() {
+    return this.settings.siteSettings.country;
+  }
+
+  get opening_times() {
+    return this.settings.siteSettings.opening_times;
+  }
 
   ngOnInit(): void {
   }

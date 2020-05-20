@@ -37,7 +37,7 @@ export class NewWorkComponent implements OnInit, FillableForm {
   actionSuccess() {
     this.successCreatingWork = true; // Shows success alert
     this.disableSubmitButton = false; // Disables spinning animation on submit button
-    // Empties the form
+    // Empty the form
     this.fileData = null;
     this.previewUrl = null;
     this.previewUrl = '';

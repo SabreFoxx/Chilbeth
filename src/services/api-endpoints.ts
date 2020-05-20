@@ -1,5 +1,5 @@
 /* For local development */
-export enum ApiEndpoints {
+// export enum ApiEndpoints {
     // LOGIN = "http://localhost:3000/api/login",
     // REGISTER = "http://localhost:3000/api/register",
     // SITE_SETTINGS = "http://localhost:3000/api/settings",
@@ -11,7 +11,7 @@ export enum ApiEndpoints {
 
     // WORK = "http://localhost:3000/api/work",
     // BLOG = "http://localhost:3000/api/blog"
-}
+// }
 
 /* For live deploy */
 export enum ApiEndpoints {

@@ -18,6 +18,10 @@ export class BlogLandingComponent implements OnInit {
     this.blogs = data;
   }
 
+  stringAsDate(dateStr: string) {
+    return new Date(dateStr);
+  }
+
   ngOnInit() {
     
   }
