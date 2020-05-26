@@ -21,7 +21,7 @@
                         <h2>{{blog.desc}}</h2>
                         <ul class="blog-info-link mt-3 mb-4">
                             <li><a><i class="fa fa-user"></i>{{blog.authorEmail}}</a></li>
-                            <li><a routerLink="/blog"><i class="fa fa-comments"></i>Comments</a></li>
+                            <li><a routerLink="/blog"><i class="fa fa-comments"></i>{{blog.commentCount !== 0 ? blog.commentCount + ' comments' : 'No Comments'}}</a></li>
                             <li><a><i class="fa fa-comments"></i>{{ stringAsDate(blog.createdOn) | date: 'MMM d y, h:MM a' }}</a></li>
                             <!-- TDOD show confirmation alert after Delete is pressed -->
                             <li *ngIf="canEdit()"><a (click)="deleteBlog()"><i class="fa fa-trash"></i>Delete Blog</a></li>
@@ -35,7 +35,7 @@
                     <div class="media align-items-center">
                         <img src="{{thumbnailPicture}}" alt="">
                         <div class="media-body">
-                            <a href="#">
+                            <a routerLink="/about">
                                 <!-- TODO --> <!-- <h4>{{blog.authorEmail}}</h4> -->
                                 <h4>{{name}}</h4>
                             </a>
@@ -61,7 +61,7 @@
                                             <h5>
                                                 <a href="#">{{comment.name}}</a>
                                             </h5>
-                                            <p class="date">{{ stringAsDate(blog.createdOn) | date: 'MMM d y, h:MM a' }}</p>
+                                            <p class="date">{{ stringAsDate(comment.createdOn) | date: 'MMM d y, h:MM a' }}</p>
                                             <!-- Date format December 4, 2020 at 3:12 pm -->
                                         </div>
                                         <div class="reply-btn">

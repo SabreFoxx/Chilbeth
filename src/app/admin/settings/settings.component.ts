@@ -63,6 +63,10 @@ export class SettingsComponent implements OnInit, FillableForm {
     this.router.navigateByUrl('/upload-details');
   }
 
+  gotoChangePassword() {
+    this.router.navigateByUrl('/change-password');
+  }
+
   onSubmit() {
     this.settings.saveSiteSettings(this, this.form.value);
   }

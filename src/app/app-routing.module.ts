@@ -1,3 +1,5 @@
+import { NewsletterComponent } from './newsletter/newsletter.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 /* Import the Angular modules we require */
 import { RoleGuardService } from './../services/role-guard.service';
 import { RouteAuthGuardService } from './../services/route-auth-guard.service';
@@ -37,6 +39,7 @@ const appRoutes: Routes = [
     data: { expectedRole: 'admin' }
   },
   { path: 'settings', component: SettingsComponent },
+  { path: 'change-password', component: ChangePasswordComponent },
   { path: 'upload-details', component: UploadDetailsComponent},
   {
     path: 'new-blog', component: NewBlogComponent,
@@ -47,6 +50,7 @@ const appRoutes: Routes = [
     path: 'new-work', component: NewWorkComponent,
     canActivate: [RouteAuthGuardService]
   },
+  { path: 'newsletter', component: NewsletterComponent },
   { path: 'home', component: LandingComponent },
   { path: '', component: LandingComponent }, // The LandingComponent is the default component
   { path: '**', component: NotFoundComponent }
