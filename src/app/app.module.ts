@@ -34,6 +34,8 @@ import { RecentComponent } from './blog/recent/recent.component';
 import { UploadDetailsComponent } from './admin/upload-details/upload-details.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { NewsletterComponent } from './newsletter/newsletter.component';
+import { SearchComponent } from './blog/search/search.component';
+import { EditBlogComponent } from './blog/edit-blog/edit-blog.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import { NewsletterComponent } from './newsletter/newsletter.component';
     RecentComponent,
     UploadDetailsComponent,
     ChangePasswordComponent,
-    NewsletterComponent
+    NewsletterComponent,
+    SearchComponent,
+    EditBlogComponent
   ],
   imports: [
     BrowserModule,

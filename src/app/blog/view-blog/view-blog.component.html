@@ -24,6 +24,7 @@
                             <li><a routerLink="/blog"><i class="fa fa-comments"></i>{{blog.commentCount !== 0 ? blog.commentCount + ' comments' : 'No Comments'}}</a></li>
                             <li><a><i class="fa fa-comments"></i>{{ stringAsDate(blog.createdOn) | date: 'MMM d y, h:MM a' }}</a></li>
                             <!-- TDOD show confirmation alert after Delete is pressed -->
+                            <li *ngIf="canEdit()"><a (click)="editBlog()"><i class="fa fa-edit"></i>Edit Blog</a></li>
                             <li *ngIf="canEdit()"><a (click)="deleteBlog()"><i class="fa fa-trash"></i>Delete Blog</a></li>
                         </ul>
                         <p id="post" [innerHTML]="blog.post | keepHtml">

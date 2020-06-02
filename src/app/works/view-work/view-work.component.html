@@ -8,11 +8,9 @@
                     alt="{{work?.title}}">
                 <div class="card-body" style="position: relative;">
                     <ul *ngIf="canEdit()" id="actions">
-                        <a routerLink="/new-work">
-                            <li class="fa icon-large fa-edit"></li>
-                        </a>
                         <a (click)="deleteWork()" routerLink="/new-work">
                             <li class="fa icon-large fa-trash"></li>
+                            <span style="color: rgba(0, 0, 0, 0.7)">Delete</span>
                         </a>
                     </ul>
                 </div>

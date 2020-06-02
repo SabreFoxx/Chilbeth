@@ -26,6 +26,14 @@ export class BackendService {
       });
   }
 
+  private performSimplePut(url: string, initiatingContainer: FillableForm, formData) {
+    initiatingContainer.actionPending();
+    this.http.put(url, formData, this.getAuthorizationToken()) // TODO handle errors appropriately
+      .subscribe(res => {
+        initiatingContainer.actionSuccess();
+      });
+  }
+
   public performSimpleDelete(url: string) {
     return this.http.delete(url, this.getAuthorizationToken()); // TODO handle errors appropriately
   }
@@ -40,6 +48,10 @@ export class BackendService {
 
   public uploadImage(initiatingContainer: FillableForm, formData) {
     this.performSimplePost(ApiEndpoints.UPLOAD, initiatingContainer, formData);
+  }
+
+  public uploadImageAndDeleteOld(initiatingContainer: FillableForm, formData) {
+    this.performSimplePost(ApiEndpoints.UPLOAD + '/and_delete_too', initiatingContainer, formData);
   }
 
   public uploadLandingImage(initiatingContainer: FillableForm, formData) {
@@ -63,6 +75,10 @@ export class BackendService {
 
   public createBlog(initiatingContainer: FillableForm, formData) {
     this.performSimplePost(ApiEndpoints.BLOG, initiatingContainer, formData);
+  }
+
+  public updateBlog(initiatingContainer: FillableForm, formData, blogId: string) {
+    this.performSimplePut(ApiEndpoints.BLOG + `/${blogId}`, initiatingContainer, formData);
   }
 
   public fetchBlog(blogId: string): Observable<any> {
