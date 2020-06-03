@@ -16,7 +16,6 @@ export class SearchComponent implements OnInit {
   });
 
   blogs: any;
-
   disableSubmitButton = false;
 
   constructor(public backend: BackendService) {

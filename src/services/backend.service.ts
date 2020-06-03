@@ -14,7 +14,7 @@ export class BackendService {
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
-  private getAuthorizationToken(): any {
+  public getAuthorizationToken(): any {
     return { headers: { "Authorization": "Bearer " + this.authService.getToken() } };
   }
 

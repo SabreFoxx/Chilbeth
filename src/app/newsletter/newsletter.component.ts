@@ -1,3 +1,6 @@
+import { ApiEndpoints } from './../../services/api-endpoints';
+import { BackendService } from './../../services/backend.service';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsletterComponent implements OnInit {
 
-  constructor() { }
+  newsletters: any;
+
+  constructor(private http: HttpClient, private backend: BackendService) { }
+
+  addContact(formInputJsonContainingEmail) {
+    this.http.post(ApiEndpoints.NEWSLETTER, formInputJsonContainingEmail) // TODO handle errors appropriately
+      .subscribe(res => {
+        alert("You subscribed to our Newsletter successfully!");
+      });
+  }
 
   ngOnInit(): void {
+    this.http.get(ApiEndpoints.NEWSLETTER, this.backend.getAuthorizationToken()) // TODO handle errors appropriately
+      .subscribe(res => this.newsletters = res);
   }
 
 }

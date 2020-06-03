@@ -1,1 +1,9 @@
-<p>Coming Soon!</p>
+<section class="next this-page-1">
+    <h3>Emails subscribed to my Newsletters!</h3>
+
+    <div class="container">
+        <div *ngFor="let newsletter of newsletters" class="row">
+            <div class="col-12">{{newsletter.email}}</div>
+        </div>
+    </div>
+</section>
