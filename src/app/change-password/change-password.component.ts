@@ -16,6 +16,8 @@ export class ChangePasswordComponent implements OnInit {
 
   constructor() { }
 
+  onSubmit() {}
+
   ngOnInit(): void {
   }
 
