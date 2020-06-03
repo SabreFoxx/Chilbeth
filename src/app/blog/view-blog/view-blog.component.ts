@@ -86,6 +86,10 @@ export class ViewBlogComponent implements OnInit, FillableForm {
     // TODO if delete was successful, a 204 status will be received. Use this
   }
 
+  editBlog(): void {
+    this.router.navigateByUrl('/edit-blog/' + this.blogId);
+  }
+
   public get thumbnailPicture() {
     let prefix = ApiEndpoints.UPLOADED_FILES + '/big/';
     let postfix = '.jpg';

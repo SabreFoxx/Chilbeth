@@ -32,6 +32,10 @@ import { PaginationComponent } from './pagination/pagination.component';
 import { WorkSpecialPaginationComponent } from './pagination/work-special-pagination/work-special-pagination.component';
 import { RecentComponent } from './blog/recent/recent.component';
 import { UploadDetailsComponent } from './admin/upload-details/upload-details.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { NewsletterComponent } from './newsletter/newsletter.component';
+import { SearchComponent } from './blog/search/search.component';
+import { EditBlogComponent } from './blog/edit-blog/edit-blog.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +60,11 @@ import { UploadDetailsComponent } from './admin/upload-details/upload-details.co
     PaginationComponent,
     WorkSpecialPaginationComponent,
     RecentComponent,
-    UploadDetailsComponent
+    UploadDetailsComponent,
+    ChangePasswordComponent,
+    NewsletterComponent,
+    SearchComponent,
+    EditBlogComponent
   ],
   imports: [
     BrowserModule,

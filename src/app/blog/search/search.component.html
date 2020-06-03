@@ -1,0 +1,33 @@
+<aside class="single_sidebar_widget search_widget popular_post_widget">
+
+    <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" formControlName="terms" placeholder="Search Keyword">
+                <div class="input-group-append">
+                    <button class="btn" type="button"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit" [disabled]="disableSubmitButton">
+            <span *ngIf="!disableSubmitButton">Search</span>
+            <span *ngIf="disableSubmitButton">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Searching...
+            </span>
+        </button>
+    </form>
+
+    <br>
+    <h3 *ngIf="blogs != null" class="widget_title">Search Results</h3>
+    <span *ngIf="blogs != null" (click)="clear()">X</span>
+    <div *ngFor="let blog of blogs" class="media post_item">
+        <img src="{{backend.uploadsUrlPrefix}}/small/{{blog.imageSortHash}}.jpg" alt="post">
+        <div class="media-body">
+            <a routerLink="/view-blog/{{blog._id}}">
+                <h3>{{blog.title}}</h3>
+            </a>
+            <p>{{ stringAsDate(blog.createdOn) | date: 'MMM d y, h:MM a' }}</p>
+        </div>
+    </div>
+
+</aside>

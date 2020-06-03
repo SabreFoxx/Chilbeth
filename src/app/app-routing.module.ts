@@ -1,3 +1,5 @@
+import { NewsletterComponent } from './newsletter/newsletter.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 /* Import the Angular modules we require */
 import { RoleGuardService } from './../services/role-guard.service';
 import { RouteAuthGuardService } from './../services/route-auth-guard.service';
@@ -17,12 +19,22 @@ import { ViewBlogComponent } from './blog/view-blog/view-blog.component';
 import { NewWorkComponent } from './works/new-work/new-work.component';
 import { ViewWorkComponent } from './works/view-work/view-work.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { EditBlogComponent } from './blog/edit-blog/edit-blog.component';
 
 /* Configure routes */
 const appRoutes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'blog', component: BlogLandingComponent },
+  { 
+    path: 'edit-blog/:blogid', component: EditBlogComponent,
+    canActivate: [RouteAuthGuardService]
+  },
   { path: 'blog/p/:page', component: BlogLandingComponent },
+  {
+    path: 'new-blog', component: NewBlogComponent,
+    canActivate: [RouteAuthGuardService]
+  },
+  { path: 'view-blog/:blogid', component: ViewBlogComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'login', component: LoginComponent },
   
@@ -37,16 +49,13 @@ const appRoutes: Routes = [
     data: { expectedRole: 'admin' }
   },
   { path: 'settings', component: SettingsComponent },
+  { path: 'change-password', component: ChangePasswordComponent },
   { path: 'upload-details', component: UploadDetailsComponent},
-  {
-    path: 'new-blog', component: NewBlogComponent,
-    canActivate: [RouteAuthGuardService]
-  },
-  { path: 'view-blog/:blogid', component: ViewBlogComponent },
   {
     path: 'new-work', component: NewWorkComponent,
     canActivate: [RouteAuthGuardService]
   },
+  { path: 'newsletter', component: NewsletterComponent },
   { path: 'home', component: LandingComponent },
   { path: '', component: LandingComponent }, // The LandingComponent is the default component
   { path: '**', component: NotFoundComponent }

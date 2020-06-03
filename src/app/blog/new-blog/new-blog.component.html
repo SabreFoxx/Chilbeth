@@ -1,15 +1,15 @@
 <!-- Bootstrap alerts -->
 <div class="alert alert-success" role="alert" (click)="resetAlert()" *ngIf="successCreatingBlog">
     <a class="close" aria-label="close">&times;</a>
-    <b>Blog created successfully! </b>
+    <b>{{successMsg}}</b>
 </div>
 <div class="alert alert-danger" role="alert" (click)="resetAlert()" *ngIf="failedCreatingBlog">
     <a class="close" aria-label="close">&times;</a>
-    A <b>problem</b> occured while creating your blog, and wasn't created successfully!
+    {{failureMsg}}
 </div>
 
 <section class="next this-page-1">
-    <h3 class="title">Create Blog Post</h3>
+    <h3 class="title">{{saveBlogText}} Post</h3>
     <div class="container b">
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="row">
@@ -45,9 +45,9 @@
                         <angular-editor [placeholder]="'Enter content here...'" [(ngModel)]="bigFormContent" [ngModelOptions]="{standalone: true}" [config]="editorConfig">
                         </angular-editor>
                         <button style="margin-top: 10px" class="btn btn-primary" [disabled]="disableSubmitButton">
-                            <span *ngIf="!disableSubmitButton">Create Blog</span>
+                            <span *ngIf="!disableSubmitButton">{{saveBlogText}}</span>
                             <span *ngIf="disableSubmitButton">
-                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Creating...
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>{{saveBlogProgressText}}
                             </span>
                         </button>
                         <app-scroll-to-top></app-scroll-to-top>

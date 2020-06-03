@@ -27,20 +27,23 @@ export class PaginationComponent implements OnInit {
 
   @Input()
   set pageUrl(url: string) {
-    this.route.paramMap
-      .subscribe(params => {
-        // Save url
-        this.actionUrl = url;
-        // Get current page number
-        this.pageNumber = params.get("page") ? +params.get("page") : 1;
-        // Fetch data in current page
-        this.backend.performSimpleGet(`${url}/p/${this.pageNumber}`)
-          .subscribe(res => {
-            this.pageInformation = res.pageInformation; // Metadata describing pages
-            this.buildNumericPageLinks();
-            this.pagedData.emit(res.items); // Send page content to the display component
-          });
-      });
+    if (url != null)
+      this.route.paramMap
+        .subscribe(params => {
+          // Save url
+          this.actionUrl = url;
+          // Get current page number
+          this.pageNumber = params.get("page") ? +params.get("page") : 1;
+          // Fetch data in current page
+          this.backend.performSimpleGet(`${url}/p/${this.pageNumber}`)
+            .subscribe(res => {
+              if (res != null) {
+                this.pageInformation = res.pageInformation; // Metadata describing pages
+                this.buildNumericPageLinks();
+                this.pagedData.emit(res.items); // Send page content to the display component
+              }
+            });
+        });
   }
 
   @Input() urlPrefix: string;

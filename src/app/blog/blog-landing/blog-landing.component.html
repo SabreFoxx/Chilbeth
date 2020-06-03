@@ -18,7 +18,7 @@
                             <p>{{blog.desc}}</p>
                             <ul class="blog-info-link">
                                 <li><a><i class="fa fa-user"></i>{{blog.authorEmail}}</a></li>
-                                <li><a routerLink="/blog"><i class="fa fa-comments"></i>No Comments</a></li>
+                                <li><a><i class="fa fa-comments"></i>{{blog.commentCount !== 0 ? blog.commentCount + ' comments' : 'No Comments'}}</a></li>
                                 <li><a>
                                         <i class="fa fa-comments"></i>
                                         {{ stringAsDate(blog.createdOn) | date: 'MMM d y, h:MM a' }}

@@ -77,7 +77,7 @@ export class NewBlogComponent implements OnInit, FillableForm {
     // ]
   };
 
-  constructor(private backend: BackendService, private router: Router) { }
+  constructor(protected backend: BackendService, protected router: Router) { }
 
   actionPending() {
     this.disableSubmitButton = true;  // Shows spinning animation on submit button
@@ -141,4 +141,8 @@ export class NewBlogComponent implements OnInit, FillableForm {
   ngOnInit(): void {
   }
 
+  saveBlogText = "Create Blog"; // This is a variable, because NewBlogComponent will be inherited by EditBlogComponent
+  saveBlogProgressText = "Creating..."
+  successMsg = "Blog created successfully!";
+  failureMsg = "A problem occured while creating your blog, and wasn't created successfully!";
 }

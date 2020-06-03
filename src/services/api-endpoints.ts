@@ -1,5 +1,5 @@
 /* For local development */
-// export enum ApiEndpoints {
+export enum ApiEndpoints {
     // LOGIN = "http://localhost:3000/api/login",
     // REGISTER = "http://localhost:3000/api/register",
     // SITE_SETTINGS = "http://localhost:3000/api/settings",
@@ -10,8 +10,9 @@
     // UPLOADED_FILES = "http://localhost:3000/api/images",
 
     // WORK = "http://localhost:3000/api/work",
-    // BLOG = "http://localhost:3000/api/blog"
-// }
+    // BLOG = "http://localhost:3000/api/blog",
+    // NEWSLETTER = "http://localhost:3000/api/newsletter"
+}
 
 /* For live deploy */
 export enum ApiEndpoints {
@@ -25,5 +26,6 @@ export enum ApiEndpoints {
     UPLOADED_FILES = "https://geraldnnebe-chilbeth-backend.glitch.me/api/images",
 
     WORK = "https://geraldnnebe-chilbeth-backend.glitch.me/api/work",
-    BLOG = "https://geraldnnebe-chilbeth-backend.glitch.me/api/blog"
+    BLOG = "https://geraldnnebe-chilbeth-backend.glitch.me/api/blog",
+    NEWSLETTER = "https://geraldnnebe-chilbeth-backend.glitch.me/api/newsletter"
 }
