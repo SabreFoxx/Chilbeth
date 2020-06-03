@@ -12,7 +12,7 @@ export class BlogLandingComponent implements OnInit {
   url = ApiEndpoints.BLOG;
   blogs: any;
 
-  constructor(public backend: BackendService) { } // Leave private backend: BackendService here
+  constructor(public backend: BackendService) { }
 
   receivePageContent(data: any) {
     this.blogs = data;
@@ -22,8 +22,8 @@ export class BlogLandingComponent implements OnInit {
     return new Date(dateStr);
   }
 
-  ngOnInit() {
-    
+  ngOnInit(): void {
+
   }
 
 }

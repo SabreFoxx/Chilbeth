@@ -37,7 +37,7 @@ export class AuthService {
           this._loginComponent.actionSuccess();
         }
       }, (error) => {
-        console.log(error); // TODO
+        console.log("");
       });
   }
 

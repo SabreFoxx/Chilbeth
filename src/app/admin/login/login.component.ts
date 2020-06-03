@@ -11,10 +11,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit, FillableForm {
+  
   loginForm = new FormGroup({
     email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
   });
+
+  disableSubmitButton = false;
 
   constructor(private userAuth: AuthService, private route: Router) {
     userAuth.loginComponent = this;
@@ -25,12 +28,11 @@ export class LoginComponent implements OnInit, FillableForm {
   }
 
   actionPending() {
-    // play waiting animation
-    console.log("auth is pending"); // TODO
+    this.disableSubmitButton = true;  // Shows spinning animation on submit button
   }
 
   actionFailed() {
-
+    this.disableSubmitButton = false;
   }
 
   actionSuccess() {
