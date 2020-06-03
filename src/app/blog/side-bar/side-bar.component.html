@@ -7,11 +7,16 @@
     <aside class="single_sidebar_widget newsletter_widget">
         <h4 class="widget_title">Newsletter</h4>
 
-        <form action="#">
+        <form [formGroup]="newsletterForm" (ngSubmit)="addContact()">
             <div class="form-group">
-                <input type="email" class="form-control" placeholder="Enter email" required>
+                <input type="email" formControlName="email" class="form-control" placeholder="Enter email" required>
             </div>
-            <button class="btn btn-primary" type="submit">Subscribe</button>
+            <button class="btn btn-primary" type="submit" [disabled]="disableSubmitButtonForNewsletterForm">
+                <span *ngIf="!disableSubmitButtonForNewsletterForm">Subscribe</span>
+                <span *ngIf="disableSubmitButtonForNewsletterForm">
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Subscribing...
+                </span>
+            </button>
         </form>
     </aside>
 </div>
