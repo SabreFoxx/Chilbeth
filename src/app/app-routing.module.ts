@@ -1,11 +1,11 @@
-import { NewsletterComponent } from './newsletter/newsletter.component';
-import { ChangePasswordComponent } from './change-password/change-password.component';
 /* Import the Angular modules we require */
 import { RoleGuardService } from './../services/role-guard.service';
 import { RouteAuthGuardService } from './../services/route-auth-guard.service';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { NewsletterComponent } from './newsletter/newsletter.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 import { AboutComponent } from './about/about.component';
 import { BlogLandingComponent } from './blog/blog-landing/blog-landing.component';
 import { ContactComponent } from './contact/contact.component';
@@ -39,7 +39,6 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   
   { path: 'works', component: WorksComponent},
-  // { path: 'works', redirectTo: 'works/p/1', pathMatch: 'full' },
   { path: 'works/p/:page', component: WorksComponent },
   { path: 'view-work/:workid', component: ViewWorkComponent },
   

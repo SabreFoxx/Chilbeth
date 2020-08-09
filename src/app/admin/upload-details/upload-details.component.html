@@ -11,17 +11,42 @@
 <section class="next this-page-1">
     <div class="container b">
         <h3>Landing Page Images</h3>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-12">
+                    <h5 class="title">Logo</h5>
+                    <div class="mb-3 mt-1" style="min-height: 50px;">
+                        <img *ngIf="logoPreviewUrl" style="margin-top: 1rem" [src]="logoPreviewUrl" class="img-fluid"/>
+                    </div>
+                    <b>Choose file</b>
+                    <p><small>A PNG image, whose dimension MUST be 154x32 to fit. Please ensure it's 154x32</small></p>
+                    <div class="form-group">
+                        <input type="file" name="image" (change)="logoFileProgress($event)" />
+                        <button (click)="uploadSiteLogo()" class="btn btn-primary"
+                            [disabled]="disableSubmitButton">
+                            <span *ngIf="disableSubmitButton && _logoPointer; else showUploadText">
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                Uploading...
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </form>
+
         <form [formGroup]="form" (ngSubmit)="saveSettings()">
+
             <div class="row">
                 <div class="col-12">
                     <h5 class="title">First Landing Image</h5>
                     <div class="mb-3" style="min-height: 200px">
-                        <img *ngIf="previewUrl[0]" [src]="previewUrl[0]"
-                            class="img-fluid" height="200" />
+                        <img *ngIf="previewUrl[0]" [src]="previewUrl[0]" class="img-fluid" height="200" />
                     </div>
                     <b>Choose file</b>
                     <p><small>The preferred image ratio is classic 2:1. For example, a 1344x678 photo</small></p>
-                    <p><small>Please keep the originals of your photos, as photos uploaded here are subject to data compression</small></p>
+                    <p><small>Please keep the originals of your photos, as photos uploaded here are subject to data
+                            compression</small></p>
                     <div class="form-group">
                         <input type="file" name="image" (change)="fileProgress($event, 0)" />
                         <button (click)="uploadLandingImage(0)" class="btn btn-primary"
@@ -40,12 +65,12 @@
                 <div class="col-12">
                     <h5 class="title">Second Landing Image</h5>
                     <div class="mb-3" style="min-height: 200px">
-                        <img *ngIf="previewUrl[1]" [src]="previewUrl[1]"
-                            class="img-fluid" height="200" />
+                        <img *ngIf="previewUrl[1]" [src]="previewUrl[1]" class="img-fluid" height="200" />
                     </div>
                     <b>Choose file</b>
                     <p><small>The preferred image ratio is classic 2:1. For example, a 1344x678 photo</small></p>
-                    <p><small>Please keep the originals of your photos, as photos uploaded here are subject to data compression</small></p>
+                    <p><small>Please keep the originals of your photos, as photos uploaded here are subject to data
+                            compression</small></p>
                     <div class="form-group">
                         <input type="file" name="image" (change)="fileProgress($event, 1)" />
                         <button (click)="uploadLandingImage(1)" class="btn btn-primary"
@@ -64,12 +89,12 @@
                 <div class="col-12">
                     <h5 class="title">First Landing Image</h5>
                     <div class="mb-3" style="min-height: 200px">
-                        <img *ngIf="previewUrl[2]" [src]="previewUrl[2]"
-                            class="img-fluid" height="200" />
+                        <img *ngIf="previewUrl[2]" [src]="previewUrl[2]" class="img-fluid" height="200" />
                     </div>
                     <b>Choose file</b>
                     <p><small>The preferred image ratio is classic 2:1. For example, a 1344x678 photo</small></p>
-                    <p><small>Please keep the originals of your photos, as photos uploaded here are subject to data compression</small></p>
+                    <p><small>Please keep the originals of your photos, as photos uploaded here are subject to data
+                            compression</small></p>
                     <div class="form-group">
                         <input type="file" name="image" (change)="fileProgress($event, 2)" />
                         <button (click)="uploadLandingImage(2)" class="btn btn-primary"
@@ -95,11 +120,12 @@
                 <div class="col-12">
                     <h5 class="title">Profile Photo</h5>
                     <div class="mb-3" style="min-height: 200px">
-                        <img *ngIf="bioPreviewUrl.profilePicture" [src]="bioPreviewUrl.profilePicture"
-                            class="img-fluid" height="200" />
+                        <img *ngIf="bioPreviewUrl.profilePicture" [src]="bioPreviewUrl.profilePicture" class="img-fluid"
+                            height="200" />
                     </div>
                     <b>Choose file</b>
-                    <p><small>Your main profile photo which will be shown in About Me (recommend image ratio is 2:3)</small></p>
+                    <p><small>Your main profile photo which will be shown in About Me (recommend image ratio is
+                            2:3)</small></p>
                     <div class="form-group">
                         <input type="file" name="image" (change)="bioFileProgress($event, 'profilePicture')" />
                         <button (click)="uploadProfilePicture('profilePicture')" class="btn btn-primary"
@@ -118,8 +144,8 @@
                 <div class="col-12">
                     <h5 class="title">Thumbnail Photo</h5>
                     <div class="mb-3" style="min-height: 200px">
-                        <img *ngIf="bioPreviewUrl.thumbnail" [src]="bioPreviewUrl.thumbnail"
-                            class="img-fluid" height="200" />
+                        <img *ngIf="bioPreviewUrl.thumbnail" [src]="bioPreviewUrl.thumbnail" class="img-fluid"
+                            height="200" />
                     </div>
                     <b>Choose file</b>
                     <p><small>A small square photo showing only your face</small></p>
@@ -144,8 +170,7 @@
                     <div class="form-group">
                         <!-- <input type="file" name="image" (change)="fileProgress($event, 2)" /> -->
                         <input type="file" name="image" />
-                        <button (click)="saveSettings()" class="btn btn-primary"
-                            [disabled]="disableSubmitButton">
+                        <button (click)="saveSettings()" class="btn btn-primary" [disabled]="disableSubmitButton">
                             <span *ngIf="disableSubmitButton && _bioPointer == 'CV'; else showUploadText">
                                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                 Uploading...

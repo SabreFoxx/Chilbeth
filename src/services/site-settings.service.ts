@@ -5,6 +5,7 @@ import { AuthService } from './auth.service';
 import { FillableForm } from './fillable-form';
 
 interface SiteSettingsInterface {
+  siteLogo,
   landingImageOne,
   landingImageTwo,
   landingImageThree,
@@ -37,6 +38,7 @@ export class SiteSettingsService {
 
   private _siteSettings: any = null;
   private settingsTemplate: SiteSettingsInterface = {
+    siteLogo: '',
     landingImageOne: '',
     landingImageTwo: '',
     landingImageThree: '',
@@ -65,6 +67,7 @@ export class SiteSettingsService {
     // The constructor is run only once for a singleton object
     if (this._siteSettings === null) { // Fill in
       let blank = { // Serve the blank image as placeholder initially, while we wait to fetch the real ones from the database
+        siteLogo: 'blank/blank',
         landingImageOne: 'blank/blank',
         landingImageTwo: 'blank/blank',
         landingImageThree: 'blank/blank',
@@ -75,6 +78,16 @@ export class SiteSettingsService {
       this._siteSettings = { ...this.settingsTemplate, ...blank } // Combine them, using the spread operator
       this.fetchSiteSettingsFromDatabase();
     }
+  }
+
+  public saveSiteLogo(sortingHash: string, previousSortingHashForDeletion: string) {
+    let formText = this.settingsTemplate;
+    formText.siteLogo = sortingHash;
+    formText.previousImageForDeletion = previousSortingHashForDeletion;
+    this.http.put(ApiEndpoints.SITE_SETTINGS, formText, this.getAuthorizationToken()) // TODO handle errors appropriately
+      .subscribe(res => {
+        this._siteSettings = res;
+      });
   }
 
   public saveLandingImage(sortingHash: string, landingImageIndex: number, previousSortingHashForDeletion: string) {

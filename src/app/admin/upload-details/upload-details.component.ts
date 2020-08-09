@@ -18,8 +18,9 @@ export class UploadDetailsComponent implements OnInit {
   operationFailed = false;
   disableSubmitButton = false;
 
-  // Points to an area of interest
+  // Points to an area of interest in HTML template
   _pointer: any;
+  _logoPointer: any;
   _bioPointer: any;
 
   /* For regular form */
@@ -34,6 +35,11 @@ export class UploadDetailsComponent implements OnInit {
   // But initially, we'll store a http url to the file of the current landing page images
   previewUrl: any[];
   oldSortingHash: string[];
+
+  // Site logo
+  logoFileData;
+  logoPreviewUrl;
+  logoOldSortingHash;
 
   // Bio section
   bioFileData = {
@@ -51,21 +57,24 @@ export class UploadDetailsComponent implements OnInit {
 
   constructor(private backend: BackendService, private settings: SiteSettingsService, private router: Router) {
     // But initially, we'll store a http url to the file of the current images
+    this.logoPreviewUrl = ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.siteLogo + '.png';
+    this.logoOldSortingHash = this.settings.siteSettings.siteLogo;
+
     this.previewUrl = [
       ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.landingImageOne + '.jpg',
       ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.landingImageTwo + '.jpg',
       ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.landingImageThree + '.jpg'
     ];
-    this.bioPreviewUrl = {
-      profilePicture: ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.profilePicture + '.jpg',
-      thumbnail: ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.profileThumbnail + '.jpg'
-    }
-
     this.oldSortingHash = [ // Save our current images' names in a variable in case we want to change them later
       this.settings.siteSettings.landingImageOne,
       this.settings.siteSettings.landingImageTwo,
       this.settings.siteSettings.landingImageThree
     ];
+
+    this.bioPreviewUrl = {
+      profilePicture: ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.profilePicture + '.jpg',
+      thumbnail: ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.profileThumbnail + '.jpg'
+    }
     this.bioOldSortingHash.profilePicture = this.settings.siteSettings.profilePicture;
     this.bioOldSortingHash.thumbnail = this.settings.siteSettings.profileThumbnail;
   }
@@ -76,6 +85,11 @@ export class UploadDetailsComponent implements OnInit {
 
   actionFailed() {
     this.operationFailed = true; // Shows failure alert
+
+    // reset pointers
+    this._pointer = null;
+    this._logoPointer = null;
+    this._bioPointer = null;
   }
 
   actionSuccess() {
@@ -157,6 +171,38 @@ export class UploadDetailsComponent implements OnInit {
     this.settings.saveProfileImage(sortingHash, type, this.bioOldSortingHash[type]);
   }
 
+  logoFileProgress(fileInput: any) {
+    this.logoFileData = <File>fileInput.target.files[0];
+    this.logoPreview();
+  }
+
+  private logoPreview() {
+    // Show image preview 
+    let mimeType = this.logoFileData.type;
+    if (mimeType.match(/image\/*/) == null)
+      return;
+
+    var reader = new FileReader();
+    reader.readAsDataURL(this.logoFileData);
+    reader.onload = (_event) => {
+      this.logoPreviewUrl = reader.result;
+    }
+  }
+
+  uploadSiteLogo() {
+    if (!this.logoPreviewUrl) { // TODO make this test falsy even when bioPreviewUrl[type] has the value of an already uploaded image, to prevent resubmission and thus recompression
+      alert('Select an image before uploading!');
+      return;
+    }
+    this._logoPointer = 1;
+    const formData = new FormData();
+    // sortingHash will be used to identify the image in the database. It's also used here as the name of the binary we're sending
+    let sortingHash = this.backend.generateUniqueChronoString();
+    formData.append(sortingHash, this.logoFileData);
+    this.backend.uploadSiteLogo(this, formData);
+    this.settings.saveSiteLogo(sortingHash, this.logoOldSortingHash);
+  }
+
   // Does nothing
   saveSettings() {
     console.log('Saving...');
@@ -167,8 +213,11 @@ export class UploadDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     setTimeout(() => { // Our settings may not arrive from the database quickly enough, so we'll wait for some time, expecting our settings to be ready by that time
-      // This timeout is useful only when the user reloads this current page. If the user navigated from another page, say the landing page, the settings would already have been available
+      // This timeout is useful when the user reloads this current page. If the user navigated from another page, say the landing page, the settings would already have been available
       // And so, it is a repetition of the constructor
+      this.logoPreviewUrl = ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.siteLogo + '.png';
+      this.logoOldSortingHash = this.settings.siteSettings.siteLogo;
+
       this.previewUrl = [ // Set the images, so they don't show the blank ones
         ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.landingImageOne + '.jpg',
         ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.landingImageTwo + '.jpg',

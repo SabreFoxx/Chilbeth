@@ -58,11 +58,19 @@ export class BackendService {
     this.performSimplePost(ApiEndpoints.UPLOAD_LANDING, initiatingContainer, formData);
   }
 
+  public uploadArtworkImage(initiatingContainer: FillableForm, formData) {
+    this.performSimplePost(ApiEndpoints.UPLOAD_ARTWORK, initiatingContainer, formData);
+  }
+
   public uploadProfilePicture(initiatingContainer: FillableForm, formData, type: string) {
     if (type == 'profilePicture')
       this.performSimplePost(ApiEndpoints.UPLOAD_PROFILE_PICTURE + '/profilePicture', initiatingContainer, formData);
     else if (type == 'thumbnail')
       this.performSimplePost(ApiEndpoints.UPLOAD_PROFILE_PICTURE + '/profileThumbnail', initiatingContainer, formData);
+  }
+
+  public uploadSiteLogo(initiatingContainer: FillableForm, formData) {
+    this.performSimplePost(ApiEndpoints.UPLOAD_SITE_LOGO, initiatingContainer, formData);
   }
 
   public addWork(initiatingContainer: FillableForm, formData) {

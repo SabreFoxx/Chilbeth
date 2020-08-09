@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/services/auth.service';
 import { SiteSettingsService } from 'src/services/site-settings.service';
+import { ApiEndpoints } from 'src/services/api-endpoints';
 
 @Component({
   selector: 'header',
@@ -13,6 +14,10 @@ export class HeaderComponent implements OnInit {
 
   get isLoggedIn(): boolean {
     return this.userAuth.isAuthenticated;
+  }
+
+  get logo() {
+    return ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.siteLogo + '.png';
   }
 
   get facebook() {
