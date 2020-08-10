@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { FillableForm } from 'src/services/fillable-form';
 import { ScrollToTopComponent } from 'src/app/others/scroll-to-top/scroll-to-top.component';
-import { format } from 'url';
 
 @Component({
   selector: 'app-settings',
@@ -22,6 +21,8 @@ export class SettingsComponent implements OnInit, FillableForm {
     name: new FormControl(this.settings.siteSettings.name),
     occupation: new FormControl(this.settings.siteSettings.occupation),
     desc: new FormControl(this.settings.siteSettings.desc),
+    landing_message_heading: new FormControl(this.settings.siteSettings.landing_message_heading),
+    landing_message: new FormControl(this.settings.siteSettings.landing_message),
     about_heading: new FormControl(this.settings.siteSettings.about_heading),
     about: new FormControl(this.settings.siteSettings.about),
     phone: new FormControl(this.settings.siteSettings.phone),
@@ -80,6 +81,8 @@ export class SettingsComponent implements OnInit, FillableForm {
       this.form.get('name').setValue(this.settings.siteSettings.name);
       this.form.get('occupation').setValue(this.settings.siteSettings.occupation);
       this.form.get('desc').setValue(this.settings.siteSettings.desc);
+      this.form.get('landing_message_heading').setValue(this.settings.siteSettings.landing_message_heading);
+      this.form.get('landing_message').setValue(this.settings.siteSettings.landing_message);
       this.form.get('about_heading').setValue(this.settings.siteSettings.about_heading);
       this.form.get('about').setValue(this.settings.siteSettings.about);
       this.form.get('phone').setValue(this.settings.siteSettings.phone);

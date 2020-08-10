@@ -16,3 +16,7 @@
         font-size: 1em;
     }
 }
+
+.delete {
+    cursor: pointer;
+}

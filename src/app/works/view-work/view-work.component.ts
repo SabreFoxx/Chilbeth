@@ -35,9 +35,12 @@ export class ViewWorkComponent implements OnInit {
   }
 
   deleteWork(): void {
-    this.backend.performSimpleDelete(ApiEndpoints.WORK + `/${this.workId}`)
-      .subscribe(res => this.router.navigateByUrl('/works'));
-    // TODO if delete was successful, a 204 status will be received. Use this
+    let c = confirm("Are you sure you want to delete the work?");
+    if (c) {
+      this.backend.performSimpleDelete(ApiEndpoints.WORK + `/${this.workId}`)
+        .subscribe(res => this.router.navigateByUrl('/works'));
+      // TODO if delete was successful, a 204 status will be received. Use this
+    }
   }
 
 }
