@@ -39,6 +39,8 @@ interface SiteSettingsInterface {
 export class SiteSettingsService {
 
   private _siteSettings: any = null;
+  private _workCategories: Array<any> = null;
+
   private settingsTemplate: SiteSettingsInterface = {
     siteLogo: '',
     landingImageOne: '',
@@ -135,6 +137,10 @@ export class SiteSettingsService {
     return this._siteSettings;
   }
 
+  public get workCategories() {
+    return this._workCategories;
+  }
+
   public saveSiteSettings(initiatingContainer: FillableForm, formData) {
     let formText = { ...this.settingsTemplate, ...formData } // Combine them using the spread operator
     initiatingContainer.actionPending();
@@ -150,6 +156,14 @@ export class SiteSettingsService {
       this._siteSettings = null;
       this._siteSettings = res;
     });
+    this.http.get(ApiEndpoints.WORK_CATEGORIES).subscribe(res => { // TODO handle errors
+      this._workCategories = null;
+      (this._workCategories as any) = res;
+    });
+  }
+
+  public refreshSiteSettings() {
+    this.fetchSiteSettingsFromDatabase();
   }
 
   private getAuthorizationToken(): any {

@@ -1,9 +1,9 @@
 <!-- Bootstrap alerts -->
-<div class="alert alert-success" role="alert" (click)="resetAlert()" *ngIf="operationSuccessful">
+<div class="alert alert-success text-center" role="alert" (click)="resetAlert()" *ngIf="operationSuccessful">
     <a class="close" aria-label="close">&times;</a>
     <b>Operation successfully! </b>
 </div>
-<div class="alert alert-danger" role="alert" (click)="resetAlert()" *ngIf="operationFailed">
+<div class="alert alert-danger text-center" role="alert" (click)="resetAlert()" *ngIf="operationFailed">
     <a class="close" aria-label="close">&times;</a>
     Operation was <b>unsuccessful</b>!
 </div>

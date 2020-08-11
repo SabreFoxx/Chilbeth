@@ -1,11 +1,15 @@
 <!-- Bootstrap alerts -->
-<div class="alert alert-success" role="alert" (click)="resetAlert()" *ngIf="successCreatingWork">
+<div class="alert alert-success text-center" role="alert" (click)="resetAlert()" *ngIf="successCreatingWork">
     <a class="close" aria-label="close">&times;</a>
     <b>Work uploaded successfully! </b><a class="alert-link" routerLink="/works">View</a>
 </div>
-<div class="alert alert-danger" role="alert" (click)="resetAlert()" *ngIf="failedCreatingWork">
+<div class="alert alert-danger text-center" role="alert" (click)="resetAlert()" *ngIf="failedCreatingWork">
     <a class="close" aria-label="close">&times;</a>
     A <b>problem</b> occured while uploading your work, and wasn't uploaded successfully!
+</div>
+<div class="alert alert-danger text-center" role="alert" *ngIf="displayNoCategoriesMessage">
+    You haven't created any categories yet, so creating a work will fail.
+    Go to settings, and add a work category first!
 </div>
 
 <section class="next this-page-1">
@@ -18,8 +22,10 @@
                         <img *ngIf="previewUrl" [src]="previewUrl" class="img-fluid" height="200" />
                     </div>
                     <b>Choose file</b>
-                    <p><small>The preferred image ratio is classic 3:2. For example, a 1080x720 or 708x472 photo</small></p>
-                    <p><small>Please keep the originals of your photos, as photos uploaded here are subject to data compression</small></p>
+                    <p><small>The preferred image ratio is classic 3:2. For example, a 1080x720 or 708x472 photo</small>
+                    </p>
+                    <p><small>Please keep the originals of your photos, as photos uploaded here are subject to data
+                            compression</small></p>
                     <div class="form-group">
                         <input type="file" name="image" (change)="fileProgress($event)" />
                     </div>
@@ -34,6 +40,15 @@
                     <div class="form-group">
                         <textarea class="form-control w-100" formControlName="desc" name="desc" id="desc" cols="30"
                             rows="9" placeholder="Some description..."></textarea>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <select class="form-control" formControlName="category" name="category" id="category">
+                            <option *ngFor="let category of categories; i as index" label="{{category.title}}"
+                                value="{{category._id}}">{{category.title}}</option>
+                        </select>
                         <button style="margin-top: 10px" class="btn btn-primary">Upload</button>
                         <app-scroll-to-top></app-scroll-to-top>
                     </div>

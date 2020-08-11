@@ -1,8 +1,13 @@
 <section class="next this-page-1">
-  <h3>Works</h3>
+  <h3>Categories</h3>
+  <div class="container" style="margin-bottom: 5em;">
+    <a *ngFor="let category of workCategories" routerLink="/works/{{category._id}}/p/1"
+      class="category-list">{{category.title}}</a>
+  </div>
 
+
+  <h3>{{pageTitle}}</h3>
   <div class="container">
-    <div style="text-align: center; padding-top: 2em;">Click to enlarge!</div>
 
     <div class="row">
 

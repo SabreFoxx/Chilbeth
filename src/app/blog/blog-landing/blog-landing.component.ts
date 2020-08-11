@@ -14,6 +14,7 @@ export class BlogLandingComponent implements OnInit {
 
   constructor(public backend: BackendService) { }
 
+  // Will be called by PaginationComponent, when this component's model is ready
   receivePageContent(data: any) {
     this.blogs = data;
   }

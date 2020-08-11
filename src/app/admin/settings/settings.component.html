@@ -1,25 +1,28 @@
-<div class="alert alert-success" role="alert" (click)="resetAlert()" *ngIf="successSavingSettings">
+<div class="alert alert-success text-center" role="alert" (click)="resetAlert()" *ngIf="successSavingSettings">
     <a class="close" aria-label="close">&times;</a>
     <b>Settings saved successfully! </b>
 </div>
-<div class="alert alert-danger" role="alert" (click)="resetAlert()" *ngIf="failedSavingSettings">
+<div class="alert alert-danger text-center" role="alert" (click)="resetAlert()" *ngIf="failedSavingSettings">
     <a class="close" aria-label="close">&times;</a>
     A <b>problem</b> while creating saving your settings, and it wasn't saved successfully!
 </div>
 
-<section class="contact-section area-padding">
+<section class="contact-section">
     <div class="container">
-        <div class="row">
-            <div class="col-12">
+        <div class="row" style="margin-top: 1em;">
+            <div class="col-3">
                 <button type="submit" (click)="gotoUploadDetails()" class="btn btn-primary">Upload Files</button>
             </div>
-            <div class="col-12" style="margin: 5px 0">
+            <div class="col-3">
                 <button type="submit" (click)="gotoNewsLetters()" class="btn btn-primary">Manage Newsletters</button>
             </div>
-            <div class="col-12">
+            <div class="col-3">
+                <button type="submit" (click)="gotoWorkCategories()" class="btn btn-primary">Work Categories</button>
+            </div>
+            <div class="col-3">
                 <button type="submit" (click)="gotoChangePassword()" class="btn btn-primary">Change Password</button>
             </div>
-            <div class="col-12">
+            <div class="col-12" style="margin: 1rem 0">
                 Tip: Do not login with another person's device. If you do, remember to logout or that person will have
                 access!
                 You can change your password, to invalidate any logins done with other devices.

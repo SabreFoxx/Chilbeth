@@ -1,3 +1,4 @@
+import { EditCategoriesComponent } from './works/edit-categories/edit-categories.component';
 /* Import the Angular modules we require */
 import { RoleGuardService } from './../services/role-guard.service';
 import { RouteAuthGuardService } from './../services/route-auth-guard.service';
@@ -39,9 +40,19 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   
   { path: 'works', component: WorksComponent},
+  { path: 'works/:category', component: WorksComponent},
+  { path: 'works/:category/p/:page', component: WorksComponent},
   { path: 'works/p/:page', component: WorksComponent },
   { path: 'view-work/:workid', component: ViewWorkComponent },
-  
+  {
+    path: 'new-work', component: NewWorkComponent,
+    canActivate: [RouteAuthGuardService]
+  },
+  {
+    path: 'edit-categories', component: EditCategoriesComponent,
+    canActivate: [RouteAuthGuardService]
+  },
+
   {
     path: 'landing', component: LandingComponent,
     canActivate: [RoleGuardService], // Not using this, it's just for demonstration
@@ -50,10 +61,6 @@ const appRoutes: Routes = [
   { path: 'settings', component: SettingsComponent },
   { path: 'change-password', component: ChangePasswordComponent },
   { path: 'upload-details', component: UploadDetailsComponent},
-  {
-    path: 'new-work', component: NewWorkComponent,
-    canActivate: [RouteAuthGuardService]
-  },
   { path: 'newsletter', component: NewsletterComponent },
   { path: 'home', component: LandingComponent },
   { path: '', component: LandingComponent }, // The LandingComponent is the default component

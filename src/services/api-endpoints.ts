@@ -13,6 +13,7 @@ export enum ApiEndpoints {
     UPLOADED_FILES = "http://localhost:3000/api/images",
 
     WORK = "http://localhost:3000/api/work",
+    WORK_CATEGORIES = "http://localhost:3000/api/work_categories",
     BLOG = "http://localhost:3000/api/blog",
     NEWSLETTER = "http://localhost:3000/api/newsletter"
 }
@@ -32,6 +33,7 @@ export enum ApiEndpoints {
     // UPLOADED_FILES = "https://geraldnnebe-chilbeth-backend.glitch.me/api/images",
 
     // WORK = "https://geraldnnebe-chilbeth-backend.glitch.me/api/work",
+    // WORK_CATEGORIES = "https://geraldnnebe-chilbeth-backend.glitch.me/api/work_categories",
     // BLOG = "https://geraldnnebe-chilbeth-backend.glitch.me/api/blog",
     // NEWSLETTER = "https://geraldnnebe-chilbeth-backend.glitch.me/api/newsletter"
 }

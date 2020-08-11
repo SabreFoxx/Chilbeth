@@ -31,9 +31,23 @@ export class HeaderComponent implements OnInit {
   get youtube() {
     return this.settings.siteSettings.youtube;
   }
-  
+
   get instagram() {
     return this.settings.siteSettings.instagram;
+  }
+
+  get workCategories() {
+    return this.settings.workCategories;
+  }
+
+  /**
+   * Do I need to trigger the toggle for nav menu expand and collapse?
+   * I only need this for mobile devices.
+   */
+  get shouldItoggleCollapse() {
+    if (window.innerWidth < 768)
+      return 'collapse';
+    else return '';
   }
 
   ngOnInit() {

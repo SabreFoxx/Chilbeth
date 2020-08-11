@@ -74,7 +74,7 @@ export class BackendService {
   }
 
   public addWork(initiatingContainer: FillableForm, formData) {
-    this.performSimplePost(ApiEndpoints.WORK, initiatingContainer, formData);
+    this.performSimplePost(ApiEndpoints.WORK + `/${formData.category}`, initiatingContainer, formData);
   }
 
   public fetchWork(workId: string): Observable<any> {
@@ -83,6 +83,18 @@ export class BackendService {
 
   public createBlog(initiatingContainer: FillableForm, formData) {
     this.performSimplePost(ApiEndpoints.BLOG, initiatingContainer, formData);
+  }
+  
+  public addWorkCategory(initiatingContainer: FillableForm, formData) {
+    this.performSimplePost(ApiEndpoints.WORK_CATEGORIES, initiatingContainer, formData);
+  }
+
+  public fetchWorkCategories(): Observable<any> {
+    return this.performSimpleGet(ApiEndpoints.WORK_CATEGORIES);
+  }
+  
+  public deleteWorkCategory(mongoId: String): Observable<any> {
+    return this.performSimpleDelete(ApiEndpoints.WORK_CATEGORIES + `/${mongoId}`);
   }
 
   public updateBlog(initiatingContainer: FillableForm, formData, blogId: string) {

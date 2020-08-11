@@ -15,10 +15,14 @@ export class NewWorkComponent implements OnInit, FillableForm {
   successCreatingWork = false;
   failedCreatingWork = false;
   disableSubmitButton = false;
+  displayNoCategoriesMessage = false;
+
+  categories: Array<any>;
 
   form = new FormGroup({
     title: new FormControl("", Validators.required),
-    desc: new FormControl("", Validators.required)
+    desc: new FormControl("", Validators.required),
+    category: new FormControl("", Validators.required)
   });
 
   fileData: File = null;
@@ -80,10 +84,18 @@ export class NewWorkComponent implements OnInit, FillableForm {
 
     let formText = this.form.value;
     formText.sortingHash = sortingHash;
+    if (!formText.category)
+      formText.category = this.categories[0]; // Set default fallback
     this.backend.addWork(this, formText);
   }
 
   ngOnInit(): void {
+    this.backend.fetchWorkCategories()
+      .subscribe(res => {
+        this.categories = res;
+        if (this.categories.length < 1)
+          this.displayNoCategoriesMessage = true;
+      });
   }
 
 }

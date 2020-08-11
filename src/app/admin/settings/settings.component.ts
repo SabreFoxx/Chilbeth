@@ -55,7 +55,6 @@ export class SettingsComponent implements OnInit, FillableForm {
   }
 
   resetAlert() {
-    // Reset alert dialogs
     this.successSavingSettings = false;
     this.failedSavingSettings = false;
   }
@@ -70,6 +69,10 @@ export class SettingsComponent implements OnInit, FillableForm {
 
   gotoNewsLetters() {
     this.router.navigateByUrl('/newsletter');
+  }
+
+  gotoWorkCategories() {
+    this.router.navigateByUrl('/edit-categories');
   }
 
   onSubmit() {

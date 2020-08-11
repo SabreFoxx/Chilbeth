@@ -7,3 +7,42 @@ ul.navbar-nav span a {
         display: inline-block;
     }
 }
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 2.5em;
+    min-width: 100%;
+    background-color: #f8f9fa;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.submenu {
+    padding-left: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+.submenu a:link, .submenu a:hover, .submenu a:visited, .submenu a:active {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.submenu>li+li {
+    border-top: 1px solid #999;
+}
+
+.submenu>li>a {
+    display: block;
+    padding: 0.3em 1.5em;
+    background-color: transparent;
+    text-decoration: bold;
+    font-size: 0.8rem;
+}
