@@ -17,9 +17,9 @@ interface SiteSettingsInterface {
   name,
   occupation,
   desc,
-  landing_message_heading,
-  landing_message,
-  about_heading,
+  landingMessageHeading,
+  landingMessage,
+  aboutHeading,
   about,
   phone,
   email,
@@ -30,7 +30,7 @@ interface SiteSettingsInterface {
   city,
   district,
   country,
-  opening_times
+  openingTimes
 }
 
 /* SiteSettings is the general site settings for both authenticated and unauthenticated users. For example, what is the landing page's image? */
@@ -55,9 +55,9 @@ export class SiteSettingsService {
     name: '',
     occupation: '',
     desc: '',
-    landing_message_heading: '',
-    landing_message: '',
-    about_heading: '',
+    landingMessageHeading: '',
+    landingMessage: '',
+    aboutHeading: '',
     about: '',
     phone: '',
     email: '',
@@ -68,7 +68,7 @@ export class SiteSettingsService {
     city: '',
     district: '',
     country: '',
-    opening_times: ''
+    openingTimes: ''
   };
 
   constructor(private http: HttpClient, private authService: AuthService) {

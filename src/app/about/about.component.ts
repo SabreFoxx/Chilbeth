@@ -19,8 +19,8 @@ export class AboutComponent implements OnInit {
     return prefix + this.settings.siteSettings.profilePicture + postfix;
   }
 
-  get about_heading() {
-    return this.settings.siteSettings.about_heading;
+  get aboutHeading() {
+    return this.settings.siteSettings.aboutHeading;
   }
 
   get about() {

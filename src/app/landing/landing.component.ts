@@ -18,12 +18,12 @@ export class LandingComponent implements OnInit {
     return this.settings.siteSettings.name;
   }
 
-  get landing_message_heading() {
-    return this.settings.siteSettings.landing_message_heading;
+  get landingMessageHeading() {
+    return this.settings.siteSettings.landingMessageHeading;
   }
 
-  get landing_message() {
-    return this.settings.siteSettings.landing_message;
+  get landingMessage() {
+    return this.settings.siteSettings.landingMessage;
   }
 
   get occupation() {
