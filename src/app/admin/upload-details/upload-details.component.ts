@@ -44,15 +44,18 @@ export class UploadDetailsComponent implements OnInit {
   // Bio section
   bioFileData = {
     profilePicture: null,
-    thumbnail: null
+    thumbnail: null,
+    curriculumVitae: null
   }
   bioPreviewUrl = {
     profilePicture: null,
-    thumbnail: null
+    thumbnail: null,
+    curriculumVitae: null
   }
   bioOldSortingHash = {
     profilePicture: null,
-    thumbnail: null
+    thumbnail: null,
+    curriculumVitae: null
   }
 
   constructor(private backend: BackendService, private settings: SiteSettingsService, private router: Router) {
@@ -73,10 +76,12 @@ export class UploadDetailsComponent implements OnInit {
 
     this.bioPreviewUrl = {
       profilePicture: ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.profilePicture + '.jpg',
-      thumbnail: ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.profileThumbnail + '.jpg'
+      thumbnail: ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.profileThumbnail + '.jpg',
+      curriculumVitae: ApiEndpoints.CV + '/' + this.settings.siteSettings.curriculumVitae + '.pdf'
     }
     this.bioOldSortingHash.profilePicture = this.settings.siteSettings.profilePicture;
     this.bioOldSortingHash.thumbnail = this.settings.siteSettings.profileThumbnail;
+    this.bioOldSortingHash.curriculumVitae = this.settings.siteSettings.curriculumVitae;
   }
 
   actionPending() {
@@ -167,8 +172,26 @@ export class UploadDetailsComponent implements OnInit {
     // sortingHash will be used to identify the image in the database. It's also used here as the name of the binary we're sending
     let sortingHash = this.backend.generateUniqueChronoString();
     formData.append(sortingHash, this.bioFileData[type]);
-    this.backend.uploadProfilePicture(this, formData, type);
-    this.settings.saveProfileImage(sortingHash, type, this.bioOldSortingHash[type]);
+    this.backend.uploadProfile(this, formData, type);
+    this.settings.saveProfile(sortingHash, type, this.bioOldSortingHash[type]);
+  }
+
+  setCV(fileInput: any, type: string) {
+    this.bioFileData[type] = <File>fileInput.target.files[0];
+  }
+
+  uploadCV() {
+    if (!this.bioFileData["curriculumVitae"]) {
+      alert('Select a file before uploading!');
+      return;
+    }
+    this._bioPointer = "curriculumVitae";
+    const formData = new FormData();
+    // sortingHash will be used to identify the image in the database. It's also used here as the name of the binary we're sending
+    let sortingHash = this.backend.generateUniqueChronoString();
+    formData.append(sortingHash, this.bioFileData["curriculumVitae"]);
+    this.backend.uploadProfile(this, formData, "curriculumVitae");
+    this.settings.saveProfile(sortingHash, "curriculumVitae", this.bioOldSortingHash["curriculumVitae"]);
   }
 
   logoFileProgress(fileInput: any) {
@@ -225,7 +248,8 @@ export class UploadDetailsComponent implements OnInit {
       ];
       this.bioPreviewUrl = {
         profilePicture: ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.profilePicture + '.jpg',
-        thumbnail: ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.profileThumbnail + '.jpg'
+        thumbnail: ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.profileThumbnail + '.jpg',
+        curriculumVitae: ApiEndpoints.CV + '/' + this.settings.siteSettings.curriculumVitae + '.pdf'
       }
 
       this.oldSortingHash = [ // Save our current images' names in a variable in case we want to change them later
@@ -235,6 +259,7 @@ export class UploadDetailsComponent implements OnInit {
       ];
       this.bioOldSortingHash.profilePicture = this.settings.siteSettings.profilePicture;
       this.bioOldSortingHash.thumbnail = this.settings.siteSettings.profileThumbnail;
+      this.bioOldSortingHash.curriculumVitae = this.settings.siteSettings.curriculumVitae;
     }, 500);
   }
 

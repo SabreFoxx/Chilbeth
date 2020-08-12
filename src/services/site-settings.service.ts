@@ -12,6 +12,7 @@ interface SiteSettingsInterface {
   previousImageForDeletion,
   profilePicture,
   profileThumbnail,
+  curriculumVitae,
 
   name,
   occupation,
@@ -49,6 +50,7 @@ export class SiteSettingsService {
     previousImageForDeletion: '',
     profilePicture: '',
     profileThumbnail: '',
+    curriculumVitae: '',
 
     name: '',
     occupation: '',
@@ -116,7 +118,7 @@ export class SiteSettingsService {
       });
   }
 
-  public saveProfileImage(sortingHash: string, type: string, previousSortingHashForDeletion: string) {
+  public saveProfile(sortingHash: string, type: string, previousSortingHashForDeletion: string) {
     let formText = this.settingsTemplate;
     switch (type) {
       case 'profilePicture':
@@ -124,6 +126,9 @@ export class SiteSettingsService {
         break;
       case 'thumbnail':
         formText.profileThumbnail = sortingHash;
+        break;
+      case 'curriculumVitae':
+        formText.curriculumVitae = sortingHash;
         break;
     }
     formText.previousImageForDeletion = previousSortingHashForDeletion;

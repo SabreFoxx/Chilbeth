@@ -9,6 +9,8 @@ import { ApiEndpoints } from 'src/services/api-endpoints';
 })
 export class AboutComponent implements OnInit {
 
+  cvUrlPrefix = ApiEndpoints.CV;
+
   constructor(public settings: SiteSettingsService) { }
 
   public get profilePicture() {

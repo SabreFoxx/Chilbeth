@@ -1,4 +1,3 @@
-import { EditCategoriesComponent } from './works/edit-categories/edit-categories.component';
 /* Import the Angular modules we require */
 import { RoleGuardService } from './../services/role-guard.service';
 import { RouteAuthGuardService } from './../services/route-auth-guard.service';
@@ -12,6 +11,7 @@ import { BlogLandingComponent } from './blog/blog-landing/blog-landing.component
 import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './admin/login/login.component';
 import { WorksComponent } from './works/works/works.component';
+import { EditCategoriesComponent } from './works/edit-categories/edit-categories.component';
 import { LandingComponent } from './landing/landing.component';
 import { SettingsComponent } from './admin/settings/settings.component';
 import { UploadDetailsComponent } from './admin/upload-details/upload-details.component';
@@ -21,6 +21,7 @@ import { NewWorkComponent } from './works/new-work/new-work.component';
 import { ViewWorkComponent } from './works/view-work/view-work.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { EditBlogComponent } from './blog/edit-blog/edit-blog.component';
+import { EditWorkComponent } from './works/edit-work/edit-work.component';
 
 /* Configure routes */
 const appRoutes: Routes = [
@@ -46,6 +47,10 @@ const appRoutes: Routes = [
   { path: 'view-work/:workid', component: ViewWorkComponent },
   {
     path: 'new-work', component: NewWorkComponent,
+    canActivate: [RouteAuthGuardService]
+  },
+  {
+    path: 'edit-work/:workid', component: EditWorkComponent,
     canActivate: [RouteAuthGuardService]
   },
   {

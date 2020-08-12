@@ -17,7 +17,7 @@
                             style="vertical-align:  bottom;"></i></a>
                     <div class="dropdown-menu">
                         <ul class="submenu">
-                            <li *ngFor="let category of workCategories"><a href="#">{{category.title}}</a></li>
+                            <li *ngFor="let category of workCategories"><a routerLink="/works/{{category._id}}">{{category.title}}</a></li>
                         </ul>
                     </div>
                 </li>

@@ -9,8 +9,9 @@ export enum ApiEndpoints {
     UPLOAD_LANDING = "http://localhost:3000/api/upload_landing_image",
     UPLOAD_ARTWORK = "http://localhost:3000/api/upload_artwork",
     UPLOAD_SITE_LOGO = "http://localhost:3000/api/upload_site_logo",
-    UPLOAD_PROFILE_PICTURE = "http://localhost:3000/api/upload_profile_picture",
+    UPLOAD_PROFILE = "http://localhost:3000/api/upload_profile",
     UPLOADED_FILES = "http://localhost:3000/api/images",
+    CV = "http://localhost:3000/api/cv",
 
     WORK = "http://localhost:3000/api/work",
     WORK_CATEGORIES = "http://localhost:3000/api/work_categories",
@@ -29,8 +30,9 @@ export enum ApiEndpoints {
     // UPLOAD_LANDING = "https://geraldnnebe-chilbeth-backend.glitch.me/api/upload_landing_image",
     // UPLOAD_ARTWORK = "https://geraldnnebe-chilbeth-backend.glitch.me/api/upload_artwork",
     // UPLOAD_SITE_LOGO = "https://geraldnnebe-chilbeth-backend.glitch.me/api/upload_site_logo",
-    // UPLOAD_PROFILE_PICTURE = "https://geraldnnebe-chilbeth-backend.glitch.me/api/upload_profile_picture",
+    // UPLOAD_PROFILE = "https://geraldnnebe-chilbeth-backend.glitch.me/api/upload_profile",
     // UPLOADED_FILES = "https://geraldnnebe-chilbeth-backend.glitch.me/api/images",
+    // CV = "https://geraldnnebe-chilbeth-backend.glitch.me/api/cv",
 
     // WORK = "https://geraldnnebe-chilbeth-backend.glitch.me/api/work",
     // WORK_CATEGORIES = "https://geraldnnebe-chilbeth-backend.glitch.me/api/work_categories",

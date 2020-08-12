@@ -1,17 +1,17 @@
-import { NewBlogComponent } from '../new-blog/new-blog.component';
+import { NewWorkComponent } from './../new-work/new-work.component';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BackendService } from 'src/services/backend.service';
 import { ScrollToTopComponent } from 'src/app/others/scroll-to-top/scroll-to-top.component';
 
 @Component({
-  selector: 'app-blog-edit',
-  templateUrl: '../new-blog/new-blog.component.html',
-  styleUrls: ['../new-blog/new-blog.component.css']
+  selector: 'app-edit-work',
+  templateUrl: '../new-work/new-work.component.html',
+  styleUrls: ['../new-work/new-work.component.css']
 })
-export class EditBlogComponent extends NewBlogComponent implements OnInit {
+export class EditWorkComponent extends NewWorkComponent implements OnInit {
 
-  blogId: string;
+  workId: string;
   oldImageSortingHash: string;
 
   constructor(private route: ActivatedRoute, protected backend: BackendService, protected router: Router) {
@@ -19,22 +19,24 @@ export class EditBlogComponent extends NewBlogComponent implements OnInit {
   }
 
   actionSuccess() {
-    this.successCreatingBlog = true; // Shows success alert
+    this.successCreatingWork = true; // Shows success alert
     this.disableSubmitButton = false; // Disables spinning animation on submit button
     ScrollToTopComponent.scrollToTop(); // Scrolls page to top
   }
 
   ngOnInit(): void {
+    super.ngOnInit();
     this.route.paramMap
       .subscribe(params => {
-        this.blogId = params.get("blogid"); // Save blogId to variable
-        this.backend.fetchBlog(this.blogId)
+        this.workId = params.get("workid");
+        this.backend.fetchWork(this.workId)
           .subscribe(res => {
             this.oldImageSortingHash = res.imageSortHash;
             this.form.get("title").setValue(res.title);
             this.form.get("desc").setValue(res.desc);
+            this.form.get("category").setValue(res.categoryId);
+            this.form.get("featured").setValue(res.isFeatured);
             this.previewUrl = this.backend.uploadsUrlPrefix + "/big/" + res.imageSortHash + ".jpg";
-            this.bigFormContent = res.post;
           });
       });
   }
@@ -50,12 +52,12 @@ export class EditBlogComponent extends NewBlogComponent implements OnInit {
 
     let formText = this.form.value;
     formText.sortingHash = sortingHash;
-    formText.post = this.bigFormContent;
-    this.backend.updateBlog(this, formText, this.blogId);
+    this.backend.updateWork(this, formText, this.workId);
   }
 
-  saveBlogText = "Edit Blog";
-  saveBlogProgressText = "Saving...";
-  successMsg = "Blog edited successfully! ";
-  failureMsg = "A problem occured while editing your blog!";
+  saveWorkText = "Edit Work";
+  saveWorkProgressText = "Saving...";
+  successMsg = "Work edited successfully! ";
+  failureMsg = "A problem occured while editing your work!";
+
 }

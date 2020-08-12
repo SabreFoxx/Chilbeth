@@ -22,13 +22,14 @@ export class NewWorkComponent implements OnInit, FillableForm {
   form = new FormGroup({
     title: new FormControl("", Validators.required),
     desc: new FormControl("", Validators.required),
-    category: new FormControl("", Validators.required)
+    category: new FormControl("", Validators.required),
+    featured: new FormControl()
   });
 
   fileData: File = null;
   previewUrl: any = null; // Stores base64 data we use to preview the image in browser prior to upload
 
-  constructor(public backend: BackendService, private router: Router) { }
+  constructor(protected backend: BackendService, protected router: Router) { }
 
   actionPending() {
     this.disableSubmitButton = true;  // Shows spinning animation on submit button
@@ -97,5 +98,11 @@ export class NewWorkComponent implements OnInit, FillableForm {
           this.displayNoCategoriesMessage = true;
       });
   }
+
+  saveWorkText = "Upload Work"; // This is a variable, because NewWorkComponent will be inherited
+  // by EditWorkComponent
+  saveWorkProgressText = "Creating..."
+  successMsg = "Work created successfully! ";
+  failureMsg = "A <b>problem</b> occured while uploading your work, so it wasn't uploaded successfully!";
 
 }

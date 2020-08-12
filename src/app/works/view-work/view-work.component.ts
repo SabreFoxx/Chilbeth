@@ -42,5 +42,9 @@ export class ViewWorkComponent implements OnInit {
       // TODO if delete was successful, a 204 status will be received. Use this
     }
   }
+  
+  editWork(): void {
+    this.router.navigateByUrl('/edit-work/' + this.workId);
+  }
 
 }

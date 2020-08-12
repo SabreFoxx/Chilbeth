@@ -62,11 +62,13 @@ export class BackendService {
     this.performSimplePost(ApiEndpoints.UPLOAD_ARTWORK, initiatingContainer, formData);
   }
 
-  public uploadProfilePicture(initiatingContainer: FillableForm, formData, type: string) {
-    if (type == 'profilePicture')
-      this.performSimplePost(ApiEndpoints.UPLOAD_PROFILE_PICTURE + '/profilePicture', initiatingContainer, formData);
-    else if (type == 'thumbnail')
-      this.performSimplePost(ApiEndpoints.UPLOAD_PROFILE_PICTURE + '/profileThumbnail', initiatingContainer, formData);
+  public uploadProfile(initiatingContainer: FillableForm, formData, type: string) {
+    if (type == "profilePicture")
+      this.performSimplePost(ApiEndpoints.UPLOAD_PROFILE + '/profilePicture', initiatingContainer, formData);
+    else if (type == "thumbnail")
+      this.performSimplePost(ApiEndpoints.UPLOAD_PROFILE + '/profileThumbnail', initiatingContainer, formData);
+    else if (type == "curriculumVitae")
+      this.performSimplePost(ApiEndpoints.UPLOAD_PROFILE + '/curriculumVitae', initiatingContainer, formData);
   }
 
   public uploadSiteLogo(initiatingContainer: FillableForm, formData) {
@@ -77,12 +79,12 @@ export class BackendService {
     this.performSimplePost(ApiEndpoints.WORK + `/${formData.category}`, initiatingContainer, formData);
   }
 
-  public fetchWork(workId: string): Observable<any> {
-    return this.performSimpleGet(ApiEndpoints.WORK + `/${workId}`);
+  public updateWork(initiatingContainer: FillableForm, formData, workId: string) {
+    this.performSimplePut(ApiEndpoints.WORK + `/${workId}`, initiatingContainer, formData);
   }
 
-  public createBlog(initiatingContainer: FillableForm, formData) {
-    this.performSimplePost(ApiEndpoints.BLOG, initiatingContainer, formData);
+  public fetchWork(workId: string): Observable<any> {
+    return this.performSimpleGet(ApiEndpoints.WORK + `/${workId}`);
   }
   
   public addWorkCategory(initiatingContainer: FillableForm, formData) {
@@ -93,8 +95,12 @@ export class BackendService {
     return this.performSimpleGet(ApiEndpoints.WORK_CATEGORIES);
   }
   
-  public deleteWorkCategory(mongoId: String): Observable<any> {
-    return this.performSimpleDelete(ApiEndpoints.WORK_CATEGORIES + `/${mongoId}`);
+  public deleteWorkCategory(categoryId: String): Observable<any> {
+    return this.performSimpleDelete(ApiEndpoints.WORK_CATEGORIES + `/${categoryId}`);
+  }
+
+  public createBlog(initiatingContainer: FillableForm, formData) {
+    this.performSimplePost(ApiEndpoints.BLOG, initiatingContainer, formData);
   }
 
   public updateBlog(initiatingContainer: FillableForm, formData, blogId: string) {

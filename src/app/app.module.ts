@@ -37,6 +37,7 @@ import { NewsletterComponent } from './newsletter/newsletter.component';
 import { SearchComponent } from './blog/search/search.component';
 import { EditBlogComponent } from './blog/edit-blog/edit-blog.component';
 import { EditCategoriesComponent } from './works/edit-categories/edit-categories.component';
+import { EditWorkComponent } from './works/edit-work/edit-work.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { EditCategoriesComponent } from './works/edit-categories/edit-categories
     NewsletterComponent,
     SearchComponent,
     EditBlogComponent,
-    EditCategoriesComponent
+    EditCategoriesComponent,
+    EditWorkComponent
   ],
   imports: [
     BrowserModule,

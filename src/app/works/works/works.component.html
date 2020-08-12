@@ -1,7 +1,8 @@
 <section class="next this-page-1">
   <h3>Categories</h3>
-  <div class="container" style="margin-bottom: 5em;">
-    <a *ngFor="let category of workCategories" routerLink="/works/{{category._id}}/p/1"
+  <div class="container" style="margin-bottom: 1rem;">
+    <a routerLink="/works" class="category-list">Featured</a>
+    <a *ngFor="let category of workCategories" (click)="navigateTo(category)"
       class="category-list">{{category.title}}</a>
   </div>
 

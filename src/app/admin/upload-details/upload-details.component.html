@@ -127,7 +127,7 @@
                     <p><small>Your main profile photo which will be shown in About Me (recommend image ratio is
                             2:3)</small></p>
                     <div class="form-group">
-                        <input type="file" name="image" (change)="bioFileProgress($event, 'profilePicture')" />
+                        <input type="file" name="profile" (change)="bioFileProgress($event, 'profilePicture')" />
                         <button (click)="uploadProfilePicture('profilePicture')" class="btn btn-primary"
                             [disabled]="disableSubmitButton">
                             <span *ngIf="disableSubmitButton && _bioPointer == 'profilePicture'; else showUploadText">
@@ -150,7 +150,7 @@
                     <b>Choose file</b>
                     <p><small>A small square photo showing only your face</small></p>
                     <div class="form-group">
-                        <input type="file" name="image" (change)="bioFileProgress($event, 'thumbnail')" />
+                        <input type="file" name="thumbnail" (change)="bioFileProgress($event, 'thumbnail')" />
                         <button (click)="uploadProfilePicture('thumbnail')" class="btn btn-primary"
                             [disabled]="disableSubmitButton">
                             <span *ngIf="disableSubmitButton && _bioPointer == 'thumbnail'; else showUploadText">
@@ -167,11 +167,11 @@
                 <div class="col-12">
                     <h5 class="title">CV Document</h5>
                     <b>Choose file</b>
+                    <p><small>Must be in PDF format</small></p>
                     <div class="form-group">
-                        <!-- <input type="file" name="image" (change)="fileProgress($event, 2)" /> -->
-                        <input type="file" name="image" />
-                        <button (click)="saveSettings()" class="btn btn-primary" [disabled]="disableSubmitButton">
-                            <span *ngIf="disableSubmitButton && _bioPointer == 'CV'; else showUploadText">
+                        <input type="file" name="cv" (change)="setCV($event, 'curriculumVitae')" />
+                        <button (click)="uploadCV()" class="btn btn-primary" [disabled]="disableSubmitButton">
+                            <span *ngIf="disableSubmitButton && _bioPointer == 'curriculumVitae'; else showUploadText">
                                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                 Uploading...
                             </span>

@@ -43,8 +43,11 @@ export class EditCategoriesComponent implements OnInit {
   }
 
   deleteCategory(i: number) {
-    this.backend.deleteWorkCategory(this.categories[i]._id)
-      .subscribe(res => this.fetchCategories());
+    if (this.categories[i].numberOfWorks > 0)
+      alert(`The ${this.categories[i].title} category is not empty, and cannot be deleted!`);
+    else
+      this.backend.deleteWorkCategory(this.categories[i]._id)
+        .subscribe(res => this.fetchCategories());
   }
 
   ngOnInit(): void {

@@ -9,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingComponent implements OnInit {
 
-  imagesUrlPrefix = ApiEndpoints.UPLOADED_FILES
+  imagesUrlPrefix = ApiEndpoints.UPLOADED_FILES;
+  cvUrlPrefix = ApiEndpoints.CV;
 
   constructor(public settings: SiteSettingsService) { }
 

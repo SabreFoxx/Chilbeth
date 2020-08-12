@@ -1,9 +1,7 @@
-import { SiteSettingsService } from 'src/services/site-settings.service';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ApiEndpoints } from 'src/services/api-endpoints';
 import { BackendService } from 'src/services/backend.service';
-import { ActivatedRoute } from '@angular/router';
-import { title } from 'process';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-works',
@@ -12,7 +10,7 @@ import { title } from 'process';
 })
 export class WorksComponent implements OnInit {
 
-  pageTitle = "Works";
+  pageTitle = "Featured Works";
   customPageTitleCategoryId: string; // Stores the id of the category which we will get the page title
   url: string = ApiEndpoints.WORK;
   groupOne;
@@ -24,13 +22,13 @@ export class WorksComponent implements OnInit {
   private activeCarousel = 1;
 
   constructor(private route: ActivatedRoute, private forceChange: ChangeDetectorRef,
-    private settings: SiteSettingsService, public backend: BackendService) {
+    private router: Router, public backend: BackendService) {
     this.route.paramMap
       .subscribe(params => {
         // Update the url if the user visited links like www.site.com/works/this_is_category_id
         let categoryId;
         if (categoryId = params.get("category")) {
-          this.url += `/${categoryId}`;
+          this.url = ApiEndpoints.WORK + `/${categoryId}`;
           this.customPageTitleCategoryId = categoryId;
         } else
           this.customPageTitleCategoryId = null;
@@ -45,6 +43,7 @@ export class WorksComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Fetch work categories
     this.backend.fetchWorkCategories()
       .subscribe(res => {
         this.workCategories = res;
@@ -55,6 +54,11 @@ export class WorksComponent implements OnInit {
           this.pageTitle = namingCategory.title;
         }
       });
+  }
+
+  navigateTo(category) {
+    this.pageTitle = category.title;
+    this.router.navigateByUrl(`/works/${category._id}/p/1`);
   }
 
 }
