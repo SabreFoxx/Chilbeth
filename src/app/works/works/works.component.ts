@@ -3,6 +3,8 @@ import { ApiEndpoints } from 'src/services/api-endpoints';
 import { BackendService } from 'src/services/backend.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
+const defaultTitle = "Featured Works";
+
 @Component({
   selector: 'app-works',
   templateUrl: './works.component.html',
@@ -11,8 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class WorksComponent implements OnInit {
 
   pageTitle = "Featured Works";
-  customPageTitleCategoryId: string; // Stores the id of the category which we will get the page title
-  url: string = ApiEndpoints.WORK;
+  backendUrl: string = ApiEndpoints.WORK;
   groupOne;
   groupTwo;
 
@@ -26,12 +27,7 @@ export class WorksComponent implements OnInit {
     this.route.paramMap
       .subscribe(params => {
         // Update the url if the user visited links like www.site.com/works/this_is_category_id
-        let categoryId;
-        if (categoryId = params.get("category")) {
-          this.url = ApiEndpoints.WORK + `/${categoryId}`;
-          this.customPageTitleCategoryId = categoryId;
-        } else
-          this.customPageTitleCategoryId = null;
+          this.backendUrl = params.get("category") ? ApiEndpoints.WORK + `/${params.get("category")}` : ApiEndpoints.WORK;
       });
   }
 
@@ -43,22 +39,22 @@ export class WorksComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Fetch work categories
+    // Fetch the categories
     this.backend.fetchWorkCategories()
       .subscribe(res => {
         this.workCategories = res;
-        if (this.customPageTitleCategoryId) {
-          let namingCategory = this.workCategories.find((category) => {
-            return category._id == this.customPageTitleCategoryId;
+
+        // Subscribe to route parameter, and use it to change the page title if it changes
+        this.route.params
+          .subscribe(params => {
+            if (params["category"]) {
+              let namingCategory = this.workCategories.find((category) => {
+                return category._id == params["category"];
+              });
+              this.pageTitle = namingCategory.title;
+            } else
+              this.pageTitle = defaultTitle;
           });
-          this.pageTitle = namingCategory.title;
-        }
       });
   }
-
-  navigateTo(category) {
-    this.pageTitle = category.title;
-    this.router.navigateByUrl(`/works/${category._id}/p/1`);
-  }
-
 }

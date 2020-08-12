@@ -28,7 +28,7 @@
                         </div>
                     </article>
 
-                    <app-pagination [pageUrl]="url" [urlPrefix]="'blog'" (pagedData)="receivePageContent($event)">
+                    <app-pagination [pageUrl]="backendUrl" (pagedData)="receivePageContent($event)">
                     </app-pagination>
 
                 </div>

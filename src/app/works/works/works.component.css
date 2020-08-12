@@ -23,3 +23,7 @@ h4.card-title a:link, h4.card-title a:visited, h4.card-title a:hover {
   font-weight: bold;
   cursor: pointer;
 }
+
+.category-list:hover {
+  text-decoration: underline;
+}

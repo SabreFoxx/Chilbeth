@@ -86,7 +86,7 @@ export class NewWorkComponent implements OnInit, FillableForm {
     let formText = this.form.value;
     formText.sortingHash = sortingHash;
     if (!formText.category)
-      formText.category = this.categories[0]; // Set default fallback
+      formText.category = this.categories[0]._id; // Set default fallback
     this.backend.addWork(this, formText);
   }
 

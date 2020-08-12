@@ -1,7 +1,7 @@
 <!-- Bootstrap alerts -->
 <div class="alert alert-success text-center" role="alert" (click)="resetAlert()" *ngIf="successCreatingBlog">
     <a class="close" aria-label="close">&times;</a>
-    <b>{{successMsg}}</b>
+    <b>{{successMsg}}</b><a class="alert-link" routerLink="/blog">View</a>
 </div>
 <div class="alert alert-danger text-center" role="alert" (click)="resetAlert()" *ngIf="failedCreatingBlog">
     <a class="close" aria-label="close">&times;</a>

@@ -9,7 +9,7 @@ import { ApiEndpoints } from 'src/services/api-endpoints';
 })
 export class BlogLandingComponent implements OnInit {
 
-  url = ApiEndpoints.BLOG;
+  backendUrl = ApiEndpoints.BLOG;
   blogs: any;
 
   constructor(public backend: BackendService) { }
