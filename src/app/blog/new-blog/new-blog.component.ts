@@ -1,6 +1,6 @@
 import { ApiEndpoints } from 'src/services/api-endpoints';
 import { ScrollToTopComponent } from './../../others/scroll-to-top/scroll-to-top.component';
-import { FillableForm } from './../../../services/fillable-form';
+import { FillableForm, emptyStub } from './../../../services/fillable-form';
 import { Component, OnInit } from '@angular/core';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -138,7 +138,7 @@ export class NewBlogComponent implements OnInit, FillableForm {
     let formText = this.form.value;
     formText.sortingHash = sortingHash;
     formText.post = this.bigFormContent;
-    this.backend.createBlog(this, formText);
+    this.backend.createBlog(emptyStub, formText);
   }
 
   ngOnInit(): void {

@@ -1,5 +1,5 @@
 import { BackendService } from './../../../services/backend.service';
-import { FillableForm } from 'src/services/fillable-form';
+import { FillableForm, emptyStub } from 'src/services/fillable-form';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -87,7 +87,7 @@ export class NewWorkComponent implements OnInit, FillableForm {
     formText.sortingHash = sortingHash;
     if (!formText.category)
       formText.category = this.categories[0]._id; // Set default fallback
-    this.backend.addWork(this, formText);
+    this.backend.addWork(emptyStub, formText);
   }
 
   ngOnInit(): void {
@@ -101,7 +101,7 @@ export class NewWorkComponent implements OnInit, FillableForm {
 
   saveWorkText = "Upload Work"; // This is a variable, because NewWorkComponent will be inherited
   // by EditWorkComponent
-  saveWorkProgressText = "Creating..."
+  saveWorkProgressText = "Uploading..."
   successMsg = "Work created successfully! ";
   failureMsg = "A <b>problem</b> occured while uploading your work, so it wasn't uploaded successfully!";
 

@@ -1,3 +1,4 @@
+import { emptyStub } from './../../../services/fillable-form';
 import { NewWorkComponent } from './../new-work/new-work.component';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -52,7 +53,7 @@ export class EditWorkComponent extends NewWorkComponent implements OnInit {
 
     let formText = this.form.value;
     formText.sortingHash = sortingHash;
-    this.backend.updateWork(this, formText, this.workId);
+    this.backend.updateWork(emptyStub, formText, this.workId);
   }
 
   saveWorkText = "Edit Work";

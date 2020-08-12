@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BackendService } from 'src/services/backend.service';
 import { ScrollToTopComponent } from 'src/app/others/scroll-to-top/scroll-to-top.component';
+import { emptyStub } from 'src/services/fillable-form';
 
 @Component({
   selector: 'app-blog-edit',
@@ -51,7 +52,7 @@ export class EditBlogComponent extends NewBlogComponent implements OnInit {
     let formText = this.form.value;
     formText.sortingHash = sortingHash;
     formText.post = this.bigFormContent;
-    this.backend.updateBlog(this, formText, this.blogId);
+    this.backend.updateBlog(emptyStub, formText, this.blogId);
   }
 
   saveBlogText = "Edit Blog";

@@ -19,7 +19,8 @@ export class BackendService {
   }
 
   private performSimplePost(url: string, initiatingContainer: FillableForm, formData) {
-    initiatingContainer.actionPending();
+    if (initiatingContainer)
+      initiatingContainer.actionPending();
     this.http.post(url, formData, this.getAuthorizationToken()) // TODO handle errors appropriately
       .subscribe(res => {
         initiatingContainer.actionSuccess();
@@ -86,7 +87,7 @@ export class BackendService {
   public fetchWork(workId: string): Observable<any> {
     return this.performSimpleGet(ApiEndpoints.WORK + `/${workId}`);
   }
-  
+
   public addWorkCategory(initiatingContainer: FillableForm, formData) {
     this.performSimplePost(ApiEndpoints.WORK_CATEGORIES, initiatingContainer, formData);
   }
@@ -94,7 +95,7 @@ export class BackendService {
   public fetchWorkCategories(): Observable<any> {
     return this.performSimpleGet(ApiEndpoints.WORK_CATEGORIES);
   }
-  
+
   public deleteWorkCategory(categoryId: String): Observable<any> {
     return this.performSimpleDelete(ApiEndpoints.WORK_CATEGORIES + `/${categoryId}`);
   }

@@ -232,7 +232,9 @@ export class UploadDetailsComponent implements OnInit {
   }
 
   // Does nothing
-  onSubmit() { }
+  onSubmit() {
+    ScrollToTopComponent.scrollToTop(); // Scrolls page to top
+  }
 
   ngOnInit(): void {
     setTimeout(() => { // Our settings may not arrive from the database quickly enough, so we'll wait for some time, expecting our settings to be ready by that time

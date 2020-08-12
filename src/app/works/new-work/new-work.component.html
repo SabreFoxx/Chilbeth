@@ -54,7 +54,13 @@
                             <option *ngFor="let category of categories; i as index" label="{{category.title}}"
                                 value="{{category._id}}">{{category.title}}</option>
                         </select>
-                        <button style="margin-top: 10px" class="btn btn-primary">{{saveWorkText}}</button>
+                        <button style="margin-top: 10px" class="btn btn-primary" [disabled]="disableSubmitButton">
+                            <span *ngIf="!disableSubmitButton">{{saveWorkText}}</span>
+                            <span *ngIf="disableSubmitButton">
+                                <span class="spinner-border spinner-border-sm" role="status"
+                                    aria-hidden="true"></span>{{saveWorkProgressText}}
+                            </span>
+                        </button>
                         <app-scroll-to-top></app-scroll-to-top>
                     </div>
                 </div>
