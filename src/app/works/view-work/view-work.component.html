@@ -2,18 +2,20 @@
     <h3>{{work?.title}}</h3>
     <p class="card-text">{{work?.desc}}</p>
     <div class="container">
-        <div class="row">
-            <div class="card mb-2">
-                <img class="card-img-top shadow" src="{{backend.uploadsUrlPrefix}}/big/{{work?.imageSortHash}}.jpg"
-                    alt="{{work?.title}}">
-                <div class="card-body" style="position: relative;">
-                    <ul *ngIf="canEdit()" id="actions">
-                        <a (click)="deleteWork()" routerLink="/new-work">
-                            <li class="fa icon-large fa-trash"></li>
-                            <span style="color: rgba(0, 0, 0, 0.7)">Delete</span>
-                        </a>
-                    </ul>
-                </div>
+        <div class="card mb-2">
+            <img class="card-img-top shadow" src="{{backend.uploadsUrlPrefix}}/big/{{work?.imageSortHash}}.jpg"
+                alt="{{work?.title}}">
+            <div class="card-body" style="position: relative;">
+                <ul *ngIf="canEdit()" id="actions">
+                    <a (click)="editWork()" class="delete">
+                        <li class="fa icon-large fa-edit"></li>
+                        <span style="color: rgba(0, 0, 0, 0.7)">Edit</span>
+                    </a>
+                    <a (click)="deleteWork()" class="delete">
+                        <li class="fa icon-large fa-trash"></li>
+                        <span style="color: rgba(0, 0, 0, 0.7)">Delete</span>
+                    </a>
+                </ul>
             </div>
         </div>
     </div>

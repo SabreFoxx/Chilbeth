@@ -1,24 +1,25 @@
 <section class="about-area area-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="">
                     <div class="">
-                        <div class="">
-                            <img class="img-fluid" src="{{profilePicture}}" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-5 col-md-12 offset-md-0 offset-lg-1">
-                    <div class="about-content">
-                        <h4 style="max-width: 70%">
-                            {{about_heading}}
-                        </h4>
-                        <p>{{about}}</p>
-                        <br>
-                        <a class="btn btn-primary" href="#">Download Cv</a>
-
+                        <img class="img-fluid" src="{{profilePicture}}" alt="">
                     </div>
                 </div>
             </div>
+            <div class="col-lg-5 col-md-12 offset-md-0 offset-lg-1">
+                <div class="about-content">
+                    <h4 style="max-width: 70%">
+                        {{aboutHeading}}
+                    </h4>
+                    <p>{{about}}</p>
+                    <br>
+                    <a class="btn btn-primary" style="font-family: Arial, Helvetica, sans-serif;"
+                        href="{{cvUrlPrefix + '/' + settings.siteSettings.curriculumVitae}}/cv.pdf"
+                        target="_blank">Download Cv</a>
+                </div>
+            </div>
         </div>
-    </section>
+    </div>
+</section>

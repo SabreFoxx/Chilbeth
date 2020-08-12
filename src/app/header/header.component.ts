@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/services/auth.service';
 import { SiteSettingsService } from 'src/services/site-settings.service';
+import { ApiEndpoints } from 'src/services/api-endpoints';
 
 @Component({
   selector: 'header',
@@ -15,6 +16,10 @@ export class HeaderComponent implements OnInit {
     return this.userAuth.isAuthenticated;
   }
 
+  get logo() {
+    return ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.siteLogo + '.png';
+  }
+
   get facebook() {
     return this.settings.siteSettings.facebook;
   }
@@ -26,9 +31,23 @@ export class HeaderComponent implements OnInit {
   get youtube() {
     return this.settings.siteSettings.youtube;
   }
-  
+
   get instagram() {
     return this.settings.siteSettings.instagram;
+  }
+
+  get workCategories() {
+    return this.settings.workCategories;
+  }
+
+  /**
+   * Do I need to trigger the toggle for nav menu expand and collapse?
+   * I only need this for mobile devices.
+   */
+  get shouldItoggleCollapse() {
+    if (window.innerWidth < 768)
+      return 'collapse';
+    else return '';
   }
 
   ngOnInit() {

@@ -13,3 +13,11 @@ ul#actions a {
     display: inline-block;
     margin: 0 1em;
 }
+
+.delete {
+    cursor: pointer;
+}
+
+.delete:hover {
+    text-decoration: underline;
+}

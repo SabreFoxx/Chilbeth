@@ -1,5 +1,6 @@
+import { ApiEndpoints } from 'src/services/api-endpoints';
 import { ScrollToTopComponent } from './../../others/scroll-to-top/scroll-to-top.component';
-import { FillableForm } from './../../../services/fillable-form';
+import { FillableForm, emptyStub } from './../../../services/fillable-form';
 import { Component, OnInit } from '@angular/core';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -27,7 +28,8 @@ export class NewBlogComponent implements OnInit, FillableForm {
   });
 
   fileData: File = null;
-  previewUrl: any = null; // Stores base64 data we use to preview the image in browser prior to upload
+  previewUrl: any = null; // Stores base64 data we use to preview the image in browser
+  // prior to upload
 
   /* For AngularEditor */
   bigFormContent: any;
@@ -43,7 +45,7 @@ export class NewBlogComponent implements OnInit, FillableForm {
     enableToolbar: true,
     showToolbar: true,
     placeholder: 'Blog content...',
-    defaultParagraphSeparator: '',
+    defaultParagraphSeparator: 'p',
     defaultFontName: '',
     defaultFontSize: '',
     fonts: [
@@ -55,26 +57,26 @@ export class NewBlogComponent implements OnInit, FillableForm {
     customClasses: [
       {
         name: 'quote',
-        class: 'quote',
+        class: 'blockquote', // Bootstrap CSS
+        tag: 'blockquote',
       },
       {
-        name: 'redText',
-        class: 'redText'
+        name: 'warning',
+        class: 'alert-danger' // Bootstrap CSS
       },
       {
-        name: 'titleText',
-        class: 'titleText',
-        tag: 'h1',
+        name: 'h3',
+        class: 'h3',
+        tag: 'h3',
       },
     ],
-    uploadUrl: 'v1/image',
+    uploadUrl: ApiEndpoints.UPLOAD,
     uploadWithCredentials: false,
     sanitize: true,
-    toolbarPosition: 'top'
-    // toolbarHiddenButtons: [
-    //   ['bold', 'italic'],
-    //   ['fontSize']
-    // ]
+    toolbarPosition: 'top',
+    toolbarHiddenButtons: [
+      ['link', 'unlink']
+    ]
   };
 
   constructor(protected backend: BackendService, protected router: Router) { }
@@ -127,7 +129,8 @@ export class NewBlogComponent implements OnInit, FillableForm {
 
   onSubmit() {
     const formData = new FormData();
-    // sortingHash will be used to identify the image in the database. It's also used here as the name of the binary we're sending
+    // sortingHash will be used to identify the image in the database.
+    // It's also used here as the name of the binary we're sending
     let sortingHash = this.backend.generateUniqueChronoString();
     formData.append(sortingHash, this.fileData);
     this.backend.uploadImage(this, formData);
@@ -135,14 +138,15 @@ export class NewBlogComponent implements OnInit, FillableForm {
     let formText = this.form.value;
     formText.sortingHash = sortingHash;
     formText.post = this.bigFormContent;
-    this.backend.createBlog(this, formText);
+    this.backend.createBlog(emptyStub, formText);
   }
 
   ngOnInit(): void {
   }
 
-  saveBlogText = "Create Blog"; // This is a variable, because NewBlogComponent will be inherited by EditBlogComponent
+  saveBlogText = "Create Blog"; // This is a variable, because NewBlogComponent will be inherited
+  // by EditBlogComponent
   saveBlogProgressText = "Creating..."
-  successMsg = "Blog created successfully!";
-  failureMsg = "A problem occured while creating your blog, and wasn't created successfully!";
+  successMsg = "Blog created successfully! ";
+  failureMsg = "A <b>problem</b> occured while creating your blog, so it wasn't created successfully!";
 }

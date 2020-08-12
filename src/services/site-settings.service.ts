@@ -5,17 +5,21 @@ import { AuthService } from './auth.service';
 import { FillableForm } from './fillable-form';
 
 interface SiteSettingsInterface {
+  siteLogo,
   landingImageOne,
   landingImageTwo,
   landingImageThree,
   previousImageForDeletion,
   profilePicture,
   profileThumbnail,
+  curriculumVitae,
 
   name,
   occupation,
   desc,
-  about_heading,
+  landingMessageHeading,
+  landingMessage,
+  aboutHeading,
   about,
   phone,
   email,
@@ -26,7 +30,7 @@ interface SiteSettingsInterface {
   city,
   district,
   country,
-  opening_times
+  openingTimes
 }
 
 /* SiteSettings is the general site settings for both authenticated and unauthenticated users. For example, what is the landing page's image? */
@@ -36,18 +40,24 @@ interface SiteSettingsInterface {
 export class SiteSettingsService {
 
   private _siteSettings: any = null;
+  private _workCategories: Array<any> = null;
+
   private settingsTemplate: SiteSettingsInterface = {
+    siteLogo: '',
     landingImageOne: '',
     landingImageTwo: '',
     landingImageThree: '',
     previousImageForDeletion: '',
     profilePicture: '',
     profileThumbnail: '',
+    curriculumVitae: '',
 
     name: '',
     occupation: '',
     desc: '',
-    about_heading: '',
+    landingMessageHeading: '',
+    landingMessage: '',
+    aboutHeading: '',
     about: '',
     phone: '',
     email: '',
@@ -58,13 +68,14 @@ export class SiteSettingsService {
     city: '',
     district: '',
     country: '',
-    opening_times: ''
+    openingTimes: ''
   };
 
   constructor(private http: HttpClient, private authService: AuthService) {
     // The constructor is run only once for a singleton object
     if (this._siteSettings === null) { // Fill in
       let blank = { // Serve the blank image as placeholder initially, while we wait to fetch the real ones from the database
+        siteLogo: 'blank/blank',
         landingImageOne: 'blank/blank',
         landingImageTwo: 'blank/blank',
         landingImageThree: 'blank/blank',
@@ -75,6 +86,16 @@ export class SiteSettingsService {
       this._siteSettings = { ...this.settingsTemplate, ...blank } // Combine them, using the spread operator
       this.fetchSiteSettingsFromDatabase();
     }
+  }
+
+  public saveSiteLogo(sortingHash: string, previousSortingHashForDeletion: string) {
+    let formText = this.settingsTemplate;
+    formText.siteLogo = sortingHash;
+    formText.previousImageForDeletion = previousSortingHashForDeletion;
+    this.http.put(ApiEndpoints.SITE_SETTINGS, formText, this.getAuthorizationToken()) // TODO handle errors appropriately
+      .subscribe(res => {
+        this._siteSettings = res;
+      });
   }
 
   public saveLandingImage(sortingHash: string, landingImageIndex: number, previousSortingHashForDeletion: string) {
@@ -97,7 +118,7 @@ export class SiteSettingsService {
       });
   }
 
-  public saveProfileImage(sortingHash: string, type: string, previousSortingHashForDeletion: string) {
+  public saveProfile(sortingHash: string, type: string, previousSortingHashForDeletion: string) {
     let formText = this.settingsTemplate;
     switch (type) {
       case 'profilePicture':
@@ -105,6 +126,9 @@ export class SiteSettingsService {
         break;
       case 'thumbnail':
         formText.profileThumbnail = sortingHash;
+        break;
+      case 'curriculumVitae':
+        formText.curriculumVitae = sortingHash;
         break;
     }
     formText.previousImageForDeletion = previousSortingHashForDeletion;
@@ -116,6 +140,10 @@ export class SiteSettingsService {
 
   public get siteSettings() {
     return this._siteSettings;
+  }
+
+  public get workCategories() {
+    return this._workCategories;
   }
 
   public saveSiteSettings(initiatingContainer: FillableForm, formData) {
@@ -133,6 +161,14 @@ export class SiteSettingsService {
       this._siteSettings = null;
       this._siteSettings = res;
     });
+    this.http.get(ApiEndpoints.WORK_CATEGORIES).subscribe(res => { // TODO handle errors
+      this._workCategories = null;
+      (this._workCategories as any) = res;
+    });
+  }
+
+  public refreshSiteSettings() {
+    this.fetchSiteSettingsFromDatabase();
   }
 
   private getAuthorizationToken(): any {

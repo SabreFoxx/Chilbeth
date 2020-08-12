@@ -6,6 +6,12 @@
                 <h2 class="contact-title">Login</h2>
             </div>
             <div class="col-lg-8">
+                <div class="alert alert-danger text-center" role="alert" (click)="resetAlert()" style="margin-left: 0" *ngIf="showFailMessage">
+                    <a class="close" aria-label="close">&times;</a>
+                    <b>Login failed. Incorrect e-mail and/or password.</b>
+                </div>
+            </div>
+            <div class="col-lg-8">
                 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-contact contact_form" id="loginForm">
                     <div class="row">
                         <div class="col-sm-12">

@@ -30,8 +30,8 @@ export class ContactComponent implements OnInit {
     return this.settings.siteSettings.country;
   }
 
-  get opening_times() {
-    return this.settings.siteSettings.opening_times;
+  get openingTimes() {
+    return this.settings.siteSettings.openingTimes;
   }
 
   ngOnInit(): void {

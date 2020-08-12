@@ -1,7 +1,14 @@
 <section class="next this-page-1">
-  <h3>Works</h3>
-  <div class="container">
+  <h3>Categories</h3>
+  <div class="container" style="margin-bottom: 1rem;">
+    <a routerLink="/works" class="category-list">Featured</a>
+    <a *ngFor="let category of workCategories" routerLink="/works/{{category._id}}"
+      class="category-list">{{category.title}}</a>
+  </div>
 
+
+  <h3>{{pageTitle}}</h3>
+  <div class="container">
 
     <div class="row">
 
@@ -35,7 +42,7 @@
 
     </div>
 
-    <app-pagination [pageUrl]="url" [urlPrefix]="'works'" (pagedData)="receivePageContent($event)"></app-pagination>
+    <app-pagination [pageUrl]="backendUrl" (pagedData)="receivePageContent($event)"></app-pagination>
 
   </div>
 </section>

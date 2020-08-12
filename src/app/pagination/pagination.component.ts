@@ -1,6 +1,6 @@
 import { BackendService } from './../../services/backend.service';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-pagination',
@@ -21,21 +21,24 @@ export class PaginationComponent implements OnInit {
   // Stores the page numbers
   numericLinks: [number];
 
+  // Matches the /p/23 in http://site.com:3000/blaa/blaa/xjfjiels/p/23
+  regexForTrimingPagingInUrl = /\/p\/[1-9][0-9]*/i;
+
   @Output() pagedData = new EventEmitter(); // Send event to the display component
   pageNumber: number; // Stores current page number
   actionUrl: string;
 
   @Input()
-  set pageUrl(url: string) {
-    if (url != null)
+  set pageUrl(backendUrl: string) {
+    if (backendUrl != null)
       this.route.paramMap
         .subscribe(params => {
-          // Save url
-          this.actionUrl = url;
+          // Save front-end base url
+          this.actionUrl = this.router.url.replace(this.regexForTrimingPagingInUrl, "");
           // Get current page number
           this.pageNumber = params.get("page") ? +params.get("page") : 1;
           // Fetch data in current page
-          this.backend.performSimpleGet(`${url}/p/${this.pageNumber}`)
+          this.backend.performSimpleGet(`${backendUrl}/p/${this.pageNumber}`)
             .subscribe(res => {
               if (res != null) {
                 this.pageInformation = res.pageInformation; // Metadata describing pages
@@ -46,9 +49,7 @@ export class PaginationComponent implements OnInit {
         });
   }
 
-  @Input() urlPrefix: string;
-
-  constructor(private route: ActivatedRoute, private backend: BackendService) {
+  constructor(private route: ActivatedRoute, private backend: BackendService, private router: Router) {
     // Empty initializations
     this.pageInformation = {
       itemsFetched: 0,

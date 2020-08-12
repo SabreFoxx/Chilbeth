@@ -9,12 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingComponent implements OnInit {
 
-  imagesUrlPrefix = ApiEndpoints.UPLOADED_FILES
+  imagesUrlPrefix = ApiEndpoints.UPLOADED_FILES;
+  cvUrlPrefix = ApiEndpoints.CV;
 
   constructor(public settings: SiteSettingsService) { }
 
   get name() {
     return this.settings.siteSettings.name;
+  }
+
+  get landingMessageHeading() {
+    return this.settings.siteSettings.landingMessageHeading;
+  }
+
+  get landingMessage() {
+    return this.settings.siteSettings.landingMessage;
   }
 
   get occupation() {

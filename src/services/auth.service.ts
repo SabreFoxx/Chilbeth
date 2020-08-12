@@ -37,7 +37,22 @@ export class AuthService {
           this._loginComponent.actionSuccess();
         }
       }, (error) => {
-        console.log("");
+        console.log("operation failed");
+        this._loginComponent.actionFailed();
+      });
+  }
+
+  public changePassword(initiatingContainer: FillableForm, data: { old: String, new: String, retype: String }) {
+    initiatingContainer.actionPending();
+    this.http.put(ApiEndpoints.CHANGE_PASSWORD, data, this.getAuthorizationToken())
+      .subscribe((response: any) => {
+        if (response.token) {
+          this.saveToken(response.token);
+          initiatingContainer.actionSuccess();
+        }
+      }, (error) => {
+        initiatingContainer.actionFailed();
+        console.log("operation failed");
       });
   }
 
@@ -48,6 +63,10 @@ export class AuthService {
   get isAuthenticated(): boolean {
     // Check whether the token is expired and return true or false
     return !this.jwtHelper.isTokenExpired(this.getToken());
+  }
+
+  public getAuthorizationToken(): any {
+    return { headers: { "Authorization": "Bearer " + this.getToken() } };
   }
 
 }

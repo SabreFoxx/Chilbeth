@@ -36,6 +36,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { NewsletterComponent } from './newsletter/newsletter.component';
 import { SearchComponent } from './blog/search/search.component';
 import { EditBlogComponent } from './blog/edit-blog/edit-blog.component';
+import { EditCategoriesComponent } from './works/edit-categories/edit-categories.component';
+import { EditWorkComponent } from './works/edit-work/edit-work.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +66,9 @@ import { EditBlogComponent } from './blog/edit-blog/edit-blog.component';
     ChangePasswordComponent,
     NewsletterComponent,
     SearchComponent,
-    EditBlogComponent
+    EditBlogComponent,
+    EditCategoriesComponent,
+    EditWorkComponent
   ],
   imports: [
     BrowserModule,

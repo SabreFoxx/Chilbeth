@@ -1,0 +1,26 @@
+<section class="next this-page-1">
+    <h3>Work Categories</h3>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-contact contact_form" id="form">
+                    <div class="form-group">
+                        <input class="form-control" formControlName="title" name="title" id="title"
+                            type="text" placeholder="Category name">
+                        <button class="btn btn-primary" type="submit" [disabled]="disableSubmitButton">
+                            <span *ngIf="!disableSubmitButton">Add</span>
+                            <span *ngIf="disableSubmitButton">
+                                <span class="spinner-border spinner-border-sm" role="status"
+                                    aria-hidden="true"></span>Adding...
+                            </span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div *ngFor="let category of categories; index as i" class="row border">
+            <div class="col-12">{{category.title}}<span class="close" (click)="deleteCategory(i)" aria-label="close">&times;</span></div>
+        </div>
+    </div>
+</section>

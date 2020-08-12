@@ -12,12 +12,13 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit, FillableForm {
   
+  disableSubmitButton = false;
+  showFailMessage = false;
+
   loginForm = new FormGroup({
     email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
   });
-
-  disableSubmitButton = false;
 
   constructor(private userAuth: AuthService, private route: Router) {
     userAuth.loginComponent = this;
@@ -33,10 +34,15 @@ export class LoginComponent implements OnInit, FillableForm {
 
   actionFailed() {
     this.disableSubmitButton = false;
+    this.showFailMessage = true;
   }
 
   actionSuccess() {
     this.route.navigateByUrl("/blog");
+  }
+
+  resetAlert() {
+    this.showFailMessage = false;
   }
 
   ngOnInit(): void {

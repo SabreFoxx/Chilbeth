@@ -38,6 +38,6 @@ given route. This data property is useful because we can pass an object with som
 to it from our route configuration (app-routing.module.ts). We can then pick up that custom data in
 the guard to help with making routing decisions.
 
-In this case we’re looking for a role that we expect the user to have if they are to be allowed
+In this case we’re looking for a role that we expect the user to have, if they are to be allowed
 access to the route. Next we are decoding the token to grab its payload.
 */

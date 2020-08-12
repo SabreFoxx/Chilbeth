@@ -2,3 +2,9 @@
 .recent-journal p {
   font-family: 'Dancing Script', cursive;
 }
+
+.this-page-1 {
+  font-size: 2rem;
+  text-align: center;
+  padding-top: 0;
+}

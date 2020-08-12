@@ -1,16 +1,17 @@
-import { NewsletterComponent } from './newsletter/newsletter.component';
-import { ChangePasswordComponent } from './change-password/change-password.component';
 /* Import the Angular modules we require */
 import { RoleGuardService } from './../services/role-guard.service';
 import { RouteAuthGuardService } from './../services/route-auth-guard.service';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { NewsletterComponent } from './newsletter/newsletter.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 import { AboutComponent } from './about/about.component';
 import { BlogLandingComponent } from './blog/blog-landing/blog-landing.component';
 import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './admin/login/login.component';
 import { WorksComponent } from './works/works/works.component';
+import { EditCategoriesComponent } from './works/edit-categories/edit-categories.component';
 import { LandingComponent } from './landing/landing.component';
 import { SettingsComponent } from './admin/settings/settings.component';
 import { UploadDetailsComponent } from './admin/upload-details/upload-details.component';
@@ -20,6 +21,7 @@ import { NewWorkComponent } from './works/new-work/new-work.component';
 import { ViewWorkComponent } from './works/view-work/view-work.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { EditBlogComponent } from './blog/edit-blog/edit-blog.component';
+import { EditWorkComponent } from './works/edit-work/edit-work.component';
 
 /* Configure routes */
 const appRoutes: Routes = [
@@ -39,10 +41,23 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   
   { path: 'works', component: WorksComponent},
-  // { path: 'works', redirectTo: 'works/p/1', pathMatch: 'full' },
+  { path: 'works/:category', component: WorksComponent},
+  { path: 'works/:category/p/:page', component: WorksComponent},
   { path: 'works/p/:page', component: WorksComponent },
   { path: 'view-work/:workid', component: ViewWorkComponent },
-  
+  {
+    path: 'new-work', component: NewWorkComponent,
+    canActivate: [RouteAuthGuardService]
+  },
+  {
+    path: 'edit-work/:workid', component: EditWorkComponent,
+    canActivate: [RouteAuthGuardService]
+  },
+  {
+    path: 'edit-categories', component: EditCategoriesComponent,
+    canActivate: [RouteAuthGuardService]
+  },
+
   {
     path: 'landing', component: LandingComponent,
     canActivate: [RoleGuardService], // Not using this, it's just for demonstration
@@ -51,10 +66,6 @@ const appRoutes: Routes = [
   { path: 'settings', component: SettingsComponent },
   { path: 'change-password', component: ChangePasswordComponent },
   { path: 'upload-details', component: UploadDetailsComponent},
-  {
-    path: 'new-work', component: NewWorkComponent,
-    canActivate: [RouteAuthGuardService]
-  },
   { path: 'newsletter', component: NewsletterComponent },
   { path: 'home', component: LandingComponent },
   { path: '', component: LandingComponent }, // The LandingComponent is the default component
