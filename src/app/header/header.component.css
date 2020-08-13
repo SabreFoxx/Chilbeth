@@ -31,7 +31,10 @@ ul.navbar-nav span a {
     list-style-type: none;
 }
 
-.submenu a:link, .submenu a:hover, .submenu a:visited, .submenu a:active {
+.submenu a:link,
+.submenu a:hover,
+.submenu a:visited,
+.submenu a:active {
     color: rgba(0, 0, 0, 0.7);
 }
 
@@ -45,4 +48,10 @@ ul.navbar-nav span a {
     background-color: transparent;
     text-decoration: bold;
     font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+    .submenu>li>a {
+        font-size: calc(1vw + 1.2em);
+    }
 }
