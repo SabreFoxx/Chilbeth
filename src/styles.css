@@ -89,7 +89,6 @@ body {
     min-height: 10vw;
     border-radius: 3em;
     padding: 1em 2em;
-    font-family: 'Dancing Script', cursive;
     font-weight: bold;
     font-size: 1.2em;
 }
@@ -104,11 +103,6 @@ body {
     width: 3rem;
     height: 3rem;
     border-radius: 100%;
-}
-
-section+*,
-section.next {
-    margin-top: 3em;
 }
 
 section.recent-journal {
@@ -189,7 +183,6 @@ footer .fa {
 .recent-journal h1,
 .this-page-1 h3,
 .recent-journal h3 {
-    font-family: 'Satisfy', cursive;
     font-weight: bold;
     margin-bottom: 2em;
 }

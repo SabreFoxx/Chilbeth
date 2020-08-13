@@ -11,23 +11,20 @@
         <!-- <h5>{{occupation}}</h5> -->
         <!-- <p>{{desc}}</p> -->
         <a class="btn btn-primary" style="font-family: Arial, Helvetica, sans-serif;"
-          href="{{cvUrlPrefix + '/' + settings.siteSettings.curriculumVitae}}/cv.pdf" target="_blank">Download Cv</a>
+          href="{{cvUrlPrefix + '/' + settings.siteSettings.curriculumVitae}}/cv.pdf">Download Cv</a>
       </div>
 
       <div class="carousel-item active">
         <div class="view">
-          <img class="d-block w-100" src="{{imagesUrlPrefix + '/big/' + settings.siteSettings.landingImageOne}}.jpg"
-            alt="first-slide" />
+          <img class="d-block w-100" src="{{imagesUrlPrefix + '/big/' + settings.siteSettings.landingImageOne}}" />
           <div class="mask rgba-black-light"></div>
         </div>
       </div>
       <div class="carousel-item">
-        <img class="d-block w-100" src="{{imagesUrlPrefix + '/big/' + settings.siteSettings.landingImageTwo}}.jpg"
-          alt="second-slide" />
+        <img class="d-block w-100" src="{{imagesUrlPrefix + '/big/' + settings.siteSettings.landingImageTwo}}" />
       </div>
       <div class="carousel-item">
-        <img class="d-block w-100" src="{{imagesUrlPrefix + '/big/' + settings.siteSettings.landingImageThree}}.jpg"
-          alt="third-slide" />
+        <img class="d-block w-100" src="{{imagesUrlPrefix + '/big/' + settings.siteSettings.landingImageThree}}" />
       </div>
 
     </div>
@@ -44,12 +41,8 @@
 
 <section class="next this-page-1">
   <h3>{{landingMessageHeading}}</h3>
-  <div class="container">
-    <div class="row">
-      <div class="col">
+  <div class="container landing-message">
         {{landingMessage}}
-      </div>
-    </div>
   </div>
 </section>
 
