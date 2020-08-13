@@ -232,7 +232,9 @@ export class UploadDetailsComponent implements OnInit {
   }
 
   // Does nothing
-  onSubmit() {
+  onSubmit() { }
+
+  scrollNow() {
     ScrollToTopComponent.scrollToTop(); // Scrolls page to top
   }
 
