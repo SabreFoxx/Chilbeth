@@ -48,10 +48,11 @@ export class WorksComponent implements OnInit {
         this.route.params
           .subscribe(params => {
             if (params["category"] != '') {
-              let namingCategory = this.workCategories.find((category) => {
+              let namingCategory = null;
+              namingCategory = this.workCategories.find((category) => {
                 return category._id == params["category"];
               });
-              this.pageTitle = namingCategory.title;
+              this.pageTitle = namingCategory ? namingCategory.title : defaultTitle;
             } else
               this.pageTitle = defaultTitle;
           });

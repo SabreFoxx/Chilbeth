@@ -11,8 +11,8 @@
 }
 
 @media (max-width: 767px) {
-    .about-area .about-content {
-        margin-top: 0;
+    .about-content {
+        margin-top: 2em;
     }
 }
 
