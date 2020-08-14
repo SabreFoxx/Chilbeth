@@ -10,5 +10,10 @@
 }
 
 .landing-message {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.landing-message .message {
   font-size: calc(1vw + 0.5em);
 }

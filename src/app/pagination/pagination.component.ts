@@ -18,6 +18,8 @@ export class PaginationComponent implements OnInit {
     totalNumberOfPages
   };
 
+  // Stores the url parameters as they change
+  realTimeUrlParameters;
   // Stores the page numbers
   numericLinks: [number];
 
@@ -30,23 +32,21 @@ export class PaginationComponent implements OnInit {
 
   @Input()
   set pageUrl(backendUrl: string) {
-    if (backendUrl != null)
-      this.route.paramMap
-        .subscribe(params => {
-          // Save front-end base url
-          this.actionUrl = this.router.url.replace(this.regexForTrimingPagingInUrl, "");
-          // Get current page number
-          this.pageNumber = params.get("page") ? +params.get("page") : 1;
-          // Fetch data in current page
-          this.backend.performSimpleGet(`${backendUrl}/p/${this.pageNumber}`)
-            .subscribe(res => {
-              if (res != null) {
-                this.pageInformation = res.pageInformation; // Metadata describing pages
-                this.buildNumericPageLinks();
-                this.pagedData.emit(res.items); // Send page content to the display component
-              }
-            });
+    if (backendUrl != null) {
+      // Save front-end base url
+      this.actionUrl = this.router.url.replace(this.regexForTrimingPagingInUrl, "");
+      // Get current page number
+      this.pageNumber = this.realTimeUrlParameters.get("page") ? +this.realTimeUrlParameters.get("page") : 1;
+      // Fetch data in current page
+      this.backend.performSimpleGet(`${backendUrl}/p/${this.pageNumber}`)
+        .subscribe(res => {
+          if (res != null) {
+            this.pageInformation = res.pageInformation; // Metadata describing pages
+            this.buildNumericPageLinks();
+            this.pagedData.emit(res.items); // Send page content to the display component
+          }
         });
+    }
   }
 
   constructor(private route: ActivatedRoute, private backend: BackendService, private router: Router) {
@@ -60,6 +60,11 @@ export class PaginationComponent implements OnInit {
     };
     this.numericLinks = [null];
     this.actionUrl = '';
+
+    this.route.paramMap
+      .subscribe(params => {
+        this.realTimeUrlParameters = params;
+      });
   }
 
   // Generates the page numbers, and stores them in an array

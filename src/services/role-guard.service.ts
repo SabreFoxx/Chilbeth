@@ -25,10 +25,13 @@ export class RoleGuardService implements CanActivate {
 
   canUse(priviledge): boolean {
     // decode the token to get its payload
-    const tokenPayload = decode(this.auth.getToken());
-    if (!this.auth.isAuthenticated || tokenPayload[priviledge] !== true) // Is the stated priviledge set to true?
-      return false;
-    return true;
+    if (this.auth.getToken()) {
+      const tokenPayload = decode(this.auth.getToken());
+      if (!this.auth.isAuthenticated || tokenPayload[priviledge] !== true) // Is the stated priviledge set to true?
+        return false;
+      return true;
+    }
+    return false;
   }
 }
 
