@@ -42,6 +42,7 @@ export class ViewBlogComponent implements OnInit, FillableForm {
   }
 
   actionSuccess() {
+    this.ngOnInit();
     this.successCreatingBlog = true; // Shows success alert
     this.disableSubmitButton = false; // Disables spinning animation on submit button
     // Empties the form
@@ -85,6 +86,16 @@ export class ViewBlogComponent implements OnInit, FillableForm {
     if (c) {
       this.backend.performSimpleDelete(ApiEndpoints.BLOG + `/${this.blogId}`)
         .subscribe(res => this.router.navigateByUrl('/blog'));
+      // TODO if delete was successful, a 204 status will be received. Use this
+    }
+  }
+  
+  deleteComment(id: number): void {
+    let c = confirm("Are you sure you want to delete the comment?");
+    if (c) {
+      let commentId = this.blogComments[id]._id;
+      this.backend.performSimpleDelete(ApiEndpoints.BLOG + `/${this.blogId}` + "/comment" + `/${commentId}`)
+        .subscribe(res => this.ngOnInit());
       // TODO if delete was successful, a 204 status will be received. Use this
     }
   }

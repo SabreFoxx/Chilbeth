@@ -2,9 +2,10 @@
     margin-left: -40px;
 }
 
-.blog_details * {
+.blog_details *, .desc * {
     max-width: 100% !important;
     overflow: hidden;
+    word-break: break-all;
 }
 
 #post {
@@ -19,4 +20,12 @@
 
 .delete {
     cursor: pointer;
+}
+
+.date {
+    margin-left: 0;
+}
+
+.fa {
+    vertical-align: baseline;
 }
