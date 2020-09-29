@@ -100,6 +100,18 @@ export class BackendService {
     return this.performSimpleDelete(ApiEndpoints.WORK_CATEGORIES + `/${categoryId}`);
   }
 
+  public addExhibition(initiatingContainer: FillableForm, formData) {
+    this.performSimplePost(ApiEndpoints.EXHIBITION + `/${formData.category}`, initiatingContainer, formData);
+  }
+
+  public updateExhibition(initiatingContainer: FillableForm, formData, workId: string) {
+    this.performSimplePut(ApiEndpoints.EXHIBITION + `/${workId}`, initiatingContainer, formData);
+  }
+
+  public fetchExhibition(workId: string): Observable<any> {
+    return this.performSimpleGet(ApiEndpoints.EXHIBITION + `/${workId}`);
+  }
+
   public createBlog(initiatingContainer: FillableForm, formData) {
     this.performSimplePost(ApiEndpoints.BLOG, initiatingContainer, formData);
   }

@@ -38,6 +38,10 @@ import { SearchComponent } from './blog/search/search.component';
 import { EditBlogComponent } from './blog/edit-blog/edit-blog.component';
 import { EditCategoriesComponent } from './works/edit-categories/edit-categories.component';
 import { EditWorkComponent } from './works/edit-work/edit-work.component';
+import { ExhibitionsComponent } from './works/exhibition/exhibition.component';
+import { ViewExhibitionComponent } from './works/view-exhibition/view-exhibition.component';
+import { NewExhibitionComponent } from './works/new-exhibition/new-exhibition.component';
+import { EditExhibitionComponent } from './works/edit-exhibition/edit-exhibition.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +72,11 @@ import { EditWorkComponent } from './works/edit-work/edit-work.component';
     SearchComponent,
     EditBlogComponent,
     EditCategoriesComponent,
-    EditWorkComponent
+    EditWorkComponent,
+    ExhibitionsComponent,
+    ViewExhibitionComponent,
+    NewExhibitionComponent,
+    EditExhibitionComponent
   ],
   imports: [
     BrowserModule,

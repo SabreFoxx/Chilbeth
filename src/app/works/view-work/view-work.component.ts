@@ -15,8 +15,6 @@ export class ViewWorkComponent implements OnInit {
   workId: string;
   work;
 
-  // TODO view-work throws error when user isn't logged in
-
   constructor(private userAuth: AuthService, private route: ActivatedRoute,
     private roleGuard: RoleGuardService, public backend: BackendService,
     private router: Router) { }

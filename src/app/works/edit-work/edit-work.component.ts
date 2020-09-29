@@ -37,23 +37,32 @@ export class EditWorkComponent extends NewWorkComponent implements OnInit {
             this.form.get("desc").setValue(res.desc);
             this.form.get("category").setValue(res.categoryId);
             this.form.get("featured").setValue(res.isFeatured);
+            this.form.get("videoUrl").setValue(res.videoUrl);
             this.previewUrl = this.backend.uploadsUrlPrefix + "/big/" + res.imageSortHash + ".jpg";
+            this.fileData = null; // We need this null bcos we'll use it to chech if we changed pic
           });
       });
   }
 
   onSubmit() {
-    const formData = new FormData();
-    // sortingHash will be used to identify the image in the database. It's also used here as the name of the binary we're sending
-    let sortingHash = this.backend.generateUniqueChronoString();
-    // # acts as separator, so I can split names
-    // I need the oldImageSortingHash as well, so I can delete it
-    formData.append(sortingHash + '#' + this.oldImageSortingHash, this.fileData);
-    this.backend.uploadImageAndDeleteOld(this, formData);
-
     let formText = this.form.value;
-    formText.sortingHash = sortingHash;
-    this.backend.updateWork(emptyStub, formText, this.workId);
+
+    // sortingHash will be used to identify the image in the database. It's also used here as the name of the binary we're sending
+    let newSortingHash = this.backend.generateUniqueChronoString();
+    let callbackNotifier = this;
+
+    if (this.fileData) { // If I changed the picture
+      formText.sortingHash = newSortingHash;
+      const formData = new FormData();
+      // # acts as separator, so I can split names
+      // I need the oldImageSortingHash as well, so I can delete it
+      formData.append(newSortingHash + '#' + this.oldImageSortingHash, this.fileData);
+      this.backend.uploadImageAndDeleteOld(callbackNotifier, formData);
+      callbackNotifier = undefined; // stop pointing to 'this'
+      callbackNotifier = <any>emptyStub;
+    }
+
+    this.backend.updateWork(callbackNotifier, formText, this.workId);
   }
 
   saveWorkText = "Edit Work";

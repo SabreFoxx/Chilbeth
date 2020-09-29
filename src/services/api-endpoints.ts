@@ -15,6 +15,7 @@ export enum ApiEndpoints {
 
     WORK = "http://localhost:3000/api/work",
     WORK_CATEGORIES = "http://localhost:3000/api/work_categories",
+    EXHIBITION = "http://localhost:3000/api/exhibition",
     BLOG = "http://localhost:3000/api/blog",
     NEWSLETTER = "http://localhost:3000/api/newsletter"
 }
@@ -36,6 +37,7 @@ export enum ApiEndpoints {
 
 //     WORK = "https://geraldnnebe-chilbeth-backend.glitch.me/api/work",
 //     WORK_CATEGORIES = "https://geraldnnebe-chilbeth-backend.glitch.me/api/work_categories",
+//     EXHIBITION = "https://geraldnnebe-chilbeth-backend.glitch.me/api/exhibition",
 //     BLOG = "https://geraldnnebe-chilbeth-backend.glitch.me/api/blog",
 //     NEWSLETTER = "https://geraldnnebe-chilbeth-backend.glitch.me/api/newsletter"
 // }

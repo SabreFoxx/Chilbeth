@@ -27,10 +27,10 @@
                             <li><a><i
                                         class="fa fa-comments"></i>{{ stringAsDate(blog.createdOn) | date: 'MMM d y, h:MM a' }}</a>
                             </li>
+                            <p>Video url: {{blog.videoUrl}}</p>
                             <!-- TDOD show confirmation alert after Delete is pressed -->
-                            <li *ngIf="canEdit()"><a (click)="editBlog()"><i class="fa fa-edit"></i>Edit Blog</a></li>
-                            <li *ngIf="canEdit()"><a (click)="deleteBlog()" class="delete"><i
-                                        class="fa fa-trash"></i>Delete Blog</a></li>
+                            <li *ngIf="canEdit()"><a (click)="editBlog()" class="cursor"><i class="fa fa-edit"></i>Edit Blog</a></li>
+                            <li *ngIf="canEdit()"><a (click)="deleteBlog()" class="cursor"><i class="fa fa-trash"></i>Delete Blog</a></li>
                         </ul>
                         <p id="post" [innerHTML]="blog.post | keepHtml">
                         </p>

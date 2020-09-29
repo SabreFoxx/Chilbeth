@@ -1,4 +1,4 @@
-import { NewBlogComponent } from '../new-blog/new-blog.component';
+import { NewExhibitionComponent } from './../new-exhibition/new-exhibition.component';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BackendService } from 'src/services/backend.service';
@@ -6,13 +6,12 @@ import { ScrollToTopComponent } from 'src/app/others/scroll-to-top/scroll-to-top
 import { emptyStub } from 'src/services/fillable-form';
 
 @Component({
-  selector: 'app-blog-edit',
-  templateUrl: '../new-blog/new-blog.component.html',
-  styleUrls: ['../new-blog/new-blog.component.css']
+  selector: 'app-edit-exhibition',
+  templateUrl: '../new-exhibition/new-exhibition.component.html',
+  styleUrls: ['../new-exhibition/new-exhibition.component.css']
 })
-export class EditBlogComponent extends NewBlogComponent implements OnInit {
-
-  blogId: string;
+export class EditExhibitionComponent extends NewExhibitionComponent implements OnInit {
+  exhibitionId: string;
   oldImageSortingHash: string;
 
   constructor(private route: ActivatedRoute, protected backend: BackendService, protected router: Router) {
@@ -20,23 +19,23 @@ export class EditBlogComponent extends NewBlogComponent implements OnInit {
   }
 
   actionSuccess() {
-    this.successCreatingBlog = true; // Shows success alert
+    this.successCreatingWork = true; // Shows success alert
     this.disableSubmitButton = false; // Disables spinning animation on submit button
     ScrollToTopComponent.scrollToTop(); // Scrolls page to top
   }
 
   ngOnInit(): void {
+    super.ngOnInit();
     this.route.paramMap
       .subscribe(params => {
-        this.blogId = params.get("blogid"); // Save blogId to variable
-        this.backend.fetchBlog(this.blogId)
+        this.exhibitionId = params.get("exhibitionid");
+        this.backend.fetchExhibition(this.exhibitionId)
           .subscribe(res => {
             this.oldImageSortingHash = res.imageSortHash;
             this.form.get("title").setValue(res.title);
             this.form.get("desc").setValue(res.desc);
             this.form.get("videoUrl").setValue(res.videoUrl);
             this.previewUrl = this.backend.uploadsUrlPrefix + "/big/" + res.imageSortHash + ".jpg";
-            this.bigFormContent = res.post;
             this.fileData = null; // We need this null bcos we'll use it to chech if we changed pic
           });
       });
@@ -44,7 +43,6 @@ export class EditBlogComponent extends NewBlogComponent implements OnInit {
 
   onSubmit() {
     let formText = this.form.value;
-    formText.post = this.bigFormContent;
 
     // sortingHash will be used to identify the image in the database. It's also used here as the name of the binary we're sending
     let newSortingHash = this.backend.generateUniqueChronoString();
@@ -61,11 +59,12 @@ export class EditBlogComponent extends NewBlogComponent implements OnInit {
       callbackNotifier = <any>emptyStub;
     }
 
-    this.backend.updateBlog(callbackNotifier, formText, this.blogId);
+    this.backend.updateExhibition(callbackNotifier, formText, this.exhibitionId);
   }
 
-  saveBlogText = "Edit Blog";
-  saveBlogProgressText = "Saving...";
-  successMsg = "Blog edited successfully! ";
-  failureMsg = "A problem occured while editing your blog!";
+  saveWorkText = "Edit Exhibition";
+  saveWorkProgressText = "Saving...";
+  successMsg = "Exhibition edited successfully! ";
+  failureMsg = "A problem occured while editing your content!";
+
 }

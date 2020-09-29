@@ -1,39 +1,27 @@
 <!-- Bootstrap alerts -->
-<div class="alert alert-success text-center" role="alert" (click)="resetAlert()" *ngIf="successCreatingBlog">
+<div class="alert alert-success text-center" role="alert" (click)="resetAlert()" *ngIf="successCreatingWork">
     <a class="close" aria-label="close">&times;</a>
-    <b>{{successMsg}}</b><a class="alert-link" routerLink="/blog">View</a>
+    <b>{{successMsg}}</b><a class="alert-link" routerLink="/works">View</a>
 </div>
-<div class="alert alert-danger text-center" role="alert" (click)="resetAlert()" *ngIf="failedCreatingBlog">
+<div class="alert alert-danger text-center" role="alert" (click)="resetAlert()" *ngIf="failedCreatingWork">
     <a class="close" aria-label="close">&times;</a>
     {{failureMsg}}
 </div>
+<div class="alert alert-danger text-center" role="alert" *ngIf="displayNoCategoriesMessage">
+    You haven't created any categories yet, so creating a work will fail.
+    Go to settings, and add a work category first!
+</div>
 
 <section class="next this-page-1">
-    <h3 class="title">{{saveBlogText}} Post</h3>
+    <h3 class="title">{{saveWorkText}}</h3>
     <div class="container b">
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="row">
-                <div class="col-12">
-                    <div class="form-group">
-                        <input class="form-control" formControlName="title" name="title" id="title" type="text"
-                            placeholder="Title...">
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="form-group">
-                        <input class="form-control" formControlName="desc" name="desc" id="desc" type="text"
-                            placeholder="Brief description...">
-                    </div>
-                </div>
                 <div class="col-12">
                     <div class="mb-3" style="min-height: 200px">
                         <img *ngIf="previewUrl" [src]="previewUrl" class="img-fluid" height="200" />
                     </div>
                     <b>Choose file</b>
-                    <p>
-                        <small>The preferred image ratio is classic 3:2. For example, a 1080x720 or 708x472
-                            photo</small>
-                    </p>
                     <p><small>Please keep the originals of your photos, as photos uploaded here are subject to data
                             compression</small></p>
                     <div class="form-group">
@@ -42,9 +30,14 @@
                 </div>
                 <div class="col-12">
                     <div class="form-group">
-                        <angular-editor [placeholder]="'Enter content here...'" [(ngModel)]="bigFormContent"
-                            [ngModelOptions]="{standalone: true}" [config]="editorConfig">
-                        </angular-editor>
+                        <input class="form-control" formControlName="title" name="title" id="title" type="text"
+                            placeholder="Title...">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <textarea class="form-control w-100" formControlName="desc" name="desc" id="desc" cols="30"
+                            rows="9" placeholder="Some description..."></textarea>
                     </div>
                 </div>
 
@@ -53,15 +46,14 @@
                         <input class="form-control" formControlName="videoUrl" name="desc" id="desc" type="text"
                             placeholder="Video url (optional) http://">
                         <button style="margin-top: 10px" class="btn btn-primary" [disabled]="disableSubmitButton">
-                            <span *ngIf="!disableSubmitButton">{{saveBlogText}}</span>
+                            <span *ngIf="!disableSubmitButton">{{saveWorkText}}</span>
                             <span *ngIf="disableSubmitButton">
                                 <span class="spinner-border spinner-border-sm" role="status"
-                                    aria-hidden="true"></span>{{saveBlogProgressText}}
+                                    aria-hidden="true"></span>{{saveWorkProgressText}}
                             </span>
                         </button>
                     </div>
                 </div>
-
                 <app-scroll-to-top></app-scroll-to-top>
             </div>
         </form>
