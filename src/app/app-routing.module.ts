@@ -1,4 +1,3 @@
-/* Import the Angular modules we require */
 import { RoleGuardService } from './../services/role-guard.service';
 import { RouteAuthGuardService } from './../services/route-auth-guard.service';
 import { NgModule } from '@angular/core';
@@ -22,6 +21,10 @@ import { ViewWorkComponent } from './works/view-work/view-work.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { EditBlogComponent } from './blog/edit-blog/edit-blog.component';
 import { EditWorkComponent } from './works/edit-work/edit-work.component';
+import { EditExhibitionComponent } from './works/edit-exhibition/edit-exhibition.component';
+import { NewExhibitionComponent } from './works/new-exhibition/new-exhibition.component';
+import { ViewExhibitionComponent } from './works/view-exhibition/view-exhibition.component';
+import { ExhibitionsComponent } from './works/exhibitions/exhibitions.component';
 
 /* Configure routes */
 const appRoutes: Routes = [
@@ -55,6 +58,17 @@ const appRoutes: Routes = [
   },
   {
     path: 'edit-categories', component: EditCategoriesComponent,
+    canActivate: [RouteAuthGuardService]
+  },
+  { path: 'exhibitions', component: ExhibitionsComponent},
+  { path: 'exhibitions/p/:page', component: ExhibitionsComponent},
+  { path: 'view-exhibition/:exhibitionid', component: ViewExhibitionComponent },
+  {
+    path: 'new-exhibition', component: NewExhibitionComponent,
+    canActivate: [RouteAuthGuardService]
+  },
+  {
+    path: 'edit-exhibition/:exhibitionid', component: EditExhibitionComponent,
     canActivate: [RouteAuthGuardService]
   },
 

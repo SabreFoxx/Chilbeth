@@ -1,17 +1,17 @@
-import { emptyStub } from './../../../services/fillable-form';
-import { NewWorkComponent } from './../new-work/new-work.component';
+import { NewExhibitionComponent } from './../new-exhibition/new-exhibition.component';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BackendService } from 'src/services/backend.service';
 import { ScrollToTopComponent } from 'src/app/others/scroll-to-top/scroll-to-top.component';
+import { emptyStub } from 'src/services/fillable-form';
 
 @Component({
-  selector: 'app-edit-work',
-  templateUrl: '../new-work/new-work.component.html',
-  styleUrls: ['../new-work/new-work.component.css']
+  selector: 'app-edit-exhibition',
+  templateUrl: '../new-exhibition/new-exhibition.component.html',
+  styleUrls: ['../new-exhibition/new-exhibition.component.css']
 })
-export class EditWorkComponent extends NewWorkComponent implements OnInit {
-  workId: string;
+export class EditExhibitionComponent extends NewExhibitionComponent implements OnInit {
+  exhibitionId: string;
   oldImageSortingHash: string;
 
   constructor(private route: ActivatedRoute, protected backend: BackendService, protected router: Router) {
@@ -25,19 +25,18 @@ export class EditWorkComponent extends NewWorkComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.fileData = null; // We need this null bcos we'll use it to chech if we changed pic
     super.ngOnInit();
-    this.fileData = null; // We need this null bcos we'll use it to chech if we changed pic      
-    
+
     this.route.paramMap
       .subscribe(params => {
-        this.workId = params.get("workid");
-        this.backend.fetchWork(this.workId)
+        this.exhibitionId = params.get("exhibitionid");
+        this.backend.fetchExhibition(this.exhibitionId)
           .subscribe(res => {
             this.oldImageSortingHash = res.imageSortHash;
             this.form.get("title").setValue(res.title);
             this.form.get("desc").setValue(res.desc);
-            this.form.get("category").setValue(res.categoryId);
-            this.form.get("featured").setValue(res.isFeatured);
+            this.form.get("videoUrl").setValue(res.videoUrl);
             this.previewUrl = this.backend.uploadsUrlPrefix + "/big/" + res.imageSortHash + ".jpg";
           });
       });
@@ -62,12 +61,12 @@ export class EditWorkComponent extends NewWorkComponent implements OnInit {
       callbackNotifier = <any>emptyStub;
     }
 
-    this.backend.updateWork(callbackNotifier, formText, this.workId);
+    this.backend.updateExhibition(callbackNotifier, formText, this.exhibitionId);
   }
 
-  saveWorkText = "Edit Work";
+  saveWorkText = "Edit Exhibition";
   saveWorkProgressText = "Saving...";
-  successMsg = "Work edited successfully! ";
-  failureMsg = "A problem occured while editing your work!";
+  successMsg = "Exhibition edited successfully! ";
+  failureMsg = "A problem occured while editing your content!";
 
 }

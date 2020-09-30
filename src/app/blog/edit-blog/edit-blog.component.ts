@@ -26,6 +26,8 @@ export class EditBlogComponent extends NewBlogComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.fileData = null; // We need this null bcos we'll use it to chech if we changed pic
+
     this.route.paramMap
       .subscribe(params => {
         this.blogId = params.get("blogid"); // Save blogId to variable
@@ -34,6 +36,7 @@ export class EditBlogComponent extends NewBlogComponent implements OnInit {
             this.oldImageSortingHash = res.imageSortHash;
             this.form.get("title").setValue(res.title);
             this.form.get("desc").setValue(res.desc);
+            this.form.get("videoUrl").setValue(res.videoUrl);
             this.previewUrl = this.backend.uploadsUrlPrefix + "/big/" + res.imageSortHash + ".jpg";
             this.bigFormContent = res.post;
           });
@@ -41,18 +44,26 @@ export class EditBlogComponent extends NewBlogComponent implements OnInit {
   }
 
   onSubmit() {
-    const formData = new FormData();
-    // sortingHash will be used to identify the image in the database. It's also used here as the name of the binary we're sending
-    let sortingHash = this.backend.generateUniqueChronoString();
-    // # acts as separator, so I can split names
-    // I need the oldImageSortingHash as well, so I can delete it
-    formData.append(sortingHash + '#' + this.oldImageSortingHash, this.fileData);
-    this.backend.uploadImageAndDeleteOld(this, formData);
-
     let formText = this.form.value;
-    formText.sortingHash = sortingHash;
+    formText.sortingHash = this.oldImageSortingHash;
     formText.post = this.bigFormContent;
-    this.backend.updateBlog(emptyStub, formText, this.blogId);
+
+    let callbackNotifier = this;
+
+    if (this.fileData) { // If I changed the picture
+      // sortingHash will be used to identify the image in the database. It's also used here as the name of the binary we're sending
+      let newSortingHash = this.backend.generateUniqueChronoString();
+
+      formText.sortingHash = newSortingHash;
+      const formData = new FormData();
+      // # acts as separator, so I can split names
+      // I need the oldImageSortingHash as well, so I can delete it
+      formData.append(newSortingHash + '#' + this.oldImageSortingHash, this.fileData);
+      this.backend.uploadImageAndDeleteOld(callbackNotifier, formData);
+      callbackNotifier = <any>emptyStub;
+    }
+
+    this.backend.updateBlog(callbackNotifier, formText, this.blogId);
   }
 
   saveBlogText = "Edit Blog";

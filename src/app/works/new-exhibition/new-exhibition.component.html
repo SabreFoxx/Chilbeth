@@ -18,6 +18,7 @@
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="row">
                 <div class="col-12">
+                    <label for="category">Cover photo</label>
                     <div class="mb-3" style="min-height: 200px">
                         <img *ngIf="previewUrl" [src]="previewUrl" class="img-fluid" height="200" />
                     </div>
@@ -40,26 +41,11 @@
                             rows="9" placeholder="Some description..."></textarea>
                     </div>
                 </div>
-                <div class="col-12">
-                    <div class="form-check">
-                        <input class="form-check-input" formControlName="featured" name="featured" id="featured"
-                            type="checkbox">
-                        <label class="form-check-label" for="featured">Add to Featured List</label>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="form-group">
-                        <label for="category">Category</label>
-                        <select class="form-control" formControlName="category" name="category" id="category">
-                            <option *ngFor="let category of categories; i as index" label="{{category.title}}"
-                                value="{{category._id}}">{{category.title}}</option>
-                        </select>
-
-                    </div>
-                </div>
 
                 <div class="col-12">
                     <div class="form-group">
+                        <input class="form-control" formControlName="videoUrl" name="desc" id="desc" type="text"
+                            placeholder="Youtube video url (optional)">
                         <button style="margin-top: 10px" class="btn btn-primary" [disabled]="disableSubmitButton">
                             <span *ngIf="!disableSubmitButton">{{saveWorkText}}</span>
                             <span *ngIf="disableSubmitButton">

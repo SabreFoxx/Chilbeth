@@ -11,11 +11,8 @@ import { ApiEndpoints } from 'src/services/api-endpoints';
   styleUrls: ['./view-work.component.css']
 })
 export class ViewWorkComponent implements OnInit {
-
   workId: string;
   work;
-
-  // TODO view-work throws error when user isn't logged in
 
   constructor(private userAuth: AuthService, private route: ActivatedRoute,
     private roleGuard: RoleGuardService, public backend: BackendService,
