@@ -11,7 +11,6 @@ import { ApiEndpoints } from 'src/services/api-endpoints';
   styleUrls: ['./view-work.component.css']
 })
 export class ViewWorkComponent implements OnInit {
-
   workId: string;
   work;
 

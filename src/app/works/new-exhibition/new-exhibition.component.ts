@@ -49,10 +49,10 @@ export class NewExhibitionComponent extends NewWorkComponent implements OnInit {
     this.form.addControl("videoUrl", new FormControl("", Validators.required));
   }
 
-  saveWorkText = "Upload Exhibition"; // This is a variable, because NewWorkComponent will be inherited
+  saveWorkText = "Add Exhibition"; // This is a variable, because NewWorkComponent will be inherited
   // by EditWorkComponent
   saveWorkProgressText = "Uploading..."
   successMsg = "Exhibition uploaded successfully! ";
   failureMsg = "A <b>problem</b> occured while adding your exhibition, so it wasn't added successfully!";
-
+  link = "/exhibitions";
 }

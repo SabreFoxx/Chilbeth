@@ -11,7 +11,6 @@ import { ScrollToTopComponent } from 'src/app/others/scroll-to-top/scroll-to-top
   styleUrls: ['../new-work/new-work.component.css']
 })
 export class EditWorkComponent extends NewWorkComponent implements OnInit {
-
   workId: string;
   oldImageSortingHash: string;
 
@@ -27,6 +26,8 @@ export class EditWorkComponent extends NewWorkComponent implements OnInit {
 
   ngOnInit(): void {
     super.ngOnInit();
+    this.fileData = null; // We need this null bcos we'll use it to chech if we changed pic      
+    
     this.route.paramMap
       .subscribe(params => {
         this.workId = params.get("workid");
@@ -37,28 +38,27 @@ export class EditWorkComponent extends NewWorkComponent implements OnInit {
             this.form.get("desc").setValue(res.desc);
             this.form.get("category").setValue(res.categoryId);
             this.form.get("featured").setValue(res.isFeatured);
-            this.form.get("videoUrl").setValue(res.videoUrl);
             this.previewUrl = this.backend.uploadsUrlPrefix + "/big/" + res.imageSortHash + ".jpg";
-            this.fileData = null; // We need this null bcos we'll use it to chech if we changed pic
           });
       });
   }
 
   onSubmit() {
     let formText = this.form.value;
+    formText.sortingHash = this.oldImageSortingHash;
 
-    // sortingHash will be used to identify the image in the database. It's also used here as the name of the binary we're sending
-    let newSortingHash = this.backend.generateUniqueChronoString();
     let callbackNotifier = this;
 
     if (this.fileData) { // If I changed the picture
+      // sortingHash will be used to identify the image in the database. It's also used here as the name of the binary we're sending
+      let newSortingHash = this.backend.generateUniqueChronoString();
+
       formText.sortingHash = newSortingHash;
       const formData = new FormData();
       // # acts as separator, so I can split names
       // I need the oldImageSortingHash as well, so I can delete it
       formData.append(newSortingHash + '#' + this.oldImageSortingHash, this.fileData);
       this.backend.uploadImageAndDeleteOld(callbackNotifier, formData);
-      callbackNotifier = undefined; // stop pointing to 'this'
       callbackNotifier = <any>emptyStub;
     }
 

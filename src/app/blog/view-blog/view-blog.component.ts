@@ -1,5 +1,6 @@
+import { DomSanitizer } from '@angular/platform-browser';
 import { ApiEndpoints } from 'src/services/api-endpoints';
-import { FillableForm } from './../../../services/fillable-form';
+import { FillableForm } from 'src/services/fillable-form';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BackendService } from 'src/services/backend.service';
 import { Component, OnInit } from '@angular/core';
@@ -7,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ScrollToTopComponent } from 'src/app/others/scroll-to-top/scroll-to-top.component';
 import { RoleGuardService } from 'src/services/role-guard.service';
 import { SiteSettingsService } from 'src/services/site-settings.service';
+import { getYoutubeVideoId } from 'src/app/others/functions';
 
 @Component({
   selector: 'app-view-blog',
@@ -14,9 +16,10 @@ import { SiteSettingsService } from 'src/services/site-settings.service';
   styleUrls: ['./view-blog.component.css']
 })
 export class ViewBlogComponent implements OnInit, FillableForm {
-
   blogId: string;
   blog: any = '';
+  youtubeUrl: any = null;
+
   blogComments;
   commentForm = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -29,12 +32,13 @@ export class ViewBlogComponent implements OnInit, FillableForm {
   failedCreatingBlog = false;
   disableSubmitButton = false;
 
-  constructor(public settings: SiteSettingsService, private route: ActivatedRoute, private roleGuard: RoleGuardService,
+  constructor(public settings: SiteSettingsService, private route: ActivatedRoute,
+    private roleGuard: RoleGuardService, private sanitizer: DomSanitizer,
     private router: Router, public backend: BackendService) { }
 
   /* Comment add alert methods */
   actionPending() {
-    this.disableSubmitButton = true;  // Shows spinning animation on submit button
+    this.disableSubmitButton = true; // Shows spinning animation on submit button
   }
 
   actionFailed() {
@@ -64,12 +68,16 @@ export class ViewBlogComponent implements OnInit, FillableForm {
       .subscribe(params => {
         this.blogId = params.get("blogid"); // Save blogId to variable
         this.backend.fetchBlog(this.blogId)
-          .subscribe(res => this.blog = res);
+          .subscribe(res => {
+            this.blog = res;
+            if (this.blog.videoUrl.length > 1) {
+              this.youtubeUrl = `https://youtube.com/embed/${getYoutubeVideoId(this.blog.videoUrl)}`
+              this.youtubeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.youtubeUrl);
+            }
+          });
         // Load comments
         this.backend.fetchBlogComments(this.blogId)
-          .subscribe((res) => {
-            this.blogComments = res
-          });
+          .subscribe(res => this.blogComments = res);
       });
   }
 
@@ -89,7 +97,7 @@ export class ViewBlogComponent implements OnInit, FillableForm {
       // TODO if delete was successful, a 204 status will be received. Use this
     }
   }
-  
+
   deleteComment(id: number): void {
     let c = confirm("Are you sure you want to delete the comment?");
     if (c) {

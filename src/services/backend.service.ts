@@ -101,15 +101,15 @@ export class BackendService {
   }
 
   public addExhibition(initiatingContainer: FillableForm, formData) {
-    this.performSimplePost(ApiEndpoints.EXHIBITION + `/${formData.category}`, initiatingContainer, formData);
+    this.performSimplePost(ApiEndpoints.EXHIBITION, initiatingContainer, formData);
   }
 
-  public updateExhibition(initiatingContainer: FillableForm, formData, workId: string) {
-    this.performSimplePut(ApiEndpoints.EXHIBITION + `/${workId}`, initiatingContainer, formData);
+  public updateExhibition(initiatingContainer: FillableForm, formData, exhibitionId: string) {
+    this.performSimplePut(ApiEndpoints.EXHIBITION + `/${exhibitionId}`, initiatingContainer, formData);
   }
 
-  public fetchExhibition(workId: string): Observable<any> {
-    return this.performSimpleGet(ApiEndpoints.EXHIBITION + `/${workId}`);
+  public fetchExhibition(exhibitionId: string): Observable<any> {
+    return this.performSimpleGet(ApiEndpoints.EXHIBITION + `/${exhibitionId}`);
   }
 
   public createBlog(initiatingContainer: FillableForm, formData) {

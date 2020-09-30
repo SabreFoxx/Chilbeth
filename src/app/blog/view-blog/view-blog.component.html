@@ -27,11 +27,17 @@
                             <li><a><i
                                         class="fa fa-comments"></i>{{ stringAsDate(blog.createdOn) | date: 'MMM d y, h:MM a' }}</a>
                             </li>
-                            <p>Video url: {{blog.videoUrl}}</p>
                             <!-- TDOD show confirmation alert after Delete is pressed -->
-                            <li *ngIf="canEdit()"><a (click)="editBlog()" class="cursor"><i class="fa fa-edit"></i>Edit Blog</a></li>
-                            <li *ngIf="canEdit()"><a (click)="deleteBlog()" class="cursor"><i class="fa fa-trash"></i>Delete Blog</a></li>
+                            <li *ngIf="canEdit()"><a (click)="editBlog()" class="cursor"><i class="fa fa-edit"></i>Edit
+                                    Blog</a></li>
+                            <li *ngIf="canEdit()"><a (click)="deleteBlog()" class="cursor">
+                                <i class="fa fa-trash"></i>Delete Blog</a></li>
                         </ul>
+
+                        <iframe *ngIf="youtubeUrl" width="560" height="315" [src]="youtubeUrl"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
                         <p id="post" [innerHTML]="blog.post | keepHtml">
                         </p>
                     </div>
@@ -71,8 +77,8 @@
                                                 {{ stringAsDate(comment.createdOn) | date: 'MMM d y, h:MM a' }}</p>
                                             <!-- Date format December 4, 2020 at 3:12 pm -->
                                         </div>
-                                        <div *ngIf="canEdit()" (click)="deleteComment(i)"><i
-                                                class="fa fa-trash"></i></div>
+                                        <div *ngIf="canEdit()" (click)="deleteComment(i)"><i class="fa fa-trash"></i>
+                                        </div>
                                         <div class="reply-btn">
                                             <!-- <a href="#" class="btn-reply text-uppercase">reply</a> -->
                                         </div>
@@ -91,8 +97,9 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
-                                    <textarea class="form-control w-100" maxlength="1000" formControlName="comment" name="comment"
-                                        id="comment" cols="30" rows="9" placeholder="Write Comment"></textarea>
+                                    <textarea class="form-control w-100" maxlength="1000" formControlName="comment"
+                                        name="comment" id="comment" cols="30" rows="9"
+                                        placeholder="Write Comment"></textarea>
                                 </div>
                             </div>
                             <div class="col-sm-6">

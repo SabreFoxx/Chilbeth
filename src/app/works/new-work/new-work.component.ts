@@ -104,5 +104,5 @@ export class NewWorkComponent implements OnInit, FillableForm {
   saveWorkProgressText = "Uploading..."
   successMsg = "Work created successfully! ";
   failureMsg = "A <b>problem</b> occured while uploading your work, so it wasn't uploaded successfully!";
-
+  link = "/works";
 }

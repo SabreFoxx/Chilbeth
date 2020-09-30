@@ -1,1 +1,29 @@
-<p>view-exhibition works!</p>
+<section class="next this-page-1">
+    <h3>{{exhibition?.title}}</h3>
+    <p class="card-text">{{exhibition?.desc}}</p>
+    <div class="container">
+        <div class="card mb-2">
+            <img class="card-img-top shadow" src="{{backend.uploadsUrlPrefix}}/big/{{exhibition?.imageSortHash}}.jpg"
+                alt="{{exhibition?.title}}">
+
+            <div class="card-body" style="position: relative;">
+                <ul *ngIf="canEdit()" id="actions">
+                    <a (click)="editExhibition()" class="delete">
+                        <li class="fa icon-large fa-edit"></li>
+                        <span style="color: rgba(0, 0, 0, 0.7)">Edit</span>
+                    </a>
+                    <a (click)="deleteExhibition()" class="delete">
+                        <li class="fa icon-large fa-trash"></li>
+                        <span style="color: rgba(0, 0, 0, 0.7)">Delete</span>
+                    </a>
+                </ul>
+            </div>
+
+            <div class="container" style="margin-top: 5em; text-align: center;">
+                <iframe *ngIf="youtubeUrl" width="560" height="315" [src]="youtubeUrl" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+</section>

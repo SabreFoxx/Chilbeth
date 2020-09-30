@@ -11,7 +11,6 @@ const defaultTitle = "Featured Works";
   styleUrls: ['./works.component.css']
 })
 export class WorksComponent implements OnInit {
-
   pageTitle = "Featured Works";
   backendUrl: string = ApiEndpoints.WORK;
   groupOne;

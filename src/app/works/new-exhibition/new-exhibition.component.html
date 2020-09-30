@@ -1,7 +1,7 @@
 <!-- Bootstrap alerts -->
 <div class="alert alert-success text-center" role="alert" (click)="resetAlert()" *ngIf="successCreatingWork">
     <a class="close" aria-label="close">&times;</a>
-    <b>{{successMsg}}</b><a class="alert-link" routerLink="/works">View</a>
+    <b>{{successMsg}}</b><a class="alert-link" routerLink="{{link}}">View</a>
 </div>
 <div class="alert alert-danger text-center" role="alert" (click)="resetAlert()" *ngIf="failedCreatingWork">
     <a class="close" aria-label="close">&times;</a>
@@ -18,6 +18,7 @@
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="row">
                 <div class="col-12">
+                    <label for="category">Cover photo</label>
                     <div class="mb-3" style="min-height: 200px">
                         <img *ngIf="previewUrl" [src]="previewUrl" class="img-fluid" height="200" />
                     </div>
@@ -44,7 +45,7 @@
                 <div class="col-12">
                     <div class="form-group">
                         <input class="form-control" formControlName="videoUrl" name="desc" id="desc" type="text"
-                            placeholder="Video url (optional) http://">
+                            placeholder="Youtube video url (optional)">
                         <button style="margin-top: 10px" class="btn btn-primary" [disabled]="disableSubmitButton">
                             <span *ngIf="!disableSubmitButton">{{saveWorkText}}</span>
                             <span *ngIf="disableSubmitButton">
