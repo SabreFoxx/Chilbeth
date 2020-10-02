@@ -31,13 +31,11 @@
                             <li *ngIf="canEdit()"><a (click)="editBlog()" class="cursor"><i class="fa fa-edit"></i>Edit
                                     Blog</a></li>
                             <li *ngIf="canEdit()"><a (click)="deleteBlog()" class="cursor">
-                                <i class="fa fa-trash"></i>Delete Blog</a></li>
+                                    <i class="fa fa-trash"></i>Delete Blog</a></li>
                         </ul>
 
-                        <iframe *ngIf="youtubeUrl" width="560" height="315" [src]="youtubeUrl"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
+                        <app-youtube [url]="youtubeUrl"></app-youtube>
+
                         <p id="post" [innerHTML]="blog.post | keepHtml">
                         </p>
                     </div>

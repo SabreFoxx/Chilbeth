@@ -42,6 +42,7 @@ import { ExhibitionsComponent } from './works/exhibitions/exhibitions.component'
 import { ViewExhibitionComponent } from './works/view-exhibition/view-exhibition.component';
 import { NewExhibitionComponent } from './works/new-exhibition/new-exhibition.component';
 import { EditExhibitionComponent } from './works/edit-exhibition/edit-exhibition.component';
+import { YoutubeComponent } from './youtube/youtube.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { EditExhibitionComponent } from './works/edit-exhibition/edit-exhibition
     ExhibitionsComponent,
     ViewExhibitionComponent,
     NewExhibitionComponent,
-    EditExhibitionComponent
+    EditExhibitionComponent,
+    YoutubeComponent
   ],
   imports: [
     BrowserModule,
