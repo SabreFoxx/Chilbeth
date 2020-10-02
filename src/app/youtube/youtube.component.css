@@ -1,0 +1,14 @@
+.container {
+    text-align: center;
+}
+
+.vid {
+    min-height: 315px;
+    width: 512px;
+}
+
+@media (max-width: 768px) {
+    .vid {
+        width: 100%;
+    }
+}
