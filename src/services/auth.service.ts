@@ -42,7 +42,8 @@ export class AuthService {
       });
   }
 
-  public changePassword(initiatingContainer: FillableForm, data: { old: String, new: String, retype: String }) {
+  public changePassword(initiatingContainer: FillableForm, 
+    data: { old: String, new: String, retype: String }) {
     initiatingContainer.actionPending();
     this.http.put(ApiEndpoints.CHANGE_PASSWORD, data, this.getAuthorizationToken())
       .subscribe((response: any) => {
