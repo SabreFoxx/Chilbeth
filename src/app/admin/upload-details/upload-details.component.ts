@@ -66,12 +66,16 @@ export class UploadDetailsComponent implements OnInit {
     this.previewUrl = [
       ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.landingImageOne + '.jpg',
       ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.landingImageTwo + '.jpg',
-      ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.landingImageThree + '.jpg'
+      ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.landingImageThree + '.jpg',
+      ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.landingImageFour + '.jpg',
+      ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.landingImageFive + '.jpg'
     ];
     this.oldSortingHash = [ // Save our current images' names in a variable in case we want to change them later
       this.settings.siteSettings.landingImageOne,
       this.settings.siteSettings.landingImageTwo,
-      this.settings.siteSettings.landingImageThree
+      this.settings.siteSettings.landingImageThree,
+      this.settings.siteSettings.landingImageFour,
+      this.settings.siteSettings.landingImageFive
     ];
 
     this.bioPreviewUrl = {
@@ -248,7 +252,9 @@ export class UploadDetailsComponent implements OnInit {
       this.previewUrl = [ // Set the images, so they don't show the blank ones
         ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.landingImageOne + '.jpg',
         ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.landingImageTwo + '.jpg',
-        ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.landingImageThree + '.jpg'
+        ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.landingImageThree + '.jpg',
+        ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.landingImageFour + '.jpg',
+        ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.landingImageFive + '.jpg'
       ];
       this.bioPreviewUrl = {
         profilePicture: ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.profilePicture + '.jpg',
@@ -259,7 +265,9 @@ export class UploadDetailsComponent implements OnInit {
       this.oldSortingHash = [ // Save our current images' names in a variable in case we want to change them later
         this.settings.siteSettings.landingImageOne,
         this.settings.siteSettings.landingImageTwo,
-        this.settings.siteSettings.landingImageThree
+        this.settings.siteSettings.landingImageThree,
+        this.settings.siteSettings.landingImageFour,
+        this.settings.siteSettings.landingImageFive
       ];
       this.bioOldSortingHash.profilePicture = this.settings.siteSettings.profilePicture;
       this.bioOldSortingHash.thumbnail = this.settings.siteSettings.profileThumbnail;

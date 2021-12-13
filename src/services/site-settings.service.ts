@@ -9,6 +9,8 @@ interface SiteSettingsInterface {
   landingImageOne,
   landingImageTwo,
   landingImageThree,
+  landingImageFour,
+  landingImageFive,
   previousImageForDeletion,
   profilePicture,
   profileThumbnail,
@@ -47,6 +49,8 @@ export class SiteSettingsService {
     landingImageOne: '',
     landingImageTwo: '',
     landingImageThree: '',
+    landingImageFour: '',
+    landingImageFive: '',
     previousImageForDeletion: '',
     profilePicture: '',
     profileThumbnail: '',
@@ -109,6 +113,12 @@ export class SiteSettingsService {
         break;
       case 2:
         formText.landingImageThree = sortingHash;
+        break;
+      case 3:
+        formText.landingImageFour = sortingHash;
+        break;
+      case 4:
+        formText.landingImageFive = sortingHash;
         break;
     }
     formText.previousImageForDeletion = previousSortingHashForDeletion;
