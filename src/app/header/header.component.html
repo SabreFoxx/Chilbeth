@@ -8,29 +8,38 @@
         <div class="collapse navbar-collapse" id="theMenu">
             <ul class="nav navbar-nav">
                 <!-- data-toggle="collapse" data-target="#theMenu" will be added to each li, to work properly with Angular -->
-                <li class="nav-item" attr.data-toggle="{{shouldItoggleCollapse}}" data-target="#theMenu"><a
-                        routerLinkActive="current" routerLink="/home" class="nav-link">Home</a></li>
-                <li class="nav-item" attr.data-toggle="{{shouldItoggleCollapse}}" data-target="#theMenu"><a
-                        routerLinkActive="current" routerLink="/blog" class="nav-link">Blog</a></li>
-                <li class="nav-item dropdown" attr.data-toggle="{{shouldItoggleCollapse}}" data-target="#theMenu">
-                    <a routerLinkActive="current" routerLink="/works" class="nav-link">Works<i class="fa fa-angle-down"
-                            style="vertical-align:  bottom;"></i></a>
+                <li class="nav-item" attr.data-toggle="{{shouldItoggleCollapse}}"
+                    data-target="#theMenu"><a routerLinkActive="current" routerLink="/home"
+                       class="nav-link">Home</a></li>
+                <li class="nav-item" attr.data-toggle="{{shouldItoggleCollapse}}"
+                    data-target="#theMenu"><a routerLinkActive="current" routerLink="/about"
+                       class="nav-link">About</a></li>
+                <li class="nav-item dropdown" attr.data-toggle="{{shouldItoggleCollapse}}"
+                    data-target="#theMenu">
+                    <a routerLinkActive="current" routerLink="/works" class="nav-link">Works<i
+                           class="fa fa-angle-down" style="vertical-align:  bottom;"></i></a>
                     <div class="dropdown-menu">
                         <ul class="submenu">
-                            <li *ngFor="let category of workCategories"><a routerLink="/works/{{category._id}}">{{category.title}}</a></li>
+                            <li *ngFor="let category of workCategories"><a
+                                   routerLink="/works/{{category._id}}">{{category.title}}</a></li>
                         </ul>
                     </div>
                 </li>
-                <li class="nav-item" attr.data-toggle="{{shouldItoggleCollapse}}" data-target="#theMenu"><a
-                        routerLinkActive="current" routerLink="/exhibitions" class="nav-link">Exhibitions</a></li>
-                <li class="nav-item" attr.data-toggle="{{shouldItoggleCollapse}}" data-target="#theMenu"><a
-                        routerLinkActive="current" routerLink="/about" class="nav-link">About</a></li>
-                <li class="nav-item" attr.data-toggle="{{shouldItoggleCollapse}}" data-target="#theMenu"><a
-                        routerLinkActive="current" routerLink="/contact" class="nav-link">Contact</a></li>
-                <li *ngIf="!isLoggedIn" attr.data-toggle="{{shouldItoggleCollapse}}" data-target="#theMenu"
-                    class="nav-item"><a routerLinkActive="current" routerLink="/login" class="nav-link">Login</a></li>
-                <li *ngIf="isLoggedIn" attr.data-toggle="{{shouldItoggleCollapse}}" data-target="#theMenu"
-                    class="nav-item"><a routerLink="/" (click)="logout()" class="nav-link">Logout</a></li>
+                <li class="nav-item" attr.data-toggle="{{shouldItoggleCollapse}}"
+                    data-target="#theMenu"><a routerLinkActive="current" routerLink="/exhibitions"
+                       class="nav-link">Exhibitions</a></li>
+                <li class="nav-item" attr.data-toggle="{{shouldItoggleCollapse}}"
+                    data-target="#theMenu"><a routerLinkActive="current" routerLink="/blog"
+                       class="nav-link">Blog</a></li>
+                <li class="nav-item" attr.data-toggle="{{shouldItoggleCollapse}}"
+                    data-target="#theMenu"><a routerLinkActive="current" routerLink="/contact"
+                       class="nav-link">Contact</a></li>
+                <li *ngIf="!isLoggedIn" attr.data-toggle="{{shouldItoggleCollapse}}"
+                    data-target="#theMenu" class="nav-item"><a routerLinkActive="current"
+                       routerLink="/login" class="nav-link">Login</a></li>
+                <li *ngIf="isLoggedIn" attr.data-toggle="{{shouldItoggleCollapse}}"
+                    data-target="#theMenu" class="nav-item"><a routerLink="/" (click)="logout()"
+                       class="nav-link">Logout</a></li>
             </ul>
             <ul class="navbar-nav ml-auto brand">
                 <span *ngIf="!isLoggedIn">
@@ -49,16 +58,20 @@
                 </span>
                 <span *ngIf="isLoggedIn">
                     <a routerLink="/new-blog">
-                        <li class="fa icon-large fa-plus" data-toggle="collapse" data-target="#theMenu"></li>
+                        <li class="fa icon-large fa-plus" data-toggle="collapse"
+                            data-target="#theMenu"></li>
                     </a>
                     <a routerLink="/new-work">
-                        <li class="fa icon-large fa-image" data-toggle="collapse" data-target="#theMenu"></li>
+                        <li class="fa icon-large fa-image" data-toggle="collapse"
+                            data-target="#theMenu"></li>
                     </a>
                     <a routerLink="/new-exhibition">
-                        <li class="fa icon-large fa-paint-brush" data-toggle="collapse" data-target="#theMenu"></li>
+                        <li class="fa icon-large fa-paint-brush" data-toggle="collapse"
+                            data-target="#theMenu"></li>
                     </a>
                     <a routerLink="/settings">
-                        <li class="fa icon-large fa-cog" data-toggle="collapse" data-target="#theMenu"></li>
+                        <li class="fa icon-large fa-cog" data-toggle="collapse"
+                            data-target="#theMenu"></li>
                     </a>
                 </span>
             </ul>
