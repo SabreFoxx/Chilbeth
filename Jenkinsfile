@@ -16,16 +16,7 @@ pipeline {
             steps {
                 withAWS(region:'eu-west-3') {
 					sh 'echo "uploading output to S3 bucket"'
-					s3Upload(
-						profileName: 'deployment-user', 
-                        entries {
-                            selectedRegion: 'eu-west-3',
-                            sourceFile: 'package.json',
-                            uploadFromSlave: true,
-                            useServerSideEncryption: true,
-                            bucket:'chilbeth'
-                        }
-					)
+					s3Upload(bucket:"chinyere-odinukwe", workingDir:'dist', includePathPattern:'**/*')
 				}
             }
         }
