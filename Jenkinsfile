@@ -17,7 +17,8 @@ pipeline {
                 withAWS(region:'eu-west-3') {
 					sh 'echo "uploading output to S3 bucket"'
 					s3Upload(
-						profileName: 'deployment-user', spathStyleAccessEnabled: true, payloadSigningEnabled: true, file: 'dist',
+						profileName: 'deployment-user', 
+                        sourceFile: 'dist',
 						selectedRegion: 'eu-west-3',
 						uploadFromSlave: true,
 						useServerSideEncryption: true,
