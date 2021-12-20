@@ -18,11 +18,13 @@ pipeline {
 					sh 'echo "uploading output to S3 bucket"'
 					s3Upload(
 						profileName: 'deployment-user', 
-                        sourceFile: 'dist',
-						selectedRegion: 'eu-west-3',
-						uploadFromSlave: true,
-						useServerSideEncryption: true,
-						bucket:'chilbeth'
+                        entries {
+                            sourceFile: 'dist',
+                            selectedRegion: 'eu-west-3',
+                            uploadFromSlave: true,
+                            useServerSideEncryption: true,
+                            bucket:'chilbeth'
+                        }
 					)
 				}
             }
