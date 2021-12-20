@@ -16,7 +16,7 @@ pipeline {
             steps {
                 withAWS(region:'eu-west-3') {
 					sh 'echo "uploading output to S3 bucket"'
-					s3Upload(file:'Chilbeth', bucket:'chinyere-odinukwe', path:'dist')
+					s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file:'Chilbeth', bucket:'chinyere-odinukwe', path:'dist')
 				}
             }
         }
