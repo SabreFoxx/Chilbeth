@@ -19,8 +19,8 @@ pipeline {
 					s3Upload(
 						profileName: 'deployment-user', 
                         entries {
-                            sourceFile: 'package.json',
                             selectedRegion: 'eu-west-3',
+                            sourceFile: 'package.json',
                             uploadFromSlave: true,
                             useServerSideEncryption: true,
                             bucket:'chilbeth'
