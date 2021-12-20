@@ -19,7 +19,7 @@ pipeline {
 					s3Upload(
 						profileName: 'deployment-user', 
                         entries {
-                            sourceFile: 'dist',
+                            sourceFile: 'package.json',
                             selectedRegion: 'eu-west-3',
                             uploadFromSlave: true,
                             useServerSideEncryption: true,
