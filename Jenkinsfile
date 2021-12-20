@@ -9,7 +9,7 @@ pipeline {
 		}
 		stage('compile') {
 			steps {
-				sh 'ng build'
+				sh 'ng build --prod'
 			}
 		}
 		stage('upload to S3 bucket') {
@@ -21,8 +21,7 @@ pipeline {
                         pathStyleAccessEnabled: true,
                         payloadSigningEnabled: true,
                         file:'dist/Chilbeth',
-                        bucket:'chinyere-odinukwe',
-                        path:'/'
+                        bucket:'chinyere-odinukwe'
                     )
 				}
             }
