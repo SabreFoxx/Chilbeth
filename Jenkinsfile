@@ -4,7 +4,6 @@ pipeline {
 	stages {
 		stage('install') {
 			steps {
-                cleanWs()
 				sh 'npm clean-install'
 			}
 		}
