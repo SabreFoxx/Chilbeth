@@ -4,6 +4,7 @@ pipeline {
 	stages {
 		stage('install') {
 			steps {
+                cleanWs()
 				sh 'npm clean-install'
 			}
 		}
@@ -18,6 +19,11 @@ pipeline {
 					sh 'echo "uploading output to S3 bucket"'
 					s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file:'Chilbeth', bucket:'chinyere-odinukwe', path:'dist')
 				}
+            }
+        }
+        stage('cleanup') {
+            steps {
+                cleanWs()
             }
         }
 	}
