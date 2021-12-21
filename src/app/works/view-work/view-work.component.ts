@@ -41,7 +41,7 @@ export class ViewWorkComponent implements OnInit {
   }
   
   editWork(): void {
-    this.router.navigateByUrl('/edit-work/' + this.workId);
+    this.router.navigateByUrl('/works/edit/' + this.workId);
   }
 
 }

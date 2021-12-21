@@ -7,12 +7,12 @@
 
                     <article *ngFor="let blog of blogs" class="blog_item">
                         <div class="blog_item_img">
-                            <a routerLink="/view-blog/{{blog._id}}"><img class="card-img rounded-0"
+                            <a routerLink="/blog/view/{{blog._id}}"><img class="card-img rounded-0"
                                     src="{{backend.uploadsUrlPrefix}}/big/{{blog.imageSortHash}}.jpg" alt=""></a>
                         </div>
 
                         <div class="blog_details">
-                            <a class="d-inline-block" routerLink="/view-blog/{{blog._id}}">
+                            <a class="d-inline-block" routerLink="/blog/view/{{blog._id}}">
                                 <h2>{{blog.title}}</h2>
                             </a>
                             <p>{{blog.desc}}</p>

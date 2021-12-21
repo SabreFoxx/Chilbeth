@@ -51,7 +51,7 @@ export class ViewExhibitionComponent implements OnInit {
   }
 
   editExhibition(): void {
-    this.router.navigateByUrl('/edit-exhibition/' + this.exhibitionId);
+    this.router.navigateByUrl('/exhibitions/edit/' + this.exhibitionId);
   }
 
 }

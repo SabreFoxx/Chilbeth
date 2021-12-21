@@ -14,11 +14,11 @@
 
       <div *ngFor="let work of groupOne" class="col-md-4">
         <div class="card mb-2">
-          <a routerLink="/view-work/{{work._id}}">
+          <a routerLink="/works/view/{{work._id}}">
             <img class="card-img-top shadow" src="{{backend.uploadsUrlPrefix}}/small/{{work.imageSortHash}}.jpg"
               alt="{{work.title}}"></a>
           <div class="card-body">
-            <h4 class="card-title"><a routerLink="/view-work/{{work._id}}">{{work.title}}</a></h4>
+            <h4 class="card-title"><a routerLink="/works/view/{{work._id}}">{{work.title}}</a></h4>
             <p class="card-text">{{work.desc}}</p>
           </div>
         </div>
@@ -30,11 +30,11 @@
 
       <div *ngFor="let work of groupTwo" class="col-md-4">
         <div class="card mb-2">
-          <a routerLink="/view-work/{{work._id}}">
+          <a routerLink="/works/view/{{work._id}}">
             <img class="card-img-top shadow" src="{{backend.uploadsUrlPrefix}}/small/{{work.imageSortHash}}.jpg"
               alt="{{work.title}}"></a>
           <div class="card-body">
-            <h4 class="card-title"><a routerLink="/view-work/{{work._id}}">{{work.title}}</a></h4>
+            <h4 class="card-title"><a routerLink="/works/view/{{work._id}}">{{work.title}}</a></h4>
             <p class="card-text">{{work.desc}}</p>
           </div>
         </div>

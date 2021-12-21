@@ -72,7 +72,7 @@ export class SettingsComponent implements OnInit, FillableForm {
   }
 
   gotoWorkCategories() {
-    this.router.navigateByUrl('/edit-categories');
+    this.router.navigateByUrl('/works/categories/edit');
   }
 
   onSubmit() {

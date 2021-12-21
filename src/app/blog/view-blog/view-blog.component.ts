@@ -109,7 +109,7 @@ export class ViewBlogComponent implements OnInit, FillableForm {
   }
 
   editBlog(): void {
-    this.router.navigateByUrl('/edit-blog/' + this.blogId);
+    this.router.navigateByUrl('/blog/edit/' + this.blogId);
   }
 
   public get thumbnailPicture() {

@@ -4,7 +4,7 @@
     <div *ngFor="let blog of recentBlogs" class="media post_item">
         <img src="{{backend.uploadsUrlPrefix}}/small/{{blog.imageSortHash}}.jpg" alt="post">
         <div class="media-body">
-            <a routerLink="/view-blog/{{blog._id}}">
+            <a routerLink="/blog/view/{{blog._id}}">
                 <h3>{{blog.title}}</h3>
             </a>
             <p>{{ stringAsDate(blog.createdOn) | date: 'MMM d y, h:MM a' }}</p>

@@ -6,11 +6,11 @@
 
       <div *ngFor="let exhibition of groupOne" class="col-md-4">
         <div class="card mb-2">
-          <a routerLink="/view-exhibition/{{exhibition._id}}">
+          <a routerLink="/exhibitions/view/{{exhibition._id}}">
             <img class="card-img-top shadow" src="{{backend.uploadsUrlPrefix}}/small/{{exhibition.imageSortHash}}.jpg"
               alt="{{exhibition.title}}"></a>
           <div class="card-body">
-            <h4 class="card-title"><a routerLink="/view-exhibition/{{exhibition._id}}">{{exhibition.title}}</a></h4>
+            <h4 class="card-title"><a routerLink="/exhibitions/view/{{exhibition._id}}">{{exhibition.title}}</a></h4>
             <p class="card-text">{{exhibition.desc}}</p>
           </div>
         </div>
@@ -22,11 +22,11 @@
 
       <div *ngFor="let exhibition of groupTwo" class="col-md-4">
         <div class="card mb-2">
-          <a routerLink="/view-exhibition/{{exhibition._id}}">
+          <a routerLink="/exhibitions/view/{{exhibition._id}}">
             <img class="card-img-top shadow" src="{{backend.uploadsUrlPrefix}}/small/{{exhibition.imageSortHash}}.jpg"
               alt="{{exhibition.title}}"></a>
           <div class="card-body">
-            <h4 class="card-title"><a routerLink="/view-exhibition/{{exhibition._id}}">{{exhibition.title}}</a></h4>
+            <h4 class="card-title"><a routerLink="/exhibitions/view/{{exhibition._id}}">{{exhibition.title}}</a></h4>
             <p class="card-text">{{exhibition.desc}}</p>
           </div>
         </div>

@@ -31,15 +31,15 @@ const appRoutes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'blog', component: BlogLandingComponent },
   { 
-    path: 'edit-blog/:blogid', component: EditBlogComponent,
+    path: 'blog/edit/:blogid', component: EditBlogComponent,
     canActivate: [RouteAuthGuardService]
   },
   { path: 'blog/p/:page', component: BlogLandingComponent },
   {
-    path: 'new-blog', component: NewBlogComponent,
+    path: 'blog/new', component: NewBlogComponent,
     canActivate: [RouteAuthGuardService]
   },
-  { path: 'view-blog/:blogid', component: ViewBlogComponent },
+  { path: 'blog/view/:blogid', component: ViewBlogComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'login', component: LoginComponent },
   
@@ -47,28 +47,28 @@ const appRoutes: Routes = [
   { path: 'works/:category', component: WorksComponent},
   { path: 'works/:category/p/:page', component: WorksComponent},
   { path: 'works/p/:page', component: WorksComponent },
-  { path: 'view-work/:workid', component: ViewWorkComponent },
+  { path: 'works/view/:workid', component: ViewWorkComponent },
   {
-    path: 'new-work', component: NewWorkComponent,
+    path: 'works/new', component: NewWorkComponent,
     canActivate: [RouteAuthGuardService]
   },
   {
-    path: 'edit-work/:workid', component: EditWorkComponent,
+    path: 'works/edit/:workid', component: EditWorkComponent,
     canActivate: [RouteAuthGuardService]
   },
   {
-    path: 'edit-categories', component: EditCategoriesComponent,
+    path: 'works/categories/edit', component: EditCategoriesComponent,
     canActivate: [RouteAuthGuardService]
   },
   { path: 'exhibitions', component: ExhibitionsComponent},
   { path: 'exhibitions/p/:page', component: ExhibitionsComponent},
-  { path: 'view-exhibition/:exhibitionid', component: ViewExhibitionComponent },
+  { path: 'exhibitions/view/:exhibitionid', component: ViewExhibitionComponent },
   {
-    path: 'new-exhibition', component: NewExhibitionComponent,
+    path: 'exhibitions/new', component: NewExhibitionComponent,
     canActivate: [RouteAuthGuardService]
   },
   {
-    path: 'edit-exhibition/:exhibitionid', component: EditExhibitionComponent,
+    path: 'exhibitions/edit/:exhibitionid', component: EditExhibitionComponent,
     canActivate: [RouteAuthGuardService]
   },
 
