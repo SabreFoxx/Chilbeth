@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ScrollToTopComponent } from 'src/app/others/scroll-to-top/scroll-to-top.component';
 import { SiteSettingsService } from 'src/services/site-settings.service';
 import { ApiEndpoints } from 'src/services/api-endpoints';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-upload-details',
@@ -58,7 +59,8 @@ export class UploadDetailsComponent implements OnInit {
     curriculumVitae: null
   }
 
-  constructor(private backend: BackendService, private settings: SiteSettingsService, private router: Router) {
+  constructor(private backend: BackendService, private settings: SiteSettingsService, private router: Router, private title: Title) {
+    title.setTitle('Upload - Chinyere Odinukwe')
     // But initially, we'll store a http url to the file of the current images
     this.logoPreviewUrl = ApiEndpoints.UPLOADED_FILES + '/big/' + this.settings.siteSettings.siteLogo + '.png';
     this.logoOldSortingHash = this.settings.siteSettings.siteLogo;

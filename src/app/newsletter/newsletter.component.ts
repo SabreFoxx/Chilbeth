@@ -2,6 +2,7 @@ import { ApiEndpoints } from './../../services/api-endpoints';
 import { BackendService } from './../../services/backend.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-newsletter',
@@ -12,7 +13,9 @@ export class NewsletterComponent implements OnInit {
 
   newsletters: any;
 
-  constructor(private http: HttpClient, private backend: BackendService) { }
+  constructor(private http: HttpClient, private backend: BackendService, private title: Title) {
+    title.setTitle('Newsletter - Chinyere Odinukwe')
+  }
 
   addContact(formInputJsonContainingEmail) {
     this.http.post(ApiEndpoints.NEWSLETTER, formInputJsonContainingEmail) // TODO handle errors appropriately

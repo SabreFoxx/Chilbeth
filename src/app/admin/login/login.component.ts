@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FillableForm } from 'src/services/fillable-form';
 import { AuthService } from 'src/services/auth.service';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit, FillableForm {
     password: new FormControl('', Validators.required),
   });
 
-  constructor(private userAuth: AuthService, private route: Router) {
+  constructor(private userAuth: AuthService, private route: Router, private title: Title) {
+    title.setTitle('Login - Chinyere Odinukwe')
     userAuth.loginComponent = this;
   }
 

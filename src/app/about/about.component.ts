@@ -1,6 +1,7 @@
 import { SiteSettingsService } from 'src/services/site-settings.service';
 import { Component, OnInit } from '@angular/core';
 import { ApiEndpoints } from 'src/services/api-endpoints';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-about',
@@ -11,7 +12,9 @@ export class AboutComponent implements OnInit {
 
   cvUrlPrefix = ApiEndpoints.CV;
 
-  constructor(public settings: SiteSettingsService) { }
+  constructor(public settings: SiteSettingsService, private title: Title) {
+    title.setTitle('About - Chinyere Odinukwe')
+  }
 
   public get profilePicture() {
     let prefix = ApiEndpoints.UPLOADED_FILES + '/big/';

@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ApiEndpoints } from 'src/services/api-endpoints';
 import { BackendService } from 'src/services/backend.service';
 import { ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 const defaultTitle = "Featured Works";
 
@@ -21,7 +22,10 @@ export class WorksComponent implements OnInit {
 
   private activeCarousel = 1;
 
-  constructor(private route: ActivatedRoute, private forceChange: ChangeDetectorRef, public backend: BackendService) {
+  constructor(private route: ActivatedRoute,
+    private forceChange: ChangeDetectorRef,
+    public backend: BackendService, private title: Title) {
+    title.setTitle('Works - Chinyere Odinukwe')
     this.route.params
       .subscribe(params => {
         // Update the url if the user visited links like www.site.com/works/this_is_category_id

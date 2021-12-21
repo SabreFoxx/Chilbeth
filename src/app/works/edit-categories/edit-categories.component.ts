@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { BackendService } from 'src/services/backend.service';
 
 @Component({
@@ -16,7 +17,8 @@ export class EditCategoriesComponent implements OnInit {
     title: new FormControl('', Validators.required),
   });
 
-  constructor(protected backend: BackendService) {
+  constructor(protected backend: BackendService, private title: Title) {
+    title.setTitle('Edit Category - Chinyere Odinukwe')
   }
 
   onSubmit() {

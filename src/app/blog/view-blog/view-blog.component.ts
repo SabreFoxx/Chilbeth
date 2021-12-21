@@ -1,4 +1,4 @@
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, Title } from '@angular/platform-browser';
 import { ApiEndpoints } from 'src/services/api-endpoints';
 import { FillableForm } from 'src/services/fillable-form';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -34,7 +34,7 @@ export class ViewBlogComponent implements OnInit, FillableForm {
 
   constructor(public settings: SiteSettingsService, private route: ActivatedRoute,
     private roleGuard: RoleGuardService, private sanitizer: DomSanitizer,
-    private router: Router, public backend: BackendService) { }
+    private router: Router, public backend: BackendService, private title: Title) { }
 
   /* Comment add alert methods */
   actionPending() {
@@ -70,6 +70,7 @@ export class ViewBlogComponent implements OnInit, FillableForm {
         this.backend.fetchBlog(this.blogId)
           .subscribe(res => {
             this.blog = res;
+            this.title.setTitle(`${this.blog.title} - Chinyere Odinukwe`);
             if (this.blog.videoUrl.length > 1) {
               this.youtubeUrl = `https://youtube.com/embed/${getYoutubeVideoId(this.blog.videoUrl)}`
               this.youtubeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.youtubeUrl);

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { FillableForm } from 'src/services/fillable-form';
 import { ScrollToTopComponent } from 'src/app/others/scroll-to-top/scroll-to-top.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-settings',
@@ -37,7 +38,10 @@ export class SettingsComponent implements OnInit, FillableForm {
     openingTimes: new FormControl(this.settings.siteSettings.openingTimes)
   });
 
-  constructor(private settings: SiteSettingsService, private router: Router) { }
+  constructor(private settings: SiteSettingsService, private router: Router,
+    private title: Title) {
+    title.setTitle('Settings - Chinyere Odinukwe')
+  }
 
   actionPending() {
     this.disableSubmitButton = true;  // Shows spinning animation on submit button

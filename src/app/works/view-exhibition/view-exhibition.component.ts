@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RoleGuardService } from 'src/services/role-guard.service';
 import { BackendService } from 'src/services/backend.service';
 import { ApiEndpoints } from 'src/services/api-endpoints';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, Title } from '@angular/platform-browser';
 import { getYoutubeVideoId } from 'src/app/others/functions';
 
 @Component({
@@ -20,7 +20,7 @@ export class ViewExhibitionComponent implements OnInit {
   constructor(private userAuth: AuthService, private route: ActivatedRoute,
     private roleGuard: RoleGuardService, private sanitizer: DomSanitizer,
     public backend: BackendService,
-    private router: Router) { }
+    private router: Router, private title: Title) { }
 
   canEdit(): boolean {
     return this.roleGuard.canUse('admin');
@@ -33,6 +33,7 @@ export class ViewExhibitionComponent implements OnInit {
         this.backend.fetchExhibition(this.exhibitionId)
           .subscribe(res => {
             this.exhibition = res;
+            this.title.setTitle(`${this.exhibition?.title} - Chinyere Odinukwe`)
             if (this.exhibition.videoUrl) {
               this.youtubeUrl = `https://youtube.com/embed/${getYoutubeVideoId(this.exhibition.videoUrl)}`
               this.youtubeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.youtubeUrl);

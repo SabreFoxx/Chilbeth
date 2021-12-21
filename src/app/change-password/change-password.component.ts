@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FillableForm } from 'src/services/fillable-form';
 import { ScrollToTopComponent } from '../others/scroll-to-top/scroll-to-top.component';
 import { AuthService } from 'src/services/auth.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-change-password',
@@ -22,7 +23,9 @@ export class ChangePasswordComponent implements OnInit, FillableForm {
     retypePassword: new FormControl("", Validators.required),
   });
 
-  constructor(private userAuth: AuthService) { }
+  constructor(private userAuth: AuthService, private title: Title) {
+    title.setTitle('Change Password - Chinyere Odinukwe')
+  }
 
   actionPending() {
     this.disableSubmitButton = true;  // Shows spinning animation on submit button

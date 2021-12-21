@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BackendService } from 'src/services/backend.service';
 import { ScrollToTopComponent } from 'src/app/others/scroll-to-top/scroll-to-top.component';
 import { emptyStub } from 'src/services/fillable-form';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-edit-exhibition',
@@ -14,8 +15,11 @@ export class EditExhibitionComponent extends NewExhibitionComponent implements O
   exhibitionId: string;
   oldImageSortingHash: string;
 
-  constructor(private route: ActivatedRoute, protected backend: BackendService, protected router: Router) {
-    super(backend, router);
+  constructor(private route: ActivatedRoute,
+    protected backend: BackendService,
+    protected router: Router, protected title: Title) {
+    super(backend, router)
+    title.setTitle('Edit Exhibition - Chinyere Odinukwe')
   }
 
   actionSuccess() {

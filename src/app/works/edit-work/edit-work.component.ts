@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BackendService } from 'src/services/backend.service';
 import { ScrollToTopComponent } from 'src/app/others/scroll-to-top/scroll-to-top.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-edit-work',
@@ -14,8 +15,10 @@ export class EditWorkComponent extends NewWorkComponent implements OnInit {
   workId: string;
   oldImageSortingHash: string;
 
-  constructor(private route: ActivatedRoute, protected backend: BackendService, protected router: Router) {
-    super(backend, router);
+  constructor(private route: ActivatedRoute,
+    protected backend: BackendService, protected router: Router, private title: Title) {
+    super(backend, router)
+    title.setTitle('Edit Work - Chinyere Odinukwe')
   }
 
   actionSuccess() {
@@ -27,7 +30,7 @@ export class EditWorkComponent extends NewWorkComponent implements OnInit {
   ngOnInit(): void {
     super.ngOnInit();
     this.fileData = null; // We need this null bcos we'll use it to chech if we changed pic      
-    
+
     this.route.paramMap
       .subscribe(params => {
         this.workId = params.get("workid");

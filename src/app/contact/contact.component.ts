@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { SiteSettingsService } from 'src/services/site-settings.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { SiteSettingsService } from 'src/services/site-settings.service';
 })
 export class ContactComponent implements OnInit {
 
-  constructor(public settings: SiteSettingsService) { }
+  constructor(public settings: SiteSettingsService, private title: Title) { }
 
   get phone() {
     return this.settings.siteSettings.phone;
@@ -35,6 +36,7 @@ export class ContactComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.title.setTitle('Contact Me - Chinyere Odinukwe')
   }
 
 }

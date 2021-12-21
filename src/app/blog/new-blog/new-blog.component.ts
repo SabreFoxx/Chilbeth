@@ -6,6 +6,7 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BackendService } from 'src/services/backend.service';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 // TODO adding images in blog post
 
@@ -80,7 +81,10 @@ export class NewBlogComponent implements OnInit, FillableForm {
     ]
   };
 
-  constructor(protected backend: BackendService, protected router: Router) { }
+  constructor(protected backend: BackendService, protected router: Router,
+    protected title: Title) {
+    title.setTitle('New Blog - Chinyere Odinukwe')
+  }
 
   actionPending() {
     this.disableSubmitButton = true;  // Shows spinning animation on submit button
