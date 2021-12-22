@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { BackendService } from 'src/services/backend.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-side-bar',
@@ -19,8 +20,8 @@ export class SideBarComponent implements OnInit {
 
   disableSubmitButtonForNewsletterForm = false;
 
-  constructor(private http: HttpClient, private backend: BackendService) {
-    this.newsletter = new NewsletterComponent(http, backend);
+  constructor(private http: HttpClient, private backend: BackendService, private title: Title) {
+    this.newsletter = new NewsletterComponent(http, backend, title);
   }
 
   clear() {
