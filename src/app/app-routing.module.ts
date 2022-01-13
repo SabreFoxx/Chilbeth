@@ -30,7 +30,7 @@ import { ExhibitionsComponent } from './works/exhibitions/exhibitions.component'
 const appRoutes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'blog', component: BlogLandingComponent },
-  { 
+  {
     path: 'blog/edit/:blogid', component: EditBlogComponent,
     canActivate: [RouteAuthGuardService]
   },
@@ -42,16 +42,16 @@ const appRoutes: Routes = [
   { path: 'blog/view/:blogid', component: ViewBlogComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'login', component: LoginComponent },
-  
-  { path: 'works', component: WorksComponent},
-  { path: 'works/:category', component: WorksComponent},
-  { path: 'works/:category/p/:page', component: WorksComponent},
-  { path: 'works/p/:page', component: WorksComponent },
-  { path: 'works/view/:workid', component: ViewWorkComponent },
+
+  { path: 'works', component: WorksComponent },
   {
     path: 'works/new', component: NewWorkComponent,
     canActivate: [RouteAuthGuardService]
   },
+  { path: 'works/:category', component: WorksComponent },
+  { path: 'works/:category/p/:page', component: WorksComponent },
+  { path: 'works/p/:page', component: WorksComponent },
+  { path: 'works/view/:workid', component: ViewWorkComponent },
   {
     path: 'works/edit/:workid', component: EditWorkComponent,
     canActivate: [RouteAuthGuardService]
@@ -60,8 +60,8 @@ const appRoutes: Routes = [
     path: 'works/categories/edit', component: EditCategoriesComponent,
     canActivate: [RouteAuthGuardService]
   },
-  { path: 'exhibitions', component: ExhibitionsComponent},
-  { path: 'exhibitions/p/:page', component: ExhibitionsComponent},
+  { path: 'exhibitions', component: ExhibitionsComponent },
+  { path: 'exhibitions/p/:page', component: ExhibitionsComponent },
   { path: 'exhibitions/view/:exhibitionid', component: ViewExhibitionComponent },
   {
     path: 'exhibitions/new', component: NewExhibitionComponent,
@@ -79,7 +79,7 @@ const appRoutes: Routes = [
   },
   { path: 'settings', component: SettingsComponent },
   { path: 'change-password', component: ChangePasswordComponent },
-  { path: 'upload-details', component: UploadDetailsComponent},
+  { path: 'upload-details', component: UploadDetailsComponent },
   { path: 'newsletter', component: NewsletterComponent },
   { path: 'home', component: LandingComponent },
   { path: '', component: LandingComponent }, // The LandingComponent is the default component
